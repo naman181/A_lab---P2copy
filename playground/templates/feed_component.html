@@ -1,0 +1,24 @@
+
+
+{% block content %}
+
+  {% for classroom in classrooms %}
+      <div class="card">
+
+          <div class="ch">
+              <div class="date">created : {{classroom.created|timesince}} ago</div>
+              <a href="{% url 'classroom_detail' classroom.id %}">{{ classroom.name }}</a>
+              <div class="data"> &nbsp; &nbsp; </div>
+          </div>
+
+          <div class="cl">
+            
+              <div class="time">
+                  <img src="timer.svg" alt="Logo 1"> 
+              </div>
+              <button class="atmpt">View Tests</button>
+          </div>
+      </div>
+  {% endfor %}
+
+{% endblock %}

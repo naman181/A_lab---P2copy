@@ -1,0 +1,44 @@
+{% block content %}
+    <style>
+        .low {
+            display: flex;
+            flex-direction: column; /* Display cards in a column */
+            align-items: center;
+            height: 50vh;
+            background-color: #f0f0f0;
+            overflow-y: auto; /* Enable vertical scrolling if needed */
+        }
+
+        .card {
+            background-color: #f0f0f0;
+            border-radius: 15px;
+            padding: 20px;
+            height: 500px;
+            width: 200px;
+            box-shadow: 10px 10px 20px #cbced1, -10px -10px 20px #ffffff;
+            margin-bottom: 20px; /* Adjust the margin as needed */
+        }
+
+        h2 {
+            color: #333333;
+        }
+
+        p {
+            color: #666666;
+        }
+    </style>
+
+    <div class="low">
+        {% for test_info in test_data %}
+            <div class="card">
+                <h2>{{ test_info.test.title }}</h2>
+                <p>{{test_info.test.description}}</p>
+                <p>Number of Questions: {{ test_info.num_questions }}</p>
+                <form method="get" action="{% url 'take_test' classroom.id test_info.test.id %}">
+                    <button type="submit">Start Test</button>
+                </form>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% block content %}
+<div>
+<form method="post" action="">
+    {% csrf_token %}
+    
+    {{ test_form.as_p }}
+    
+    {% for question_form in question_forms %}
+      {{ question_form.as_p }}
+    {% endfor %}
+    <a class="btn btn--dark" href="">Cancel</a>
+    <button type="submit">Create Test</button>
+</form>
+</div>
+{% endblock content %}

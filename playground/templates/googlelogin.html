@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+</head>
+<body>
+    <div class="box">
+    <h2>Sign in</h2>
+    <p>Use your Google Account</p>
+    <form id="a-form" class="form" method="post" action=""></form>
+    {% if user.is_authenticated %}
+    <span style="font-size: 11px; color: black;" class="form__span">You are Logged In as {{ user }}</span>
+    <a href="{% url 'logout_page' %}" class="button-link" class="form__span" >Logout</a>
+    {% else %}
+    <a href="{% url 'google_login' %}?prompt=none&next=/playground/dashboard" style="font-size: 11px;" class="form__span">or use Google for registration</a>
+
+    {% endif %}
+
+    <br>                                                                                     
+    <label style="font-size: 11px;" for="copyright">Copyright © A-LAB 2023. All rights reserved</label>
+  </form>
+  </div>
+</body>
+</html>
+

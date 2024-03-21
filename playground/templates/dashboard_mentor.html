@@ -1,0 +1,615 @@
+
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Krona One:wght@400&display=swap"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ABeeZee:wght@400&display=swap"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Dashboard | A-Lab</title>
+    <link rel="icon" type="image/x-icon" href="logo.ico">
+    <style>
+        :root {
+            --bg: #EDF2F0;
+            --neu-1: #e2e2e2;
+            --neu-2: #c2cbd7;
+            --white: #f9f9f9;
+            --gray: #b8c3ff;
+            --black: #181818;
+            --purple: #4B70E2;
+            --transition: 1.25s;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Krona one','Montserrat', sans-serif;
+            font-size: 11px;
+            background-color: #A3CDFF;
+            color: rgb(0, 0, 0);
+        } 
+
+        .parent {
+            display: flex;
+            flex-direction: column;
+           /* align-items: center;*/
+            gap: 10px;
+            justify-content: center;
+            background-color: #B8FFF7;
+            border-color: black;
+            font-family: 'Krona one';     
+            font-size: 22px;
+            padding: 40px 40px;
+            margin: 5px 5px;  
+            border-radius: 8px;
+            overflow: hidden;
+            width: 100%;
+            box-shadow: 10px 10px 10px var(--neu-2), -10px -10px 10px var(--white);
+        }
+
+        .child1 {
+            display: flex;
+            flex-direction: column; /* Arrange elements side by side */
+            align-items: center;
+            gap: 20px;
+            justify-content: space-between;
+            width: 100%; /* Ensure full width */
+            overflow-y: hidden;
+        }
+        .contain{
+            display: flex;
+            align-items: flex-start;
+            flex-direction: row; /* Arrange elements side by side */
+            gap: 50px;
+            justify-content: space-between;
+            width: 100%; /* Ensure full width */
+        }
+
+        .text {
+            flex: 1; /* Allow text to take up remaining space */
+        }
+
+        .text h1 {
+            font-size: 34px;
+            margin: 0;
+            padding: 5px;
+        }
+        .text h4 {
+            margin: 0;
+            padding: 5px;
+            
+        }
+
+        .image {
+            max-width: 100%;
+            height: auto;
+        }
+        .box{
+            flex-direction: row; /* Stack elements in mobile view */
+            display: flex;
+            gap:70px;
+            text-align: center;
+            background: linear-gradient( 180deg, rgba(255, 255, 255, 0.75) 99.99%, rgba(255, 255, 255, 0) );
+            padding: 40px 80px;
+            width: 680px;
+            z-index: 2;
+            
+        }
+        .loginbutton{
+            width: 100%;
+            background-color: #8187FF;
+            text-align: left;
+            border-radius: 0 4px 4px 0;
+            border:0;
+            cursor: pointer;
+            padding: 5px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            font-size: 11px;
+        }
+        .loginbutton:hover{
+            text-decoration: underline;
+            transition: text-decoration 0.3s ease;
+            background-color: #fff;
+        }
+     
+        @media (max-width: 768px) {
+            .child1 {
+                flex-direction: column; /* Stack elements in mobile view */
+                align-items: center;
+                text-align: center;
+            }
+            .navigation {
+            justify-content: center;
+            }
+
+            .image-container {
+            align-items: center;
+            }
+            .box{
+                justify-content: center;
+                gap: 30px;
+            }
+            .info{
+                align-items: center;
+            }
+            .contain{
+                flex-direction: row; /* Stack elements in mobile view */
+                align-items: flex-start;
+                gap: 20px;
+            }
+            .bg{
+                align-items: center;
+            }
+            .bg img{
+                width: 288px;
+                min-height: 132.6px;
+                max-width: 100%;
+                max-height: 532.6px;
+            }
+        }        
+
+        .image-container {
+            display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        }
+        .image-container1 {
+            display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        }
+
+        .hr1 {
+            box-sizing: border-box;
+            border-top: 1px solid #000;
+            height: 1px;
+        }
+        .name{
+            border: 0;
+            font-family: "ABeeZee";
+            font-size: 16px;
+            background-color: transparent;
+            text-align: left;
+            width: 100%;
+        }
+
+        .drawer{
+            max-width: 224px;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+        }
+        .top{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            padding-top:20px;
+            border-radius: 25px 25px 0 0;
+            background-color: #A3CDFF;
+        }
+        .bottom{
+            display: flex;
+            flex-direction: column; 
+            justify-content: flex-end; 
+            height: 300px;
+            gap: 3px;
+            padding-bottom: 5px;
+            background-color: #A3CDFF;
+        }
+        .btn{
+            width: 100%;
+            padding: 12px;
+            gap: 3px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .midcontent{
+            max-width: 682px;
+            width: 100%;
+            height: 100%;
+            max-height: 724px;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .head{
+            display: flex;
+            flex-direction: row;
+            padding: 5px;
+            gap: 10px;
+            background-color: #91D7FF;
+            border-radius: 4px 4px 4px 4px;
+        }
+        .hbt{
+            background-color: #C6F8FF;
+            text-align: center;
+            border-radius: 4px 4px 4px 4px;
+            border:0;
+            cursor: pointer;
+            padding: 5px 10px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            font-size: 11px;
+        }
+        .hbt:hover{
+            text-decoration: underline;
+            transition: text-decoration 0.3s ease;
+            background-color: #fff;
+        }
+        .low{
+            display: flex;
+            flex-direction: column;
+            background-color: transparent;
+            gap: 5px;
+            height: 500px; /* Set the maximum height for the scrollable container */
+            overflow-y: scroll;
+            z-index: 1;
+            position: relative;
+            background-image: url("rafiki.svg");
+            background-size: contain;
+        }
+        .card{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #89A0FF;
+            width: 100%;
+            min-height: 210px;
+            max-height: 218px;
+            border-radius: 4px 4px 4px 4px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            padding: 10px;
+            opacity: 0.95;
+            
+        }
+        .ch{
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            background-color: transparent;
+        }
+        .date{
+            background-color: #68A7D5;
+            text-align: center;
+            border-radius: 0 25px 25px 0;
+            border:0;
+            padding: 5px 10px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            font-size: 11px;
+        }
+        .data{
+            background-color: #95BFFF;
+            text-align: center;
+            border-radius: 8px 8px 8px 8px;
+            border:0;
+            padding: 5px 10px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            font-size: 11px;
+        }
+        .cl{
+            display: flex;
+            max-height: 34px;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .time{
+            padding: 5px 20px;
+            border-radius: 25px 25px 25px 25px;
+            justify-content: space-between;
+            background-color: #83FFDA;
+            font-size: 11px;
+        }
+        .atmpt{
+            background-color: #82CBFF;
+            text-align: center;
+            border-radius: 8px 8px 8px 8px;
+            border:0;
+            cursor: pointer;
+            padding: 5px 10px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            font-size: 11px;
+        }
+        .atmpt:hover{
+            text-decoration: underline;
+            transition: text-decoration 0.3s ease;
+            background-color: #fff;
+        }
+        .rightcont{
+            display: flex;
+            flex-direction: column;
+            max-width: 262px;
+            width: 100%;
+            height: 100%;
+            max-height: 724px;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            gap: 20px;
+        }
+        .rhead{
+            text-align: center;
+            width: 100%;
+            background-color: #8EC2FF;
+            font-size: 11px;
+            padding: 10px 10px;
+            border-radius: 17px 0 0 17px;
+            border: 0;
+        }
+        .rlow{
+            display: flex;
+            flex-direction: column;
+            background-color: transparent;
+            gap: 5px;
+            height: 500px; /* Set the maximum height for the scrollable container */
+            overflow-y: scroll;
+        }
+        .rcard{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: linear-gradient(to right, white 60px, #687999 60px);
+            width: 100%;
+           
+            max-height: 400px;
+            gap: 5px;
+            border-radius: 4px 4px 4px 4px;
+            padding: 10px;
+        }
+        .rch{
+            font-size: 11px;
+            background-color: transparent;
+            max-height: 40px;
+            display: flex;
+            gap:5px;
+        }
+        .rtime{
+            background-color: transparent;
+            padding: 5px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        .topicmat{
+            margin-left: 50px;
+            padding: 10px;
+            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            width: 75%;
+        }
+        .topic,.mat{
+            font-size: 11px;
+            min-height: 50px;
+            color: #fff;
+        }
+        .bg{
+            position: absolute;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            opacity: 0.2;
+            z-index: 2;
+        }
+          
+    </style>
+</head>
+<body>
+    <div class="parent">
+
+        <div style="left: 0px; position: relative;" class="image-container" >
+            <!-- LOGO on LEFT -->
+            <a href="ok.html"><img style=" max-width: 70%; ; max-height: 140px; cursor: pointer;" src="logo.svg" alt="Image"></a>
+            <h4>Welcome Back! {{request.user.username}} </h4>
+        </div>
+
+       <!-- PAGE 1 -->
+        
+            <div class="child1">
+                
+                <div class="contain">
+                    <div class = "drawer">
+                        <div class = "top">
+
+                            <div class = btn >
+                                <img src="da.svg" alt="Logo 1">
+                            </div>
+                            <div class = btn >
+                                <img src="home.svg" alt="Logo 1">
+                                <button class="loginbutton">Home</button>
+                            </div>
+                            <div class = btn >
+                                <img style = "width:33px; height: 33px;" src="test.svg" alt="Logo 1">
+                                <button class="loginbutton">
+                                    <a href="{% url 'create-classroom' %}" class="dropdown-item">Create Test</a>
+                                </button>
+                            </div>
+                            <div class = btn >
+                                <img  src="que.svg" alt="Logo 1">
+                                <button class="loginbutton">Generate Ques</button>
+                            </div>
+                            <div class = btn >
+                                <img  src="eye.svg" alt="Logo 1">
+                                <button class="loginbutton">View Ques.</button>
+                            </div>
+                            <div class = btn >
+                                <img  src="pen.svg" alt="Logo 1">
+                                <button class="loginbutton">Update Ques.</button>
+                            </div>
+                            <div class = btn >
+                                <img style="height: 33px;" src="bin2.svg" alt="Logo 1">
+                                <button class="loginbutton">Delete Ques.</button>
+                            </div>
+                            <div class = btn >
+                                <img  src="his.svg" alt="Logo 1">
+                                <button class="loginbutton">Test History</button>
+                            </div>
+                            <div class = btn >
+                                <img  src="res1.svg" alt="Logo 1">
+                                <button class="loginbutton">Publish Results</button>
+                            </div>
+                            <div class = btn >
+                                <img src="analytics.svg" alt="Logo 1">
+                                <button class="loginbutton">Analytics</button>
+                            </div>        
+                        </div>
+
+                        <div class = "bottom">
+
+                            <div class = btn >
+                                <img src="logout.svg" alt="Logo 1">
+                                <button class="loginbutton">
+                                    <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
+                                </button>
+                            </div>
+                            <div class = btn >
+                                <img src="setting.svg" alt="Logo 1">
+                                <button class="loginbutton">Settings</button>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+                    
+                    <div class = "midcontent">
+                        <div class = "head">
+                           
+                                <button class="hbt">Ongoing Test</button>
+                                <button class="hbt">Activity</button>
+                                <button class="hbt">Quick Links</button>
+                        </div>
+                              <!-- Loading All the Available Classrooms Creeated by a particular  -->
+                              <div class = "low">
+                                {% include 'feed_component.html' %}
+                              </div>
+                    </div>
+
+                    <div class="rightcont">
+
+                        <div class="rhead">Upcoming Assessments</div>
+
+                        <div class="rlow">
+
+                            <div class="rcard">
+
+                                <div class="rch">
+                                    <div class="date" style="width: 110px; max-width:110px; padding-top: 10px;">26 JUL</div>
+                                    <div>Computer Organization architecture</div>
+                                </div>   
+
+                                <div class="topicmat">
+                                    <div class="topic">
+                                        <label for="topic">Topics:</label>
+                                        
+                                    </div>
+                                    <div class="mat">
+                                        <label for="mat">Material:</label>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="rtime">
+                                    <img src="timer.svg" alt="Logo 1">15 Minutes
+                                </div>
+                            </div>
+
+                            <div class="rcard">
+
+                                <div class="rch">
+                                    <div class="date" style="width: 110px; max-width:110px; padding-top: 10px;">26 JUL</div>
+                                    <div>Computer Organization architecture</div>
+                                </div>   
+
+                                <div class="topicmat">
+                                    <div class="topic">
+                                        <label for="topic">Topics:</label>
+                                        
+                                    </div>
+                                    <div class="mat">
+                                        <label for="mat">Material:</label>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="rtime">
+                                    <img src="timer.svg" alt="Logo 1">15 Minutes
+                                </div>
+                            </div>
+
+                            <div class="rcard">
+
+                                <div class="rch">
+                                    <div class="date" style="width: 110px; max-width:110px; padding-top: 10px;">26 JUL</div>
+                                    <div>Computer Organization architecture</div>
+                                </div>   
+
+                                <div class="topicmat">
+                                    <div class="topic">
+                                        <label for="topic">Topics:</label>
+                                        
+                                    </div>
+                                    <div class="mat">
+                                        <label for="mat">Material:</label>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="rtime">
+                                    <img src="timer.svg" alt="Logo 1">15 Minutes
+                                </div>
+                            </div>
+
+                            <div class="rcard">
+
+                                <div class="rch">
+                                    <div class="date" style="width: 110px; max-width:110px; padding-top: 10px;">26 JUL</div>
+                                    <div>Computer Organization architecture</div>
+                                </div>   
+
+                                <div class="topicmat">
+                                    <div class="topic">
+                                        <label for="topic">Topics:</label>
+                                        
+                                    </div>
+                                    <div class="mat">
+                                        <label for="mat">Material:</label>
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="rtime">
+                                    <img src="timer.svg" alt="Logo 1">15 Minutes
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                 </div>
+            </div>
+
+       </div>
+
+       <!-- PAGE 2 -->
+       <div class="PAGE2">
+            <div class="child2">
+                <!-- Content for PAGE 2 -->
+            </div>
+       </div>
+
+    </div>
+</body>
+</html>
+{% endblock content %}

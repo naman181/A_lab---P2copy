@@ -1,0 +1,45 @@
+{% block content %}
+
+<style>
+    .custom-title {
+    text-align: left;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: 'Arial';
+}
+</style>
+<div>
+    <form action="" method="post">
+        {% csrf_token %}
+        
+        <div class="custom-title">Create Class</div>
+        <div style="text-align: left; font-family: Arial, Helvetica, sans-serif;">
+
+            <label for="classroom">Enter Classroom Subject</label>
+            <input required type="text" value="{{nest.topic.name}}" name="topic" list="topic-list" />
+            <datalist id="topic-list">
+            <select id="room_topic">
+                {% for topic in topics %}
+                <option value="{{topic.name}}">{{topic.name}}</option>
+                {% endfor %}
+            </select>
+            </datalist>
+            <div class="form__group">
+                <label for="room_name">Class Name</label>
+                {{form.name}}
+            </div>
+            <div class="form__group">
+                <label for="room_description">Classroom Description</label>
+                {{form.description}}
+            </div> 
+            <!-- <input type="submit" value="Submit"> -->
+            <div class="form__action">
+                <a class="btn btn--dark" href="{% url 'dashboard_mentor' %}">Cancel</a>
+                <button class="btn btn--main" type="submit">Create Classroom</button>
+            </div>
+            
+        </div>
+    </form>
+</div>
+{% endblock content %}

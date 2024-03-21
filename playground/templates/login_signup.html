@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Krona One:wght@400&display=swap"
+  />
+    <style>
+          :root {
+        --bg: #EDF2F0;
+        /* --neu-1: #ecf0f3; */
+        --neu-1: #e2e2e2;
+        --neu-2: #c2cbd7;
+        --white: #f9f9f9;
+        --gray: #a0a5a8;
+        --black: #181818;
+        --purple: #4B70E2;
+        --transition: 1.25s;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 5px 5px;
+            padding: 30px 30px;
+            text-align: center;
+            background-color: rgb(229, 229, 229);      
+        }
+        .parent{
+            font-family: 'Krona one';
+            font-size: 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 90px;
+            margin: 5px 5px;
+            width: 700px;          
+            border: 1px;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: var(--neu-1);
+            box-shadow: 10px 10px 10px var(--neu-2), 
+            -10px -10px 10px var(--white);
+            @media (max-width: 1200px) {
+            transform: scale(0.9);
+            }
+            @media (max-width: 1000px) {
+            transform: scale(0.8);
+            }
+            @media (max-width: 800px) {
+            transform: scale(0.7);
+            }
+            @media (max-width: 600px) {
+            transform: scale(0.6);
+            }
+        }
+        .child{
+            position: relative;
+            bottom: 25px;
+            padding: 15px 5px;
+            width: 500px;
+            background-color:rgba(255, 255, 255, 0.553);
+        }
+        .btn{
+            align-items: center;
+            font-family:'Krona one',sans-serif;
+            bottom: 20px;
+            width: 150px;
+            max-height: 45px;
+            min-height: 40px;
+            border-radius: 10px;
+            margin-top: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            border-radius: 8px;
+            background-color: #B6E0FF;
+            color: var(--black);
+            border: none;
+            box-shadow: 8px 8px 16px var(--neu-2), -8px -8px 16px var(--white);
+            top: -2px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+            color: #ffffff;
+                }
+    </style>
+</head>
+<body>
+    <!-- main -->
+<div class="parent">
+    <form method="post" action="{% url 'login_page' %}">
+        {% csrf_token %}
+        <img src="{% static '/logo.png' %}">
+        <p style=" font-family: 'Krona one'; font-size: 22px;">Welcome !</p>
+        <img width="300px" src="{% static '/amico.svg' %}">
+    <div class="child">        
+      <button type="submit"style="position: relative;margin-right: 20px;"class="btn">
+        <a style="text-decoration: none;" href="{% url 'login_page' %}">Login</a>
+      </button>
+      <button type="submit" style="position: relative; margin-left: 20px;"class="btn">
+        <a style="text-decoration: none;" href="{% url 'registration' %}">Sign up</a>
+      </button>
+    </div>
+    </form>
+</div>
+</body>
+</html>

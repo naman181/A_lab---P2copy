@@ -1,0 +1,29 @@
+<!-- {% extends test_component %} -->
+{% block content %}
+<h2>{{ test.title }}</h2>
+<p>Question {{ question_index }}:</p>
+<p>{{ question.question_text }}</p>
+
+ <form action="" method="post">
+    {% csrf_token %}
+    {{ answer_form.as_p }}
+    <input type="hidden" name="test_id" value="{{ test.id}}">
+    <input type="hidden" name="current_question_index" values="{{ question_index }}">
+    <input type="hidden" name="time_taken" id="time_taken" value="0">
+ </form>
+
+ <script>
+    var timeLimit = 60;
+    var timeRemaining = timeLimit;
+    var timer = setInterval(function() {
+      timeRemaining -= 1;
+      document.getElementById('time_taken').value = timeLimit - timeRemaining;
+
+      if (timeRemaining <= 0) {
+        clearInterval(timer);
+        document.forms[0].submit();  // Auto-submit the form when time runs out
+      }
+    }, 1000);
+  </script>
+
+{% endblock %}

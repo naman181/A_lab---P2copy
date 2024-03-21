@@ -1,0 +1,134 @@
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/signin_up.css' %}">
+
+  <link 
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+  <link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Krona One:wght@400&display=swap"
+/>
+</head><body>
+  <div class="main">
+    
+    <div class="container a-container" id="a-container">
+
+      <!-- SIGN IN FORM STARTS -->
+
+      <form id="a-form" class="form" method="post" action="">
+        <img style="margin-top: 60px;" src="{% static '/logo.png' %}">
+        <h2 style="font-size: 26px;" class="form_title title">Create Account</h2>
+        <span style="font-size: 11px; " class="form__span">use email for registration</span>
+        {% csrf_token %}
+        {{form.as_p}}
+          <!-- Email -->
+          
+              <!-- <label for="">Email:</label> -->
+              <input style="font-size: 11px;min-height: 40px;"
+                     type="email" 
+                     name="email" id="" 
+                     class="form__input"
+                     placeholder="Email" required>
+          
+          <!-- Username -->
+          
+              <!-- <label for="">Username:</label> -->
+              <input type="text" 
+                     name="username" id="" 
+                     class="form__input" 
+                     placeholder="Username" required>
+          
+                     <!-- Password -->
+                     
+                     <!-- <label for="">Password:</label> -->
+                     <input type="password" 
+                     name="password" id="" 
+                     class="form__input" 
+                     placeholder="Password" required>
+          
+          <!-- Role -->
+          
+              <!-- <label for="">Role:</label> -->
+              <!-- <select name="{{ form.role.name }}" id="{{ form.role.id_for_label }}" class="form-control">
+                {% for value, label in form.role.field.choices %}
+                <option value="{{ value }}" {% if value == form.role.value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+              </select> -->
+              
+              <select style="font-size: 11px; min-height: 40px;" class="form__input" name="role" id="">
+                <option style="font-size: 11px;" value="Student">Student</option>
+                <option style="font-size: 11px; height: 40px;" value="Mentor">Mentor</option>
+              </select>
+          
+              <button type="submit"  class="btn btn-primary">
+                <a style="text-decoration: none;" href="{% url 'registration' %}">Sign up</a>
+              </button>
+              <label style="font-size: 11px;" for="copyright">Copyright © A-LAB 2023. All rights reserved</label>
+      </form>
+      <!-- <form id="a-form" class="form" method="post" action=""></form>
+        {% if user.is_authenticated %}
+        <span style="font-size: 11px; color: black;" class="form__span">You are Logged In as {{ user }}</span>
+        <a href="{% url 'logout_page' %}" class="button-link" class="form__span" >Logout</a>
+        {% else %}
+        <a href="{% url 'google_login' %}?prompt=none&next=/playground/dashboard" style="font-size: 11px;" class="form__span">or use Google for registration</a>
+
+        {% endif %}
+
+        <br>                                                                                     
+      </form> -->
+
+      <!-- SIGN IN FORM END -->
+    </div>
+    
+    <!-- LOGIN FORM STARTS -->
+    <div class="container b-container" id="b-container">
+      <form method="post" action="">
+        {% csrf_token %}
+        <img style="margin-top: 15px;" src="{% static '/logo.png' %}">
+        <h2 style="font-size: 26px;" class="form_title title">Sign In to A-LAB</h2>
+        <span style="font-size: 11px;" class="form__span">or use your email account</span>
+        <br>
+
+        <input style="font-size: 11px;" class="form__input" 
+               type="text" name="username" id="id_username"
+               placeholder="Enter Username" required>
+        <input style="font-size: 11px;" class="form__input" 
+               type="password" name="password" id="id_password"
+               placeholder="Enter Password" required>
+        <!-- <a style="font-size: 11px;" class="form__link" href="#">Forgot your password?</a> -->
+        <br>  
+        <label style="font-size: 11px;" for="copyright">Copyright © A-LAB 2023. All rights reserved</label>
+          
+        <button type="submit" style="font-size: 14px;" id="button_style" >
+          <a style="text-decoration: none;">Login</a>
+        </button>
+      </form>
+    <!-- LOGIN FORM ENDS -->
+    </div>
+    
+    <div class="switch" id="switch-cnt">
+      <div class="switch__circle"></div>
+      <div class="switch__circle switch__circle--t"></div>
+
+      <div class="switch__container" id="switch-c1">
+        <h2 style="font-size: 26px;" class="switch__title title">Welcome Back !</h2>
+        <p style="font-size: 12px;" class="switch__description description">Already a member ! Login to access your personalized account and stay connected</p>
+        <button style="font-size: 14px;" id="button_style"  class="switch__button button switch-btn">LOGIN</button>
+      </div>
+
+      <div class="switch__container is-hidden" id="switch-c2">
+        <h2 style="font-size: 26px;" class="switch__title title">Hello !</h2>
+        <p style="font-size: 12px;" class="switch__description description">New to website ? Ready to explore ? Sign up now and get started</p>
+        <button style="font-size: 14px;" id="button_style"  class="switch__button button switch-btn">SIGN UP</button>
+      </div>
+
+    </div>
+  </div>
+  <script src="{% static '/js/signin_up.js' %}"></script>
+
+</body>

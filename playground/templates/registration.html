@@ -1,0 +1,50 @@
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/signin_up.css' %}">
+
+<link 
+href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+<link
+rel="stylesheet"
+href="https://fonts.googleapis.com/css2?family=Krona One:wght@400&display=swap"
+/>
+<!-- SIGN IN FORM STARTS -->
+<form id="a-form" class="form" method="post" action="{% url 'registration' %}">
+    <img style="margin-top: 60px;" src="{% static '/logo.png' %}">
+    <h2 style="font-size: 26px;" class="form_title title">Create Account</h2>
+    <span style="font-size: 11px; " class="form__span">use email for registration</span>
+    {% csrf_token %}
+    
+    <input style="font-size: 11px;min-height: 40px;"
+           type="email" 
+           name="email" 
+           class="form__input"
+           placeholder="Email" required>
+    
+    <input type="text" 
+           name="username" 
+           class="form__input" 
+           placeholder="Username" required>
+    
+    <input type="password" 
+           name="password1" 
+           class="form__input" 
+           placeholder="Password" required>
+
+    <input type="password" 
+           name="password2" 
+           class="form__input" 
+           placeholder=" Confirm Password" required>
+           
+    <select style="font-size: 11px; min-height: 40px;" class="form__input" name="role">
+        <option style="font-size: 11px;" value="student">Student</option>
+        <option style="font-size: 11px; height: 40px;" value="mentor">Mentor</option>
+    </select>
+
+    <button type="submit" class="btn btn-primary">Sign up</button>
+    
+    <label style="font-size: 11px;" for="copyright">Copyright © A-LAB 2023. All rights reserved</label>
+</form>
+
+<!-- SIGN IN FORM END -->
+{% endblock content %}

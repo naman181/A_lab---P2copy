@@ -1,0 +1,142 @@
+{% block content %}
+
+<style>
+    .room-container{
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+    }
+    .room-navbar{
+        
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 3px;
+        justify-content: space-between;
+    }
+</style>
+<div style="margin-left: 50px;margin-right: 50px; " class="room-container">
+    <div>
+        <hr>
+        <div style="display: grid;
+        grid-template-columns: 2fr 1fr;">
+        <h1>{{classroom.name}}</h1>
+        <h4>by {{classroom.host.username}} </h4>
+        
+        <div class="nest-navbar">
+        <button  style=" display: flex;justify-content:space-evenly;
+                        width: 100px;">
+            <a style="text-decoration: none;" href="">All Requests</a>
+        </button>
+        <button  style=" display: flex;justify-content:space-evenly;
+                        width: 100px;">
+            <a style="text-decoration: none;" href="">Members</a>
+        </button>
+        <button  style=" display: flex;justify-content:space-evenly;
+                width: 100px;">
+        <a style="text-decoration: none;" href="{% url 'create-test' classroom.id %}">Create Test</a>
+        </button>
+        </div>
+        </div>
+
+        <h5 style="border: 2px solid black; width: auto; padding: 10px; margin: 2px;">{{classroom.description}}</h5>
+
+        <div style="border: 2px solid black; width: auto; padding: 10px; margin: 2px;" class="comment-wrapper">
+            <h3> Tests </h3>
+            <!-- <hr>
+            {% for message in classroom_messages %}
+            <div>
+                <hr>
+                {% if request.user == message.user or classroom.host.username|striptags == user.username|striptags %}
+                <a href="{% url 'delete-message' message.id %}">Delete</a>
+                {% endif %}
+                    <small>@{{message.user}} {{message.created|timesince}} ago
+                </small>
+                <p>
+                    {{message.body}}
+                </p>
+            </div>
+            {% endfor %} -->
+
+            <div class = "midcontent">
+                <div class = "head">
+                   
+                        <button class="hbt">Ongoing Test</button>
+                        <button class="hbt">Activity</button>
+                        <button class="hbt">Quick Links</button>
+                </div>
+                      <!-- Loading All the Tests Created  -->
+                      <div class = "low">
+                        {% include 'test_component.html' %}
+                      </div>
+            </div>
+        </div>
+
+        {% if request.user.is_authenticated %}
+        <div class="comment-form">
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="text" name="body" placeholder="Write you message here !">
+            </form>
+        </div>
+        {% endif %}
+       
+    </div>
+
+    <div>
+        <select id="viewSelector">
+            <option value="members">Members</option>
+            <option value="activities">User Activities</option>
+            <option value="tests">User Activities</option>
+        </select>
+    
+    <div id="membersView">
+        <h3>Members</h3>
+        <hr>
+        {% for user in participants %}
+        <div style="border: 2px solid black; width: auto; padding: 1px; margin: 2px;" class="comment-wrapper">
+            {% if classroom.host.username|striptags == user.username|striptags %}
+            <p> Guardian : [♕{{user.username}}♕] </p>
+
+            {% else %}
+
+            <p>@{{user.username}}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="testsView">
+        <h3>All Tests</h3>
+        <hr>
+        {% for user in participants %}
+        <div style="border: 2px solid black; width: auto; padding: 1px; margin: 2px;" class="comment-wrapper">
+            
+        </div>
+        {% endfor %}
+    </div>
+
+
+    <div id="activitiesView" style="display: none;">
+       Rampo_san <!-- {% include 'activity_component.html' %} -->
+    </div>
+     
+</div>
+    <script>
+        const viewSelector = document.getElementById('viewSelector');
+        const membersView = document.getElementById('membersView');
+        const activitiesView = document.getElementById('activitiesView');
+        const testsView = document.getElementById('testsView');
+        viewSelector.addEventListener('change', function() {
+            if (viewSelector.value === 'tests') {
+                membersView.style.display = 'block';
+                activitiesView.style.display = 'none';
+            } else if (viewSelector.value === 'activities') {
+                membersView.style.display = 'none';
+                activitiesView.style.display = 'block';
+            } else if (viewSelector.value === 'members') {
+                membersView.style.display = 'block';
+                activitiesView.style.display = 'none';
+            }
+        });
+    </script>
+</div>
+{% endblock content %}

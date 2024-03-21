@@ -1,0 +1,5 @@
+        <a href= "{% provider_login_url 'google' %}?next=/" style="font-size: 11px;" class="form__span">
+        <button style=" width: auto; padding-inline: 20px; "
+        id="button_style" 
+        type="submit">or use google for registration</button>
+        </a>

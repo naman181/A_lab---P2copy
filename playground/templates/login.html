@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Krona One:wght@400&display=swap"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ABeeZee:wght@400&display=swap"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Login | A-Lab</title>
+    <link rel="icon" type="image/x-icon" href="logo.ico">
+    <style>
+        :root {
+            --bg: #EDF2F0;
+            --neu-1: #e2e2e2;
+            --neu-2: #c2cbd7;
+            --white: #f9f9f9;
+            --gray: #b8c3ff;
+            --black: #181818;
+            --purple: #4B70E2;
+            --transition: 1.25s;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Krona one','Montserrat', sans-serif;
+            font-size: 11px;
+            background-color: #A3CDFF;
+            color: rgb(0, 0, 0);
+        } 
+
+        .parent {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #A3CDFF;
+            border-color: black;
+            font-family: 'Krona one';     
+            font-size: 22px;
+            padding: 40px 40px;
+            margin: 5px 5px;  
+            border-radius: 8px;
+            overflow: hidden;
+            width: 100%;
+            box-shadow: 10px 10px 10px var(--neu-2), -10px -10px 10px var(--white);
+        }
+
+        .child1 {
+            display: flex;
+            flex-direction: column; /* Arrange elements side by side */
+            align-items: center;
+            gap: 20px;
+            justify-content: space-between;
+            width: 100%; /* Ensure full width */
+        }
+        .contain{
+            display: flex;
+            flex-direction: row; /* Arrange elements side by side */
+            align-items: center;
+            gap: 50px;
+            justify-content: space-between;
+            width: 110%; /* Ensure full width */
+        }
+
+        .text {
+            flex: 1; /* Allow text to take up remaining space */
+        }
+
+        .text h1 {
+            font-size: 34px;
+            margin: 0;
+            padding: 5px;
+        }
+        .text h4 {
+            margin: 0;
+            padding: 5px;
+            
+        }
+
+        .image {
+            max-width: 100%;
+            height: auto;
+        }
+        .box{
+            flex-direction: row; /* Stack elements in mobile view */
+            display: flex;
+            gap:70px;
+            text-align: center;
+            background: linear-gradient( 180deg, rgba(255, 255, 255, 0.75) 99.99%, rgba(255, 255, 255, 0) );
+            padding: 40px 80px;
+            width: 680px;
+            z-index: 2;
+            
+        }
+        .loginbutton{
+            width: 100%;
+            background-color: #B6E0FF;
+            text-align: center;
+            border-radius: 20px;
+            border:0;
+            cursor: pointer;
+            padding: 21px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            font-size: 16px;
+        }
+        .loginbutton:hover{
+            text-decoration: underline;
+            transition: text-decoration 0.3s ease;
+            background-color: #fff;
+        }
+     
+        @media (max-width: 768px) {
+            .child1 {
+                flex-direction: column; /* Stack elements in mobile view */
+                align-items: center;
+                text-align: center;
+            }
+            .navigation {
+            justify-content: center;
+            }
+
+            .image-container {
+            align-items: center;
+            }
+            .box{
+                justify-content: center;
+                gap: 30px;
+            }
+            .info{
+                align-items: center;
+            }
+            .contain{
+                flex-direction: column; /* Stack elements in mobile view */
+                align-items: center;
+                gap: 20px;
+            }
+        }        
+
+        .image-container {
+            display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        }
+        .image-container1 {
+            display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        }
+
+        .navigation {
+        display: flex;
+        align-items: center;
+        gap: 10px; 
+        }
+
+        .logo {
+        width: 100px;
+        height: 100px;
+        max-width: 100%;
+        max-height: 100%;
+        }
+        .hr1 {
+            box-sizing: border-box;
+            border-top: 1px solid #000;
+            height: 1px;
+        }
+        .name{
+            border: 0;
+            font-family: "ABeeZee";
+            font-size: 16px;
+            background-color: transparent;
+            text-align: left;
+            width: 100%;
+        }
+        .textar{
+            border: 1;
+            background-color: transparent;
+            font-size: 16px;
+            font-family: "ABeeZee";
+            height: 150px;
+            text-align: left;
+            display: inline-block;
+            width: 100%;
+            
+        }
+        .im{
+            max-width: 100%; /* Make the image fit the width of its container */
+            height: auto; /* Maintain aspect ratio */
+            display: block;
+        }
+        .info{
+            width: 50%; /* Set an initial width for the div */
+            max-width: 224px; 
+            height: 480px; 
+            margin: 0 auto; /* Center the div horizontally */
+        }
+        .login{
+            font-family: "ABeeZee";
+            font-size: 14px;
+            background-color: transparent;
+            text-align: left;
+            width: 100%;
+            color: #000;
+        }
+        .log{
+            text-decoration: none;
+        }
+        .info:hover{
+            border-color: #000; /* Change the border color when hovered */
+            border: 1px solid transparent;
+            transition:  1.0s ease;
+            border-radius: 20px;
+        }
+        .resetpass{
+            font-family: "ABeeZee";
+            font-size: 14px;
+            background-color: transparent;
+            width: 100%;
+            color: #000;
+            text-decoration: none;
+        }
+        .login:hover,.resetpass:hover{
+            text-decoration: underline;
+            transition: text-decoration 0.3s ease;
+        }
+        .or{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            text-transform: uppercase;
+            border: none;
+            font-size: 12px;
+            font-weight: 500;
+            margin: 0;
+            padding: calc(8px *3) 0 0 0;
+        }
+        .or:after, .or:before {
+            content: "";
+            border-bottom: 1px solid #c2c8d0;
+            border-bottom: 1px solid #000;
+            flex: 1 0 auto;
+            height: 0.5em;
+            margin: 0;
+        }
+        .or span {
+            text-align: center;
+            flex: 0.2 0 auto;
+            margin: 0;
+        }
+        
+        .logingoogle{
+          width: 215px;
+          background-color: #B6E0FF;
+          text-align: left;
+          border-radius: 20px;
+          border:0;
+          cursor: pointer;
+          padding: 21px;
+          box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+          font-size: 14px;
+          font-family: "ABeeZee";
+          width: 100%;
+          color: #000;
+          text-decoration: none;
+        }
+        .logingoogle:hover{
+          background-color: #fff;
+          
+        }
+        .input-with-icon {
+            position: relative;
+          }
+          
+        .toggle-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+          }
+    </style>
+</head>
+{% load static %}
+{% block content %}
+<body>
+    <div class="parent">
+       <!-- PAGE 1 -->
+        <div class="PAGE1">
+            <div class="child1">
+                <div  class="image-container">
+                        <!-- LOGO on LEFT -->
+                        <a href="ok.html"><img style=" max-width: 70%; ; max-height: 140px; cursor: pointer;" title="A-Lab" src="logo.svg" alt="Image"></a>
+                </div>
+
+                <h4>Welcome Back! Login Here</h4>
+                <div class="contain">
+                    <img class="im" src="loginraf.svg" alt="target_img">
+                    <div class = "info">
+                        <form method="post" action="{% url 'login_page' %}">
+                            {% csrf_token %}
+                            <img style="margin-top: 15px;" src="{% static '/logo.png' %}">
+                            <h2 style="font-size: 26px;" class="form_title title">Sign In to A-LAB</h2>
+                            <span style="font-size: 11px;" class="form__span">or use your email account</span>
+                            <br>
+                            <!-- {{form.as_p}} -->
+                            {{ form.username.label_tag }}
+                            {{ form.username }}
+                            {{ form.password.label_tag }}
+                            {{ form.password }}
+                            <br>  
+                            <label style="font-size: 11px;" for="copyright">Copyright © A-LAB 2023. All rights reserved</label>
+                            
+                        <!-- <select class="name" name="user" id="user" required="">
+                            <option value="student">Student</option>
+                            <option value="prof">Professional</option>
+                        </select>
+                        <div class= hr1></div><br>
+
+                        <input class="name" type="text" placeholder="Email">
+                        <div class= hr1></div><br>
+
+                        <div class="input-with-icon">
+                            <input class="name" type="password" id="password" placeholder="Password" required="">
+                            <i class="toggle-icon fas fa-eye" onclick="togglePasswordVisibility()"></i>
+                        </div>
+                        <div class= hr1></div> -->
+                        <a class="resetpass" href="" id="forgotpass">Forgot password?</a>
+
+                        <br><br><button class="loginbutton">Sign In</button>
+                        <br><br><button class="loginbutton" type="submit" style="font-size: 14px;" id="button_style" >
+                            <a style="text-decoration: none;">Login</a>
+                        </button>
+                        </form>
+                        <a class="log" href="Signup.html" id="alreadyHaveAn">
+                            <span class="login">
+                              <span>Not registered? </span>
+                              <span style="color: #0b07f0">Create account</span>
+                            </span>
+                          </a>
+                        
+                          <div class="or"> <span>Or</span></div><br>
+
+                          <form method="post" data-provider="google" class="c16668c3a c9dd0addd cce432dbd" data-form-secondary="true">
+                            <input type="hidden" name="state" value="">
+                            <input type="hidden" name="connection" value="google-oauth2">
+                            <button type="submit" class="logingoogle" data-provider="google" data-action-button-secondary="true">
+                                <span><img style="width: 20px; height: 20px; " src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 48 48'%3E%3Cdefs%3E%3Cpath id='a' d='M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z'/%3E%3C/defs%3E%3CclipPath id='b'%3E%3Cuse xlink:href='%23a' overflow='visible'/%3E%3C/clipPath%3E%3Cpath clip-path='url(%23b)' fill='%23FBBC05' d='M0 37V11l17 13z'/%3E%3Cpath clip-path='url(%23b)' fill='%23EA4335' d='M0 11l17 13 7-6.1L48 14V0H0z'/%3E%3Cpath clip-path='url(%23b)' fill='%2334A853' d='M0 37l30-23 7.9 1L48 0v48H0z'/%3E%3Cpath clip-path='url(%23b)' fill='%234285F4' d='M48 48L17 24l-4-3 35-10z'/%3E%3C/svg%3E" alt="Google Logo" class="google-logo"></span>
+                              &nbsp;<span>Continue with Google</span>
+                            </button>
+                          </form>
+
+                    </div>
+
+                </div>
+                <p style="font-size: 14px;">Copyright © A-LAB 2023. All rights reserved</p>
+            </div>  
+        </div>
+       </div>
+
+       <!-- PAGE 2 -->
+       <div class="PAGE2">
+            <div class="child2">
+                <!-- Content for PAGE 2 -->
+            </div>
+       </div>
+
+    </div>
+    <script>
+        function togglePasswordVisibility() {
+            var passwordInput = document.getElementById("password");
+            var toggleIcon = document.querySelector(".toggle-icon");
+            
+            if (passwordInput.type === "password") {
+              passwordInput.type = "text";
+              toggleIcon.classList.remove("fa-eye");
+              toggleIcon.classList.add("fa-eye-slash");
+            } else {
+              passwordInput.type = "password";
+              toggleIcon.classList.remove("fa-eye-slash");
+              toggleIcon.classList.add("fa-eye");
+            }
+          }
+          
+    </script>
+</body>
+{% endblock content %}
+</html>
