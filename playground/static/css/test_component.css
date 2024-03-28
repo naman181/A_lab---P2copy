@@ -1,0 +1,46 @@
+.low {
+    grid-area: low;
+    display: flex;
+    flex-direction: column; /* Display cards in a column */
+    align-items: center;
+    height: 50vh;
+    background-color: #f0f0f0;
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+    padding: 20px; /* Add padding inside the container */
+}
+
+.card {
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 10px 10px 20px #cbced1, -10px -10px 20px #ffffff;
+    margin-bottom: 20px; /* Adjust the margin as needed */
+    width: 100%; /* Make the card width responsive */
+    max-width: 400px; /* Set a max width to prevent cards from becoming too wide on larger screens */
+}
+
+h2 {
+    color: #333333;
+}
+
+p {
+    color: #666666;
+}
+
+/* Style the scrollbar */
+.low::-webkit-scrollbar {
+    width: 10px;
+}
+
+.low::-webkit-scrollbar-track {
+    background: #f0f0f0;
+}
+
+.low::-webkit-scrollbar-thumb {
+    background: #cbced1;
+    border-radius: 5px;
+}
+
+.low::-webkit-scrollbar-thumb:hover {
+    background: #a9b7c6;
+}

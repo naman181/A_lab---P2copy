@@ -1,45 +1,23 @@
+{% load static %}
 {% block content %}
-
-<style>
-    .room-container{
-        display: grid;
-        grid-template-columns: 3fr 1fr;
-    }
-    .room-navbar{
-        
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        padding: 3px;
-        justify-content: space-between;
-    }
-</style>
-<div style="margin-left: 50px;margin-right: 50px; " class="room-container">
+<link rel="stylesheet" href="{% static '/css/classroom.css' %}">
+<div class="room-container">
     <div>
         <hr>
-        <div style="display: grid;
-        grid-template-columns: 2fr 1fr;">
+        <div>
         <h1>{{classroom.name}}</h1>
         <h4>by {{classroom.host.username}} </h4>
         
         <div class="nest-navbar">
-        <button  style=" display: flex;justify-content:space-evenly;
-                        width: 100px;">
-            <a style="text-decoration: none;" href="">All Requests</a>
-        </button>
-        <button  style=" display: flex;justify-content:space-evenly;
-                        width: 100px;">
-            <a style="text-decoration: none;" href="">Members</a>
-        </button>
-        <button  style=" display: flex;justify-content:space-evenly;
-                width: 100px;">
-        <a style="text-decoration: none;" href="{% url 'create-test' classroom.id %}">Create Test</a>
-        </button>
+        <button><a style="text-decoration: none;" href="">All Requests</a></button>
+        <button><a style="text-decoration: none;" href="">Members</a></button>
+        <button><a style="text-decoration: none;" href="{% url 'create-test' classroom.id %}">Create Test</a></button>
         </div>
         </div>
 
-        <h5 style="border: 2px solid black; width: auto; padding: 10px; margin: 2px;">{{classroom.description}}</h5>
+        <h5>{{classroom.description}}</h5>
 
-        <div style="border: 2px solid black; width: auto; padding: 10px; margin: 2px;" class="comment-wrapper">
+        <div class="comment-wrapper">
             <h3> Tests </h3>
             <!-- <hr>
             {% for message in classroom_messages %}
@@ -57,16 +35,15 @@
             {% endfor %} -->
 
             <div class = "midcontent">
-                <div class = "head">
-                   
-                        <button class="hbt">Ongoing Test</button>
-                        <button class="hbt">Activity</button>
-                        <button class="hbt">Quick Links</button>
+                <div class="test-navbar head">
+                    <button class="hbt">Ongoing Test</button>
+                    <button class="hbt">Activity</button>
+                    <button class="hbt">Quick Links</button>
                 </div>
                       <!-- Loading All the Tests Created  -->
-                      <div class = "low">
-                        {% include 'test_component.html' %}
-                      </div>
+                <div class = "low">
+                {% include 'test_component.html' %}
+                </div>
             </div>
         </div>
 
@@ -92,7 +69,7 @@
         <h3>Members</h3>
         <hr>
         {% for user in participants %}
-        <div style="border: 2px solid black; width: auto; padding: 1px; margin: 2px;" class="comment-wrapper">
+        <div class="comment-wrapper">
             {% if classroom.host.username|striptags == user.username|striptags %}
             <p> Guardian : [♕{{user.username}}♕] </p>
 
@@ -108,7 +85,7 @@
         <h3>All Tests</h3>
         <hr>
         {% for user in participants %}
-        <div style="border: 2px solid black; width: auto; padding: 1px; margin: 2px;" class="comment-wrapper">
+        <div class="comment-wrapper">
             
         </div>
         {% endfor %}

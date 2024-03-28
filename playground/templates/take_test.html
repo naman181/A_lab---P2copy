@@ -1,33 +1,40 @@
+{% load static %}
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/test_style.css' %}">
 <h2>{{ test.title }}</h2>
-<p>Question : {{ question_index }}:</p>
+<p>Question: {{ question_index }}</p>
 <h2>{{ question.question_text }}</h2>
-<script>
-  var timeRemaining = {{ time_limit }};  // This will be in seconds
-  var timer = setInterval(function () {
-    timeRemaining -= 1;
-    document.getElementById('time_remaining').innerText = timeRemaining;
 
-    if (timeRemaining <= 0) {
-      clearInterval(timer);
-      document.forms[0].submit();  // Auto-submit the form when time runs out
-    }
-  }, 1000);
+
+<script>
+  // timer for each question
+   var startTime = new Date().getTime();
+   var timer = setInterval(function () {
+   var currentTime = new Date().getTime();
+   var timeElapsed = Math.floor((currentTime - startTime) / 1000);
+   var timeRemaining = '{{ time_limit }}' - timeElapsed;
+   document.getElementById('time_remaining').innerText = timeRemaining;
+   document.getElementById('time_taken').value = timeElapsed; // Update the time_taken value
+
+   if (timeRemaining <= 0) {
+     clearInterval(timer);
+     document.forms[0].submit(); // Auto-submit the form when time runs out
+   }
+}, 1000);
 </script>
 
 <form action="{% url 'take_test' pk=classroom.id test_id=test.id %}" method="post">
-  {% csrf_token %}
-  <p>Time Remaining: <span id="time_remaining">{{ time_limit }}</span> seconds</p>
-    <label type="text" name="option_selected" value="option_a"> {{ question.option_a }}<br>
-    <label type="text" name="option_selected" value="option_b"> {{ question.option_b }}<br>
-    <label type="text" name="option_selected" value="option_c"> {{ question.option_c }}<br>
-    <label type="text" name="option_selected" value="option_d"> {{ question.option_d }}<br>
+ {% csrf_token %}
+ <p>Time Remaining: <span id="time_remaining">{{ time_limit }}</span> seconds</p>
   
-  {{ answer_form.as_p }}
-  <input type="hidden" name="current_question_index" value="{{ question_index }}">
-  <input type="hidden" name="time_taken" id="time_taken" value="{{ time_limit }}">
-  <input type="submit" value="Submit Answer">
+ <input type="radio" name="option_selected" value="A"> {{ question.option_a }}<br>
+ <input type="radio" name="option_selected" value="B"> {{ question.option_b }}<br>
+ <input type="radio" name="option_selected" value="C"> {{ question.option_c }}<br>
+ <input type="radio" name="option_selected" value="D"> {{ question.option_d }}<br>
+  
+ <input type="hidden" name="current_question_index" value="{{ question_index }}">
+ <input type="hidden" id="time_taken" name="time_taken" value="0">
+ <input type="submit" value="Submit Answer">
 </form>
-
 
 {% endblock %}

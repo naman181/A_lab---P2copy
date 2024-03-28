@@ -48,5 +48,7 @@ class QuestionForm(forms.ModelForm):
         fields = ['question_text', 'option_a', 'option_b', 'option_c', 'option_d', 'correct_option']
         time_taken = forms.IntegerField(widget=forms.HiddenInput(), initial=0, required=False)
 
+# class AnswerForm(forms.Form):
+#     option_selected = forms.RadioSelect(choices=[('option_a', 'Option A'), ('option_b', 'Option B'), ('option_c', 'Option C'), ('option_d', 'Option D')])
 class AnswerForm(forms.Form):
     option_selected = forms.ChoiceField(choices=[('option_a', 'Option A'), ('option_b', 'Option B'), ('option_c', 'Option C'), ('option_d', 'Option D')])
