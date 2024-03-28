@@ -1,6 +1,3 @@
-
-
-
 @login_required(login_url='login')
 def take_test(request, pk, test_id, question_index=1):
     # retrieve classroom, test, and questions
@@ -52,19 +49,3 @@ def take_test(request, pk, test_id, question_index=1):
 
     # If the request method is not POST or there are no more questions, render the classroom view
     return render(request, 'classroom.html', {'classroom': classroom, 'tests': classroom.test_set.all().order_by('created')})
-
-<!-- <script>
- var startTime = new Date().getTime();
- var timer = setInterval(function () {
-    var currentTime = new Date().getTime();
-    var timeElapsed = Math.floor((currentTime - startTime) / 1000);
-    var timeRemaining = {{ time_limit }} - timeElapsed;
-    document.getElementById('time_remaining').innerText = timeRemaining;
-    document.getElementById('time_taken').value = timeElapsed; // Update the time_taken value
-
-    if (timeRemaining <= 0) {
-      clearInterval(timer);
-      document.forms[0].submit(); // Auto-submit the form when time runs out
-    }
- }, 1000);
-</script> -->

@@ -9,9 +9,9 @@
         <h4>by {{classroom.host.username}} </h4>
         
         <div class="nest-navbar">
-        <button><a style="text-decoration: none;" href="">All Requests</a></button>
-        <button><a style="text-decoration: none;" href="">Members</a></button>
-        <button><a style="text-decoration: none;" href="{% url 'create-test' classroom.id %}">Create Test</a></button>
+        <button><a href="">All Requests</a></button>
+        <button><a href="">Members</a></button>
+        <button><a href="{% url 'create-test' classroom.id %}">Create Test</a></button>
         </div>
         </div>
 
@@ -36,9 +36,11 @@
 
             <div class = "midcontent">
                 <div class="test-navbar head">
-                    <button class="hbt">Ongoing Test</button>
-                    <button class="hbt">Activity</button>
-                    <button class="hbt">Quick Links</button>
+                    <ul>
+                        <li><button class="hbt active">Test</button></li>
+                        <li><button class="hbt">Activity</button></li>
+                        <li><button class="hbt">Quick Links</button></li>
+                    </ul>
                 </div>
                       <!-- Loading All the Tests Created  -->
                 <div class = "low">
@@ -60,13 +62,13 @@
 
     <div>
         <select id="viewSelector">
-            <option value="members">Members</option>
+            <option value="members">Students</option>
             <option value="activities">User Activities</option>
-            <option value="tests">User Activities</option>
+            <!-- <option value="tests">Completed Test</option> -->
         </select>
     
     <div id="membersView">
-        <h3>Members</h3>
+        <h3>Participants</h3>
         <hr>
         {% for user in participants %}
         <div class="comment-wrapper">
@@ -101,12 +103,13 @@
         const viewSelector = document.getElementById('viewSelector');
         const membersView = document.getElementById('membersView');
         const activitiesView = document.getElementById('activitiesView');
-        const testsView = document.getElementById('testsView');
+        // const testsView = document.getElementById('testsView');
         viewSelector.addEventListener('change', function() {
-            if (viewSelector.value === 'tests') {
-                membersView.style.display = 'block';
-                activitiesView.style.display = 'none';
-            } else if (viewSelector.value === 'activities') {
+            // if (viewSelector.value === 'tests') {
+            //     membersView.style.display = 'block';
+            //     activitiesView.style.display = 'none';
+            // } 
+            if (viewSelector.value === 'activities') {
                 membersView.style.display = 'none';
                 activitiesView.style.display = 'block';
             } else if (viewSelector.value === 'members') {
