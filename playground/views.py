@@ -65,6 +65,38 @@ def registrationPage(request):
         form = CustomUserCreationForm()
     return render(request, 'registration.html', {'form': form})
  
+#Contactus
+def contact_page(request):
+    return render(request,'contact.html')
+
+#Faqs
+def faqs_page(request):
+    return render(request,'faqs.html')
+
+#learnmore
+def learnmore_page(request):
+    return render(request,'learnmore.html')
+
+#notification
+def notification_page(request):
+    return render(request,'notification.html')
+
+#profile
+def profile_page(request):
+    return render(request,'profile.html')
+
+#settings
+def settings_page(request):
+    return render(request,'settings.html')
+
+#history
+def history_page(request):
+    return render(request,'history.html')
+
+#calander
+def calander_page(request):
+    return render(request,'calander.html')
+
 # Dashboard   
 @login_required(login_url='login')
 def dashboard(request):

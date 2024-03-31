@@ -295,48 +295,33 @@
             <div class="child1">
                 <div  class="image-container">
                         <!-- LOGO on LEFT -->
-                        <a href="ok.html"><img style=" max-width: 70%; ; max-height: 140px; cursor: pointer;" title="A-Lab" src="logo.svg" alt="Image"></a>
+                        <a href="ok.html"><img style=" max-width: 70%; ; max-height: 140px; cursor: pointer;" title="A-Lab" src="{% static '/logo.svg' %}" alt="Image"></a>
                 </div>
 
                 <h4>Welcome Back! Login Here</h4>
                 <div class="contain">
-                    <img class="im" src="loginraf.svg" alt="target_img">
+                    <img class="im" src="{% static '/loginraf.svg' %}" alt="target_img">
                     <div class = "info">
-                        <form method="post" action="{% url 'login_page' %}">
+                        <form method="post" action="">
                             {% csrf_token %}
-                            <img style="margin-top: 15px;" src="{% static '/logo.png' %}">
-                            <h2 style="font-size: 26px;" class="form_title title">Sign In to A-LAB</h2>
-                            <span style="font-size: 11px;" class="form__span">or use your email account</span>
-                            <br>
-                            <!-- {{form.as_p}} -->
-                            {{ form.username.label_tag }}
-                            {{ form.username }}
-                            {{ form.password.label_tag }}
-                            {{ form.password }}
-                            <br>  
-                            <label style="font-size: 11px;" for="copyright">Copyright © A-LAB 2023. All rights reserved</label>
                             
-                        <!-- <select class="name" name="user" id="user" required="">
-                            <option value="student">Student</option>
-                            <option value="prof">Professional</option>
-                        </select>
-                        <div class= hr1></div><br>
-
-                        <input class="name" type="text" placeholder="Email">
+                        <input class="name" name="username"  type="text" placeholder="Username">
                         <div class= hr1></div><br>
 
                         <div class="input-with-icon">
-                            <input class="name" type="password" id="password" placeholder="Password" required="">
+                            <input class="name" name="password" type="password" placeholder="Password" required="">
                             <i class="toggle-icon fas fa-eye" onclick="togglePasswordVisibility()"></i>
                         </div>
-                        <div class= hr1></div> -->
+
+                        <div class= hr1></div> 
+
                         <a class="resetpass" href="" id="forgotpass">Forgot password?</a>
 
-                        <br><br><button class="loginbutton">Sign In</button>
-                        <br><br><button class="loginbutton" type="submit" style="font-size: 14px;" id="button_style" >
-                            <a style="text-decoration: none;">Login</a>
-                        </button>
+                        <br><br>
+                        <input type="submit"  class="loginbutton">
+                       
                         </form>
+
                         <a class="log" href="Signup.html" id="alreadyHaveAn">
                             <span class="login">
                               <span>Not registered? </span>

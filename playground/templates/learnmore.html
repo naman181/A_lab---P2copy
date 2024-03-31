@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="{% static '/css/global.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/learnmore.css' %}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Krona One:wght@400&display=swap"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ABeeZee:wght@400&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"/>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
+    />
+    <style>
+      .logo-container {
+          text-align: center;
+          margin-bottom: 10px;
+      }
+
+      .logo-container img {
+          height: 140px; 
+          width: 70%; /* Adjust this value as needed */
+      }
+      .hmpage{
+        border: 0;
+        background: none;
+      }
+  </style>
+</head>
+
+<body>
+    <div class="shadow-container" style="background-color: #C6F8FF;">
+    <div class="desktop-2">
+      <div class="logo-container">
+        <form method="post" action="{% url 'landing_page' %}">
+          {% csrf_token %}
+          <button class="hmpage"><img style=" max-width: 70%; ; max-height: 140px; cursor: pointer;" src="{% static '/logo.svg' %}" alt="Image"></button>
+        </form>
+      </div>
+        <h1 class="learn-more-title">Learn More About Our Platform</h1>
+        <p class="learn-more-description">
+            A-LAB offers an intuitive platform to conduct online tests, engage in educational activities, and much more. Join us today and explore a new world of opportunities.
+        </p>
+        <h2>Insightful Assessment & Usage Reports</h2>
+        <p>
+            Access in-depth examination analytics with our advanced reporting tools. These tools empower you to:
+        </p>
+        <ul>
+            <li><strong>Course-specific Insights:</strong> Dive deep into the performance metrics of individual courses.</li>
+            <li><strong>Departmental Overview:</strong> Gauge the performance of entire departments at a glance.</li>
+            <li><strong>Batch Performance Breakdown:</strong> Review the collective performance of specific batches.</li>
+            <li><strong>Customized Filtering:</strong> Enjoy tailored analytics, giving you the control to view data the way you want.</li>
+        </ul>
+
+        <h2>ADMIN DASHBOARD: Centralized Control at Your Fingertips</h2>
+        <p>
+            Manage and streamline your educational platform through our user-friendly Admin Dashboard:
+        </p>
+        <ul>
+            <li><strong>Account Management:</strong> Easily oversee and modify account details.</li>
+            <li><strong>Exam Customization:</strong> Fine-tune exam settings according to your institution's requirements.</li>
+            <li><strong>Faculty Controls:</strong> Grant or restrict faculty permissions as needed.</li>
+            <li><strong>Gradebook Settings:</strong> Personalize how results are displayed and stored in the Gradebook.</li>
+        </ul>
+        <div class="child1">
+          <p style="font-size: 14px;">Copyright © A-LAB 2023. All rights reserved</p>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

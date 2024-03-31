@@ -1,33 +1,57 @@
 {% block content %}
-<h2>{{ test.title }}</h2>
-<p>Question : {{ question_index }}:</p>
-<h2>{{ question.question_text }}</h2>
-<script>
-  var timeRemaining = {{ time_limit }};  // This will be in seconds
-  var timer = setInterval(function () {
-    timeRemaining -= 1;
-    document.getElementById('time_remaining').innerText = timeRemaining;
+{% load static %}
 
-    if (timeRemaining <= 0) {
-      clearInterval(timer);
-      document.forms[0].submit();  // Auto-submit the form when time runs out
-    }
-  }, 1000);
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ test.title }}</title>
+  <link rel="stylesheet" type="text/css" href="{% static '/css/take_test.css' %}" />
+</head>
 
-<form action="{% url 'take_test' pk=classroom.id test_id=test.id %}" method="post">
-  {% csrf_token %}
-  <p>Time Remaining: <span id="time_remaining">{{ time_limit }}</span> seconds</p>
-    <label type="text" name="option_selected" value="option_a"> {{ question.option_a }}<br>
-    <label type="text" name="option_selected" value="option_b"> {{ question.option_b }}<br>
-    <label type="text" name="option_selected" value="option_c"> {{ question.option_c }}<br>
-    <label type="text" name="option_selected" value="option_d"> {{ question.option_d }}<br>
-  
-  {{ answer_form.as_p }}
-  <input type="hidden" name="current_question_index" value="{{ question_index }}">
-  <input type="hidden" name="time_taken" id="time_taken" value="{{ time_limit }}">
-  <input type="submit" value="Submit Answer">
-</form>
+<body>
+  <h2 class ="test_title">{{ test.title }}</h2>
+  <div class="container">
 
+      <div class="bodydiv">
+
+        <div class="head">
+          <p class="qid">Question : {{ question_index }}</p> 
+          <p class= "timer"><b>Time Remaining:</b> <span id="time_remaining">{{ time_limit }}</span> seconds</p>
+        </div>
+        <hr style="margin-left: 10px; margin-bottom: 20px;">
+        <p class="ques">{{ question.question_text }}</p>
+        <script>
+          var timeRemaining = {{ time_limit }};  // This will be in seconds
+          var timer = setInterval(function () {
+            timeRemaining -= 1;
+            document.getElementById('time_remaining').innerText = timeRemaining;
+
+            if (timeRemaining <= 0) {
+              clearInterval(timer);
+              document.forms[0].submit();  // Auto-submit the form when time runs out
+            }
+          }, 1000);
+        </script>
+
+        <form action="{% url 'take_test' pk=classroom.id test_id=test.id %}" method="post">
+          {% csrf_token %}
+        
+          <div class="opt">
+            <input type="radio" name="option_selected" value="A"> &nbsp; (A) &nbsp;  {{ question.option_a }}<br><br>
+            <input type="radio" name="option_selected" value="B"> &nbsp; (B) &nbsp;  {{ question.option_b }}<br><br>
+            <input type="radio" name="option_selected" value="C"> &nbsp; (C) &nbsp;  {{ question.option_c }}<br><br>
+            <input type="radio" name="option_selected" value="D"> &nbsp; (D) &nbsp;  {{ question.option_d }}<br><br>
+          </div>
+          <div class ="opts">
+           {{ answer_form.as_p }} 
+          <input type="hidden" name="current_question_index" value="{{ question_index }}">
+          <input type="hidden" name="time_taken" id="time_taken" value="{{ time_limit }}">
+          <input class ="btn" type="submit" value="Next"></div>
+        </form>
+      </div>
+  </div> 
+</body>
 
 {% endblock %}

@@ -1,0 +1,269 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Krona One:wght@400&display=swap"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ABeeZee:wght@400&display=swap"/>
+    <title>FAQs | A-Lab</title>
+    <link rel="icon" type="image/x-icon" href="logo.ico">
+    <style>
+        .shadow-container {
+            max-width: 100%; 
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .faq-header {
+            font-family: "Krona One";
+            display: flex;
+            justify-content: center;   
+            align-items: center;
+            margin-bottom: 20px;
+            flex-direction: column;
+        }
+        .faq-header h1 {
+            margin: 20px;
+        }
+        .child1 {
+            font-family: "Krona One";
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+            gap: 20px;
+            justify-content: space-between;
+            width: 100%; 
+        }
+        .faq-logo {
+            max-height: 86px;
+            max-width: 123px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .faq-section {
+            width: 100%;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.8);
+            background-color: #C6F8FF;
+            padding: 2px;
+            border-radius: 12px;
+            margin: 20px 100px;
+        }
+
+        .faq-question {
+            font-family: "ABeeZee";
+            margin: 8px;
+            cursor: pointer;
+            background-color: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-arrow {
+            transform: rotate(0deg);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            font-family: "ABeeZee";
+            display: none;  
+            padding: 10px;
+            background-color: transparent;
+        }
+        .hmpage{
+          border: 0;
+          background: none;
+        }
+        
+        @media (max-width: 420px){
+        .child1{
+            flex-direction: column; 
+            align-items: center;
+            text-align: center;
+        }
+        .Krona{
+            align-items: center;
+            text-align: center;
+        }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="shadow-container" style="background-color: #A3CDFF;">
+        <div class="faq-header">
+            <form method="post" action="{% url 'landing_page' %}">
+                {% csrf_token %}
+                <button class="hmpage"><img src="{% static '/logo.svg' %}" alt="Company Logo" class="faq-logo" /></button>
+            </form>
+            <h1 class="Krona"><b>Frequently Asked Questions</b></h1>
+            
+        </div>
+
+        <div class="faq-section">
+
+            <!-- FAQ 1 -->
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    What is the purpose of this web app?
+                    <span class="faq-arrow">⮟</span>
+                </h3>
+                <div class="faq-answer">
+                    Our web app leverages AI to enhance the learning experience and provides customized quizzing modules tailored to individual learners' needs.
+                </div>
+            </div>
+            
+            <!-- FAQ 2 -->
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    How does the AI component improve the learning process?
+                    <span class="faq-arrow">⮟</span>
+                </h3>
+                <div class="faq-answer">
+                    The AI component assesses users' performance and learning styles to provide personalized recommendations, adapt content delivery, and highlight areas of improvement.
+                </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    Do I need prior experience with similar platforms to use this web app effectively?
+                    <span class="faq-arrow">⮟</span>
+                </h3>
+                <div class="faq-answer">
+                    No, our platform is designed for ease of use. There are tutorials available to guide you through the features. 
+                </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    How does the personalized learning path work?
+                    <span class="faq-arrow">⮟</span>
+                </h3>
+                <div class="faq-answer">
+                    Based on your interaction and performance, our AI analyzes your strengths and weaknesses to create a customized learning path, ensuring a balanced and effective learning experience.
+                </div>
+            </div>
+
+            <!-- FAQ 6 -->
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    How are quizzes generated?
+                    <span class="faq-arrow">⮟</span>
+                </h3>
+                <div class="faq-answer">
+                    Quizzes are dynamically generated using AI based on your learning progression, ensuring that you are tested on relevant content.
+                </div>
+            </div>
+
+            <!-- FAQ 7 -->
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    Can I customize the quizzes?
+                    <span class="faq-arrow">⮟</span>
+                </h3>
+                <div class="faq-answer">
+                    Yes, while our AI provides suggestions, users can manually customize the topics, difficulty levels, and the number of questions for each quiz.
+                </div>
+            </div>
+
+            <!-- FAQ 8 -->
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    Is my data safe and private?
+                    <span class="faq-arrow">⮟</span>
+                </h3>
+                <div class="faq-answer">
+                    Absolutely. We prioritize user data privacy and employ best practices to ensure data security.
+                </div>
+            </div>
+
+            <!-- FAQ 9 -->
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    Which browsers support this web app?
+                    <span class="faq-arrow">⮟</span>
+                </h3>
+                <div class="faq-answer">
+                    Our web app is compatible with all modern browsers such as Chrome, Firefox, Safari, and Edge.
+                </div>
+            </div>
+
+            <!-- FAQ 10 -->
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    Do you offer mobile or tablet support?
+                    <span class="faq-arrow">⮟</span>
+                </h3>
+                <div class="faq-answer">
+                    Yes, our platform is responsive and mobile-friendly, ensuring seamless learning across devices.
+                </div>
+            </div>
+
+            <!-- FAQ 11 -->
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    I'm facing technical issues. How can I get support?
+                    <span class="faq-arrow">⮟</span>
+                </h3>
+                <div class="faq-answer">
+                    Please reach out to our support team through the "Help" section on our website or email us directly. We aim to address all queries within 24 hours.
+                </div>
+            </div>
+
+            <!-- FAQ 12 -->
+            <div class="faq-item">
+                <h3 class="faq-question">
+                    Are there tutorials or guides available for newcomers?
+                    <span class="faq-arrow">⮟</span>
+                </h3>
+                <div class="faq-answer">
+                    Yes, our resources section contains video tutorials, user guides, and best practice articles to help you get started.
+                </div>
+            </div>
+
+        </div>
+        <div class="child1">
+            <p style="font-size: 14px;">Copyright © A-LAB 2023. All rights reserved</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const questions = document.querySelectorAll('.faq-question');
+
+            questions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const item = this.parentElement;
+
+                    if (answer.style.display === 'block') {
+                        answer.style.display = 'none';
+                        item.classList.remove('active');
+                    } else {
+                        answer.style.display = 'block';
+                        item.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
+

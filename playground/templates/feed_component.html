@@ -1,24 +1,23 @@
 
-
+{% load static %}
 {% block content %}
 
   {% for classroom in classrooms %}
-      <div class="card">
+  <div class="card2">
 
-          <div class="ch">
-              <div class="date">created : {{classroom.created|timesince}} ago</div>
-              <a href="{% url 'classroom_detail' classroom.id %}">{{ classroom.name }}</a>
-              <div class="data"> &nbsp; &nbsp; </div>
-          </div>
+    <img src="{% static '\assests\mentordashboard\bro.svg' %}" alt="cimg">
+    <div class="cinfo">
+        <h style="font-size: 24px;"><b>{{ classroom.name }}</b></h><br><br>
+        <p class="description">{{ classroom.description }}</p>
+        <!-- Learn the operating systems concepts and mechanism in details and their implementation. -->
 
-          <div class="cl">
-            
-              <div class="time">
-                  <img src="timer.svg" alt="Logo 1"> 
-              </div>
-              <button class="atmpt">View Tests</button>
-          </div>
-      </div>
+    </div>
+    <div class="abtn">
+        <a href="{% url 'classroom_detail' classroom.id %}"><button class="cibtn" >></button></a>
+    </div>
+    
+
+  </div>
   {% endfor %}
 
 {% endblock %}
