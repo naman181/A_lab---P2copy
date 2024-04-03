@@ -1,15 +1,10 @@
-from django.utils import timezone
-from datetime import datetime
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from .forms import CustomUserCreationForm, CustomUserLoginForm, ClassroomForm, TestForm, QuestionForm, AnswerForm
-from .models import CustomUser, Classroom, Topic, Message, Test, Question,TestScore, TestAttempt, TestAttemptQuestion
-from django.contrib import messages
-from django.db import models
-
+from .forms import CustomUserCreationForm, CustomUserLoginForm, ClassroomForm, TestForm, QuestionForm
+from .models import CustomUser, Classroom, Topic, Message, Test, Question
 
 # Very first page of the Website before login or sign up
 def landing_page(request):
@@ -70,6 +65,38 @@ def registrationPage(request):
         form = CustomUserCreationForm()
     return render(request, 'registration.html', {'form': form})
  
+#Contactus
+def contact_page(request):
+    return render(request,'contact.html')
+
+#Faqs
+def faqs_page(request):
+    return render(request,'faqs.html')
+
+#learnmore
+def learnmore_page(request):
+    return render(request,'learnmore.html')
+
+#notification
+def notification_page(request):
+    return render(request,'notification.html')
+
+#profile
+def profile_page(request):
+    return render(request,'profile.html')
+
+#settings
+def settings_page(request):
+    return render(request,'settings.html')
+
+#history
+def history_page(request):
+    return render(request,'history.html')
+
+#calander
+def calander_page(request):
+    return render(request,'calander.html')
+
 # Dashboard   
 @login_required(login_url='login')
 def dashboard(request):
@@ -162,170 +189,58 @@ def classroom_detail(request, classroom_id):
 
 from .forms import AnswerForm
 
-# @login_required(login_url='login')
-# def take_test(request, pk, test_id, question_index=1):
-#     # retrieve classroom, test, and questions
-#     classroom = Classroom.objects.get(id=pk)
-#     test = Test.objects.get(pk=test_id)
-#     questions = test.question_set.all().order_by('id')
-#     if request.method == 'POST':
-
-#         # Create AnswerForm instance and populate with POST data
-#         answer_form = AnswerForm(request.POST)
-#         print(request.POST)
-
-#         # Validate AnswerForm
-#         if answer_form.is_valid():
-#             # Process the submitted answer
-#             option_selected = answer_form.cleaned_data['option_selected']
-#             current_question_index = int(request.POST.get('current_question_index'))
-#             time_taken_str = request.POST.get('time_taken')
-#             time_taken = int(time_taken_str) if time_taken_str else 0
-
-#             # Save the answer to the database or perform other actions as needed
-
-#             # Determine the next question index
-#             next_question_index = current_question_index + 1
-
-#             # Redirect to the next question's URL if it exists
-#             if next_question_index <= questions.count():
-#                 return redirect('take_test', pk=pk, test_id=test_id, question_index=next_question_index)
-#             else:
-#                 # If it's the last question, redirect to the classroom or another desired URL
-#                 return redirect('classroom', pk=pk)
-#         else:
-#             print("Answer form is invalid:", answer_form.errors)
-
-#     else:
-#         # Render the test-taking form for the current question
-#         if question_index <= questions.count():
-#             question = questions[question_index - 1]
-#             time_limit = test.time_limit_per_question
-
-#             return render(request, 'take_test.html', {
-#                 'classroom': classroom,
-#                 'test': test,
-#                 'question': question,
-#                 'time_limit': time_limit,
-#                 'question_index': question_index,
-#                 'answer_form': AnswerForm(),  # pass an instance of AnswerForm to the template
-#             })
-
-#     # If the request method is not POST or there are no more questions, render the classroom view
-#     return render(request, 'classroom.html', {'classroom': classroom, 'tests': classroom.test_set.all().order_by('created')})
-
 @login_required(login_url='login')
 def take_test(request, pk, test_id, question_index=1):
+    # retrieve classroom, test, and questions
     classroom = Classroom.objects.get(id=pk)
     test = Test.objects.get(pk=test_id)
     questions = test.question_set.all().order_by('id')
-
     if request.method == 'POST':
-        option_selected = request.POST.get('option_selected')
-        current_question_index = int(request.POST.get('current_question_index'))
-        time_taken_str = request.POST.get('time_taken')
-        time_taken = int(time_taken_str) if time_taken_str else 0
 
-        if option_selected:
-            test_attempt = TestAttempt.objects.create(
-                student=request.user,
-                test=test,
-                start_time=datetime.fromisoformat(request.session['test_start_time']),
-                end_time=timezone.now()
-            )
+        # Create AnswerForm instance and populate with POST data
+        answer_form = AnswerForm(request.POST)
+        print(request.POST)
 
-            TestAttemptQuestion.objects.create(
-                test_attempt=test_attempt,
-                question=questions[current_question_index - 1], # Get the current question
-                chosen_option=option_selected,
-                time_taken=time_taken
-            )
+        # Validate AnswerForm
+        if answer_form.is_valid():
+            # Process the submitted answer
+            option_selected = answer_form.cleaned_data['option_selected']
+            current_question_index = int(request.POST.get('current_question_index'))
+            time_taken_str = request.POST.get('time_taken')
+            time_taken = int(time_taken_str) if time_taken_str else 0
 
+            # Save the answer to the database or perform other actions as needed
+
+            # Determine the next question index
             next_question_index = current_question_index + 1
+
+            # Redirect to the next question's URL if it exists
             if next_question_index <= questions.count():
                 return redirect('take_test', pk=pk, test_id=test_id, question_index=next_question_index)
             else:
-                test_score = calculate_and_redirect_score(request, test, request.user, classroom)
-                messages.success(request, f'You have completed the test with a score of {test_score}!')
+                # If it's the last question, redirect to the classroom or another desired URL
                 return redirect('classroom', pk=pk)
         else:
-            messages.error(request, 'Please select an option before submitting your answer.')
+            print("Answer form is invalid:", answer_form.errors)
 
     else:
+        # Render the test-taking form for the current question
         if question_index <= questions.count():
             question = questions[question_index - 1]
             time_limit = test.time_limit_per_question
-            request.session['test_start_time'] = timezone.now().isoformat()
+
             return render(request, 'take_test.html', {
                 'classroom': classroom,
                 'test': test,
                 'question': question,
                 'time_limit': time_limit,
                 'question_index': question_index,
+                'answer_form': AnswerForm(),  # pass an instance of AnswerForm to the template
             })
 
+    # If the request method is not POST or there are no more questions, render the classroom view
     return render(request, 'classroom.html', {'classroom': classroom, 'tests': classroom.test_set.all().order_by('created')})
 
-def calculate_and_redirect_score(request, test, student, classroom):
-    try:
-        test_score = TestScore.objects.get(student=request.user, test=test)
-        messages.warning(request, 'You have already completed this test.')
-    except TestScore.DoesNotExist:
-        test_attempts = TestAttempt.objects.filter(test=test, student=request.user)
-        total_questions = test.question_set.count()
-        correct_answers = 0
-        for attempt in test_attempts:
-            questions_attempted = TestAttemptQuestion.objects.filter(test_attempt=attempt)
-            for question_attempt in questions_attempted:
-                if question_attempt.chosen_option == question_attempt.question.correct_option:
-                    correct_answers += 1
-
-        score = (correct_answers / total_questions) * 100
-        TestScore.objects.create(
-            student=request.user,
-            test=test,
-            score=score
-        )
-        messages.success(request, f'You have completed the test with a score of {score}!')
-        return score
-
-# def calculate_and_redirect_score(request, test, student, classroom):
-#     test_attempts = TestAttempt.objects.filter(test=test, student=student)
-#     total_questions = test_attempts.count()
-#     correct_answers = 0
-#     for attempt in test_attempts:
-#         questions_attempted = TestAttemptQuestion.objects.filter(test_attempt=attempt)
-#         for question_attempt in questions_attempted:
-#             if question_attempt.chosen_option == question_attempt.question.correct_option:
-#                 correct_answers += 1
-
-#     score = (correct_answers / total_questions) * 100
-#     TestScore.objects.create(
-#         student=student,
-#         test=test,
-#         score=score
-#     )
-#     messages.success(request, f'You have completed the test with a score of {score}!')
-
-# def calculate_score(test, student):
-#     # Get all test attempts by the student for the given test
-#     test_attempts = TestAttempt.objects.filter(test=test, student=student)
-
-#     # Calculate the score based on correct and incorrect answers
-#     total_questions = test_attempts.count()
-#     # correct_answers = test_attempts.filter(selected_option=models.F('question__correct_option')).count()
-#     correct_answers = test_attempts.filter(chosen_option=models.F('question__correct_option')).count()
-
-#     score = (correct_answers / total_questions) * 100
-
-#     # Save the score to the database
-#     TestScore.objects.create(
-#         student=student,
-#         test=test,
-#         score=score
-#     )
-
-#     return score
 
 
 # To create a new classroom

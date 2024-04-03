@@ -129,8 +129,8 @@ class Enrollment(models.Model):
 
 
 class TestScore(models.Model):
-    student = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, related_name='testscore_student', limit_choices_to={'role': 'student'})
-    test = models.ForeignKey(Test, on_delete=models.CASCADE)
+    student = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    test = models.ForeignKey('Test', on_delete=models.CASCADE)
     score = models.DecimalField(max_digits=5, decimal_places=2)
     timestamp = models.DateTimeField(auto_now_add=True)
 
@@ -139,14 +139,14 @@ class TestScore(models.Model):
         ordering = ['-timestamp']
 
 class QuestionResponse(models.Model):
-    test_score = models.ForeignKey(TestScore, on_delete=models.CASCADE)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    test_score = models.ForeignKey('TestScore', on_delete=models.CASCADE)
+    question = models.ForeignKey('Question', on_delete=models.CASCADE)
     chosen_option = models.CharField(max_length=1, choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')])
     time_taken = models.PositiveIntegerField(default=0)  # Time taken to answer the question in seconds
 
 class TestAttempt(models.Model):
     student = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    test = models.ForeignKey(Test, on_delete=models.CASCADE)
+    test = models.ForeignKey('Test', on_delete=models.CASCADE)
     start_time = models.DateTimeField(auto_now_add=True)
     end_time = models.DateTimeField(null=True, blank=True)
 
@@ -156,7 +156,7 @@ class TestAttempt(models.Model):
         super().save(*args, **kwargs)
 
 class TestAttemptQuestion(models.Model):
-    test_attempt = models.ForeignKey(TestAttempt, on_delete=models.CASCADE)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    test_attempt = models.ForeignKey('TestAttempt', on_delete=models.CASCADE)
+    question = models.ForeignKey('Question', on_delete=models.CASCADE)
     chosen_option = models.CharField(max_length=1, choices=[('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D')], null=True)
     time_taken = models.PositiveIntegerField(default=0)  # Time taken to answer the question in seconds
