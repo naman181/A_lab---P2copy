@@ -1,338 +1,612 @@
+
+
+
+
+
 {% load static %}
-<!DOCTYPE html><html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
-    <link rel="stylesheet" href="{% static '/css/landingpageext.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static '/css/landingpage.css' %}" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Krona One:wght@400&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=ABeeZee:wght@400&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap"
-    />
-  </head>
-  <body>
-   <div class="landing-page">
-      <div class="background">
-        <div class="frame1">
-                
-            <div class="opening-page-lp">
-                <div class="our-mission">
-                    <form action= "{% url 'login_signup_page' %}" method="post">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/ok.css' %}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Krona One:wght@400&display=swap"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ABeeZee:wght@400&display=swap"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>A-Lab</title>
+    <link rel="icon" type="image/x-icon" href="logo.ico">
+    <style>
+        :root {
+            --bg: #EDF2F0;
+            --neu-1: #e2e2e2;
+            --neu-2: #c2cbd7;
+            --white: #f9f9f9;
+            --gray: #b8c3ff;
+            --black: #181818;
+            --purple: #4B70E2;
+            --transition: 1.25s;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Krona one','Montserrat', sans-serif;
+            font-size: 11px;
+            background-color: #B6E0FF;
+            color: rgb(0, 0, 0);
+        } 
+
+        .parent {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #A3CDFF;
+            border-color: black;
+            font-family: 'Krona one';     
+            font-size: 22px;
+            padding: 40px 90px;
+            margin: 5px 5px;  
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25), -10px -10px 10px var(--white);
+        }
+
+        .child1 {
+            display: flex;
+            flex-direction: row; 
+            align-items: center;
+            gap: 20px;
+            justify-content: space-between;
+            width: 100%; 
+        }
+
+        .text {
+            flex: 1; 
+            font-family: var(--font-krona-one);
+        }
+
+        .text h1 {
+            font-size: 34px;
+            margin: 0;
+            
+            padding: 5px;
+        }
+        .text h4 {
+            margin: 0;
+            padding: 5px;
+            font-size: 18px;
+        }
+
+        .image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .cont {
+            display: flex; 
+            align-items: center;
+            flex-direction: row; 
+            gap: 230px;
+            justify-content: space-between;
+            width: 100%;
+        }
+        
+        .PAGE2, .PAGE3{
+            background: linear-gradient(180deg, #d5edff, #9ed5ff);
+            box-shadow: 0 4px 35px rgba(0, 0, 0, 0.25);
+            width: 1258px;
+        }
+
+        .PAGE4{
+            background-color: rgba(222, 241, 255, 0.5);
+            backdrop-filter: blur(4px);
+            width: 1258px;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .application{
+            background: linear-gradient( 180deg, rgba(255, 255, 255, 0.32) 99.99%, rgba(255, 255, 255, 0) );
+            width: 940px;
+            height: 100px;
+            margin-top: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fp{
+            width: 1168px;
+            display: flex;
+            flex-direction: row; 
+            align-items: center;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        .item1{
+            display: flex;
+            flex-direction: row; 
+            align-items: center;
+        }
+        .child{
+            width: 1168px;
+            display: flex;
+            flex-direction: row; 
+            align-items: center;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+        .txt1{
+            font-size: 17px;
+            text-align: center;
+        }
+        .info{
+            width: 1258px;
+        }
+        .childinfo{
+            display: flex;
+            flex-direction: row; 
+            align-items: center;
+            justify-content: space-between;
+        }
+        .login1:hover, .learn:hover{
+           
+            text-decoration: underline;
+            transition: text-decoration 0.3s ease;
+        }
+        .flexcon{
+            -webkit-font-smoothing: antialiased;
+            text-size-adjust: 100%;
+            font-family: Lato, "Bebas Neue", cursive, sans-serif;
+            font-size: 15px;
+            line-height: 1.25;
+            color: #000;
+            font-weight: 400;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+           
+        }
+
+        @media (max-width: 768px) {
+            .child1 {
+                flex-direction: column; /* Stack elements in mobile view */
+                align-items: center;
+                text-align: center;
+            }
+            .navigation {
+            justify-content: center;
+            }
+
+            .image-container {
+            align-items: center;
+            }
+
+            .cont{
+                flex-direction: column; /* Stack elements in mobile view */
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+            }
+            .PAGE2, .PAGE3, .PAGE4{
+                flex-direction: column; /* Stack elements in mobile view */
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+            }
+            .child, .childinfo{
+                flex-direction: column; /* Stack elements in mobile view */
+                align-items: center;
+                text-align: center;
+            }
+            .flexcon{
+                flex-direction: column; /* Stack elements in mobile view */
+                align-items: center;
+                margin-right: 0px;
+            }
+            
+        }
+    
+        .image-container {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 10px; 
+        }
+
+        .navigation {
+        display: flex;
+        align-items: center;
+        gap: 15px; 
+        }
+
+        .logo {
+        width: 100px;
+        height: 100px;
+        max-width: 100%;
+        max-height: 100%;
+        }
+
+        .hr1 {
+            box-sizing: border-box;
+            border-top: 1px solid #ffffff;
+            height: 1px;
+        }
+
+        .learn{
+            font-size: 15px;
+            font-family: var(--font-krona-one);
+            background-color: #1c1c1c;
+            border-radius: 5px;
+            color: white;
+            width: 185px;
+            height: 47px
+        }
+        .co{
+            color: #000;
+        }     
+        .carousel img {
+            width: 300px; 
+            height: 250px;
+        }
+        
+        .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        }
+        .center-1 {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 20%;
+        }
+        .center-2 {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 25%;}
+        
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            filter: invert(1);
+        }
+        
+    
+        .vector-icon10, 
+        .vector-icon11,
+        .vector-icon13 {
+            width: 27px;
+            height: 30px;
+        }
+        
+        .vector-icon12
+        {
+            height: 19px;
+             
+        }
+        .header {
+            padding: 15px 0;
+            display: block;
+            -webkit-font-smoothing: antialiased;
+            text-size-adjust: 100%;
+            font-family: Lato, "Bebas Neue", cursive, sans-serif;
+            font-size: 15px;
+            line-height: 1.25;
+            background-color: #ffffff;
+            font-weight: 400;
+            display: block;
+            padding: 15px;
+        }
+        
+        .hmpage{
+          border: 0;
+          background: none;
+        }
+
+          
+    </style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="anime.min.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+    <div class="parent">
+       <!-- PAGE 1 -->
+           <div class="PAGE1">
+            <header class="header">
+                        <div class="flexcon">
+                            <a href="https://www.juit.ac.in">
+                                <img src="https://www.juit.ac.in/front/images/logo.jpg" alt="">
+                            </a>
+                            <a href="#">
+                                <img src="https://www.juit.ac.in/front/images/logo-right.jpg" alt="">
+                            </a>
+                            <form method="post" action="{% url 'landing_page' %}">
+                              {% csrf_token %}
+                              <button class="hmpage"><img style=" max-width: 100%; ; max-height: 200px;" title="A-Lab" src="{% static '/logo.svg' %}" alt="Image"></button>
+                            </form>
+                        </div>
+            </header>
+            <br>
+               <div class="child1">
+                   <div class="image-container">
+                        <!-- LOGO on LEFT -->
+                    </div>
+                    <div  class="navigation"> 
+                            <br>
+
+                            <form method="post" action="{% url 'login_page' %}">
+                              {% csrf_token %}
+                              <img class="vector-icon10" alt="login" src="{% static '\assests\landing_p\vector-10.svg' %}" />
+                              <a class = "co"><button class="login1" id="login">Login</button></a>
+                           </form>
+
+                           <form method="post" action="{% url 'login_page' %}">
                             {% csrf_token %}
-                            <button type="submit" class="get-started-wrapper" id="frameButton">
-                              <div class="get-started">
-                                  <p class="get-started1">Get Started</p>
-                                  <p class="universities">
-                                    <b class="b3"> </b>
-                                  </p>
-                              </div>
-                            </button>
-                      </form>
-                      <div class="logo">
-                        <img class="vector-icon10" alt="" src="{% static '/logo.png' %}" />
-                      </div>
-                  <div class="our-mission-child">
-                  </div>
-                  <img
-                    class="targetamico-icon"
-                    alt="" src="{% static '\assests\landing_page\mission.svg' %}"/>
+                              <img class="vector-icon11" alt="register" src="{% static '\assests\landing_p\vector-11.svg' %}" />
+                              <a class = "co"><button class="login1" id="register">Sign up</button></a>
+                           </form>
 
-                  <img class="createbro-icon" alt="" src="{% static '\assests\landing_page\idea.svg' %}" />
+                           <form method="post" action="{% url 'contact_page' %}">
+                            {% csrf_token %}
+                              <img class="vector-icon12" alt="contact" src="{% static '\assests\landing_p\contactlogo.svg' %}" />
+                              <a class = "co"><button class="login1 " id="contactUs">Contact Us</button></a>
+                            </form>
 
-                  <div class="our-mission1">OUR MISSION
-                  </div>
-                  <div class="our-vision">OUR VISION
+                            <form method="post" action="{% url 'faqs_page' %}">
+                              {% csrf_token %}
+                              <img class="vector-icon13" alt="faqs" src="{% static '\assests\landing_p\vector-13.svg' %}" />
+                              <a class = "co"><button  class="login1 " id ="faqs">FAQs</button></a>
+                            </form>
+                    </div>   
+               </div>
+               <br>
 
-                  </div>
-                  <div class="making-green-exam">
-                    Making green exam assessment and Effective Learning, Evaluation
-                    reach last mile across the globe.
-                  </div>
-                  <div class="we-believe-future-container">
-                        <p class="universities">
-                          We believe “Future of students starts with their Learning” our
-                          vision is to invent and develop an Effective AI-based Learning
-                          platform with ease
-                        </p>
-                        <p class="universities">of use.</p>
-                  </div>
-                        <div class="the-a-labai-learning">
-                          The A-LAB Learning Integrity Platform
+             <!-- next part of page one -->
+
+               <div class="child1">
+                    <div class="text">
+                        <h1>MAKING<br>LEARNING<br>EFFECTIVE</h1>
+                        <br>
+                        <h4>Online AI-based advance learning<br>
+                            and evaluation platform.<br> Secured Examination.<br> Validate Knowledge.
+                        </h4>
+                    </div>
+                    <div  class="image-container">
+                        <lottie-player src="https://lottie.host/e1a67fe0-46e5-4137-b017-dd9d5ffc4791/5gcqmzKzQW.json" background="transparent" speed="2" style="width: 708px; height: 529px" direction="1" mode="normal" autoplay></lottie-player>
+                    </div>
+               </div><br><br>
+
+               <div class= hr1></div>&nbsp;
+               <h1 style="text-align: center;">The A-LAB Learning Integrity <br>Platform</h1>
+               <div class= hr1></div>&nbsp;
+
+               <div class = "cont">
+                    <div  class="image-container">
+                        <lottie-player src="https://lottie.host/35adf6eb-9bd7-47fb-8f0c-ee0868df2f97/DAqXMTJFH5.json" background="transparent" speed="1" style="width: 321px; height: 322px" direction="1" mode="normal" loop autoplay></lottie-player>
+                    </div>
+
+                    <div class="text" >
+                        <h1 >OUR MISSON</h1>
+                        <br>
+                        <h4 >Making green exam assessment and Effective Learning, Evaluation reach last mile across the globe.
+                        </h4>
+                    </div>
+               </div>
+
+               <div class = "child1">
+                    <div class="text" >
+                        <h1 >OUR VISION</h1>
+                        <br>
+                        <h4 style="max-width:570px;"> We believe “Future of students starts with their Learning” our
+                            vision is to invent and develop an Effective AI-based Learning
+                            platform with ease of use.
+                        </h4><br>
+                        
+                        <form action= "{% url 'login_signup_page' %}" method="post">
+                          {% csrf_token %}
+                          <a href="getstart.html"><button type="submit" class="learn">Get started</button></a>
+                        </form>
+
+                    </div>
+
+                    <div  class="image-container">
+                        <lottie-player src="https://lottie.host/fd451f12-95f4-4653-a856-981c6249cd62/R5p2tqleUz.json" background="transparent" speed="1" style="width: 350px; height: 350px" direction="1" mode="normal" loop autoplay></lottie-player>
+                    </div>
+                </div>
+           </div><br>
+            <!-- PAGE 2 -->
+            <div class="PAGE2">
+                    <div class="cont">
+                        
+                        <div  class="image-container" style="margin-left: 90px;">
+                            <img src="{% static '\assests\landing_p\proctor.svg' %}" alt="proctor_img">
                         </div>
-                        <div class="our-mission-item">
-                          
+
+                        <div class="text" >
+                            <h1 >EXAM <br>PROCTORING</h1><br>
+                            <h4 >An all-inclusive remote monitoring<br> solution with computer
+                                restrictions<br>for fair conduct of examination.
+                            </h4><br>
+                            <ul>
+                                <h4>
+                                    <li>Automated Proctoring</li>
+                                    <li>Professional Review</li>
+                                    <li>Browsers Controlled</li>
+                                </h4>
+                            </ul>
                         </div>
-                </div>
+                    </div><br>
 
-                <!-- The very first part of landing page -->
+                    <div class= hr1></div>&nbsp;
 
-                <div class="navigation">
+                    <div class="child1">
+                        <div class="text" style="margin-left: 120px;">
+                            <h1 >CONTENT<br>PROTECTION</h1>
+                            <br>
+                            <h4>Ensuring exam integrity by<br>preventing Internet navigation,<br>
+                                use of mobile devices, screen<br> captures, printing or sharing.
+                            </h4><br>
+                            <ul>
+                                <h4>
+                                    <li>Distribution Prevention</li>
+                                    <li>Detects any other unfair means </li>
+                                </h4>
+                            </ul>
+                        </div>
 
-                  <div class="login" id="loginContainer" >
-                    <form method="post" action="{% url 'login_page' %}">
-                      {% csrf_token %}
-                    <button class="login1" id="login">Login</button>
-                    <img class="vector-icon11" alt="" src="{% static '/assests/landing_page/loginlogo.svg' %}" />
-                    </form>
-                  </div>
+                        <div  class="image-container"style="margin-right: 120px;">
+                            <img src="{% static '\assests\landing_p\protection.svg' %}" alt="protect_img">
+                        </div>
+                   </div><br>
+            </div><br>
 
-                  <div class="register" id="registerContainer">
-                    <form method="post" action="{% url 'login_page' %}">
-                      {% csrf_token %}
-                    <button class="register1" id="register">Sign up</button>
-                    <img class="vector-icon12" alt="" src="{% static '/assests/landing_page/signuplogo.svg' %}" />
-                    </form>
-                  </div>
+            <!-- PAGE 3 -->
+            <div class="PAGE3">
+                <div class="cont">
+                        
+                    <div  class="image-container" style="margin-left: 90px;">
+                        <img src="{% static '\assests\landing_p\distribution.svg' %}" alt="distribution_img">
+                    </div>
 
-                  <div class="contact" id="contactContainer">
-                    <button class="contact-us" id="contactUs">Contact Us</button>
-                    <img class="vector-icon13" alt="" src="{% static '\assests\landing_page\contactlogo.svg' %}" />
-                  </div>
+                    <div class="text" style="margin-right: 30px;">
+                        <h1 >DISTRIBUTION<br>PREVENTION</h1><br>
+                        <h4 style="max-width:470px">A-LAB prevents test distribution of tests with several adjustable settings to limit the possibility of copying and
+                            pasting, printing or downloading, and disables plug-ins during the evaluation to protect the content of the test.
+                        </h4><br>
+                    </div>
+                </div><br>
 
-                  <div class="faqs">
-                    <button class="faqs1">FAQs</button>
-                    <img class="vector-icon14" alt="" src="{% static '\assests\landing_page\faqlogo.svg' %}" />
-                  </div>
-
-                </div>
-                <div class="making-learning-effective-container">
-                  <p class="universities">MAKING</p>
-                  <p class="universities">&nbsp;</p>
-                  <p class="universities">LEARNING</p>
-                  <p class="universities">&nbsp;</p>
-                  <p class="universities">EFFECTIVE</p>
-                </div>
-                <div class="online-ai-based-advance-container">
-                  <p class="universities">
-                    Online AI-based Advance learning and evaluation platform.
-                  </p>
-                  <p class="universities">Secured Examination.</p>
-                  <p class="universities">Validate knowledge.</p>
-                </div>
-                <img
-                  class="online-testrafiki-icon"
-                  alt=""
-                  src="{% static '\assests\landing_page\studyingboy.svg' %}"
-                />
-
-                <div class="icbaseline-login">
-                </div>
-            </div>
-
-            <div class="exam-proctoring">
-              <div class="exam-proctoring-child"></div>
-              <div class="exam-proctoring-item"></div>
-              <div class="exam-proctoring-inner"></div>
-              <div class="line-div"></div>
-              <div class="exam-proctoring1">
-                <p class="universities">EXAM</p>
-                <p class="universities">PROCTORING</p>
-              </div>
-              <div class="an-all-inclusive-remote">
-                An all-inclusive remote monitoring solution with computer
-                restrictions for fair conduct of examination.
-              </div>
-              <div class="automated-proctoring-professio-container">
-                <ul class="automated-proctoring-professio">
-                  <li class="automated-proctoring">Automated Proctoring</li>
-                  <li class="automated-proctoring">Professional Review</li>
-                  <li>Browsers Controlled</li>
-                </ul>
-              </div>
-              <img
-                class="online-testbro-icon"
-                alt=""
-                src="{% static '\assests\landing_page\proctor.svg' %}"
-              />
-
-              <div class="content-protection">
-                <div class="content-protection-parent">
-                  <div class="content-protection1">CONTENT PROTECTION</div>
-                  <div class="ensuring-exam-integrity-container">
-                    <p class="universities">
-                      Ensuring exam integrity by preventing Internet navigation,
-                    </p>
-                    <p class="universities">
-                      use of mobile devices, screen captures, printing or sharing.
-                    </p>
-                  </div>
-                  <div class="distribution-prevention-detect-container">
-                    <ul class="distribution-prevention-detect">
-                      <li class="automated-proctoring">Distribution Prevention</li>
-                      <li>Detects any other Unfair means</li>
-                    </ul>
-                  </div>
-                </div>
-                <img
-                  class="privacy-policypana-icon"
-                  alt=""
-                  src="{% static '\assests\landing_page\protection.svg' %}"
-                />
-              </div>
-              <div class="distribution-prevention-lp">
-                <img
-                  class="downloadamico-icon"
-                  alt=""
-                  src="{% static '\assests\landing_page\distribution.svg' %}"
-                />
-
-                <div class="a-labai-prevents-test-container">
-                  <span class="a-labai-prevents-test-container1">
-                    <p class="universities">A-LAB prevents test distribution of</p>
-                    <p class="universities">
-                      tests with several adjustable settings to limit the 
-                      possibility of copying,<br>pasting, printing or downloading, and disables plug-ins during 
-                      the evaluation to protect the content of the test.
-                    </p>
-                  </span>
-                </div>
-                <div class="distribution-prevention1">
-                  <p class="universities">DISTRIBUTION</p>
-                  <p class="universities">PREVENTION</p>
-                </div>
-              </div>
-              <div class="admin-dashboard">
-                <div class="admin-dashboard1">ADMIN DASHBOARD</div>
-                <div class="manage-account-information">
-                  Manage account information, exam parameters, faculty controls and
-                  Gradebook settings.
-                </div>
-                <div class="create-exam-assessment">
-                  Create exam assessment and usage reports that give you actionable
-                  information by course, department or batch. Filter activity and
-                  reports by course, test-taker or exam.
-                </div>
-                <img class="adminamico-icon" alt="" src="{% static '\assests\landing_page\admin.svg' %}" />
-
-                <button class="learn-more-wrapper">
-                  <div class="learn-more">
-                    <span class="learn-more1">learn more</span>
-                    <b class="b4"> </b>
-                  </div>
-                </button>
-              </div>
-            </div>
-            
-            <div class="applications">
-              <div class="optimal-applications-of-a-lab-wrapper">
-                <div class="optimal-applications-of">
-                  Optimal Applications of A-LAB
-                </div>
-              </div>
-              <div class="frame-parent">
-                <div class="universities-a-labai-offers-a-parent">
-                  <div class="universities-a-labai-offers-container">
-                    <p class="assessment-providers">
-                      <span>
-                        <span>Universities</span>
-                      </span>
-                    </p>
-                    <p class="blank-line1">
-                      <span>
-                        <span>&nbsp;</span>
-                      </span>
-                    </p>
+                <div class= hr1></div>&nbsp;
+                <h1 style="text-align: center;">ADMIN DASHBOARD</h1>&emsp13;
+                <div class= hr1></div>&nbsp;
                 
-                    <p class="universities">
-                      <span>
-                        <span
-                          >A-LAB offers a superior effective learning and assessment experience and at the
-                          same time promote the excellence and integrity of
-                          education programs</span
-                        >
-                      </span>
-                      <span>
-                        <span class="span">.</span>
-                      </span>
-                    </p>
-                  </div>
-                  <div class="assessment-providers-assessmen-container">
-                    <p class="assessment-providers">Assessment Providers</p>
-                    <p class="blank-line1">&nbsp;</p>
-                    <p class="universities">Assessments are available</p>
-                    <p class="universities">anywhere anytime for</p>
-                    <p class="universities">
-                      candidates. Preview’s cognitive proctoring technology protects
-                      the test and disables false positives.
-                    </p>
-                  </div>
-                  <div class="e-learning-programs-reduce-container">
-                    <p class="assessment-providers">E-Learning Programs</p>
-                    <p class="blank-line1">&nbsp;</p>
-                    <p class="universities">Reduce your expenditure on</p>
-                    <p class="universities">
-                      test centres and inefficient manual proctoring. Integrate
-                      A-LAB secure test engine and use it to deliver tests.
-                    </p>
-                    <p class="universities">&nbsp;</p>
-                  </div>
-                </div>
-                <div class="examsrafiki-parent">
-                  <img
-                    class="examsrafiki-icon"
-                    alt=""
-                    src="{% static '\assests\landing_page\test.svg' %}"
-                  />
-                  <img
-                  class="high-schoolbro-icon"
-                  alt=""
-                  src="{% static '\assests\landing_page\universities.svg' %}"
-                />
-                  <img
-                    class="video-tutorialamico"
-                    alt=""
-                    src="{% static '\assests\landing_page\e-learning.svg' %}"
-                  />
+                <div class = "child1">
+                    <div class="text" style="margin-left: 120px;" >
 
+                        <h4 > Create exam assessment and<br>usage reports that give you<br> actionable information by course,<br>
+                             department or batch. Filter activity<br> and reports by course, test-taker <br> exam.<br><br>
+                             Manage account information, exam<br> parameters, faculty controls and<br> Gradebook settings.
+                        </h4><br>
+
+                        <form method="post" action="{% url 'learnmore_page' %}">
+                          {% csrf_token %}
+                          <button class="learn">Learn more</button>
+                        </form>
+                    </div>
+
+                    <div  class="image-container" style="margin-right: 120px;">
+                        <lottie-player src="https://lottie.host/c555d6dc-3c19-4eca-a9b1-fbff9e82ea1a/EFWeDiM4fZ.json" background="transparent" speed="1" style="width: 401px; height: 401px" direction="1" mode="normal" loop autoplay></lottie-player>
+                    </div>
                 </div>
-              </div>
+            </div><br>
+
+            <!-- PAGE 4 -->
+            <div class="PAGE4">
+                <div class = "application" style="align-items: center;">
+                    <h1 style="text-align: center;">OPTIMAL APPLICATIONS</h1>
+                </div><br>
+                 <!----------Carousel items go here------->
+                 <div class="child">
+                    <div>
+                    <div class="carousel slide" data-ride="carousel" data-interval="4000" id="demo">
+                        <div class="carousel-inner">
+                    
+                            <!-- First combination -->
+                            <div class="carousel-item active" style="text-align: center">
+                                <div class="center">
+                                    <img src="{% static '\assests\landing_p\universities.svg' %}" alt="admin_img" style="margin-left: 16px; height: 250px;">
+                                </div>
+                                <div class="txt1">
+                                    <h4><b>Universities</b></h4>
+                                    <p>A-LAB offers a superior effective learning and assessment experience and at the same time promote the excellence and integrity of education programs. Our platform seamlessly integrates with university systems, ensuring a smooth experience for both educators and students. With advanced analytics, educators can track student progress and tailor their teaching methods accordingly.</p>
+                                </div>
+                            </div>
+                    
+                            <!-- Second combination -->
+                            <div class="carousel-item">
+                                <div class="center-1">
+                                    <img src="{% static '\assests\landing_p\test.svg' %}" alt="admin_img">
+                                </div>
+                                <div class="txt1">
+                                    <h4><b>Assessments</b></h4>
+                                    <p>Assessments are available anywhere anytime for candidates. Preview’s cognitive proctoring technology protects the test and disables false positives. Our assessment tools are designed to mimic the rigor of traditional exams while providing the flexibility of online testing. With features like time tracking, random question generation, and instant feedback, we're setting new standards in online assessments.</p>
+                                </div>
+                            </div>
+                    
+                            <!-- Third combination -->
+                            <div class="carousel-item">
+                                <div class="center-2">
+                                    <img src="{% static '\assests\landing_p\e-learning.svg' %}" alt="admin_img">
+                                </div>
+                                <div class="txt1">
+                                    <h4><b>E-Learning</b></h4>
+                                    <p>AI-powered virtual tutors or chatbots can offer additional support outside of regular class hours. Students can ask questions or engage in discussions. Beyond just video lectures, our platform offers interactive quizzes, peer discussions, and project-based learning. This ensures students not only consume content but actively engage with it, leading to better retention and understanding.</p>
+                                </div>
+                            </div>
+                        </div>
+                            <!-- Left and right controls -->
+                            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                                <span class="carousel-control-prev-icon"></span>
+                            </a>
+                            <a class="carousel-control-next" href="#demo" data-slide="next">
+                                <span class="carousel-control-next-icon"></span>
+                            </a>
+                    </div>
+                    </div>
+                    <br>
+               
+                 <!--------------------------------------->
+
+                    <!-- PAGE 5 -->
+                </div><div class = "info" style="color:#fff; background-color:rgb(0, 0, 0)">
+                    <p style="margin-left: 30px; margin-top:10px; font-size: 18px;">Get in Touch</p>
+                    <div class = "childinfo">
+                        <div  class="image-container" style="margin-left: 30px;">
+
+                            <img class="image-container"src="{% static '\assests\landing_p\location.svg' %}" alt="loc_img">
+                            <a href="https://goo.gl/maps/hoQ32bmeQFEHpcAv6" style="color: white;" target="_blank">
+                            <p class = "login1" style="font-size: 18px; font-family: ABeeZee">Visit Us : JUIT Waknaghat,Solan, H.P<br>Postal Code: 173234</p></a>
+
+                        </div>
+
+                        <div  class="image-container">
+
+                            <img class="image-container"src="{% static '\assests\landing_p\call.svg' %}" alt="call_img">
+                            <p style="font-size: 18px; font-family: ABeeZee">Call at : +91 120123456<br>Mon - Sat 12pm - 6pm</p>
+
+                        </div>
+
+                        <div  class="image-container" id="mailto" style="margin-right: 30px; cursor: pointer;">
+
+                            <img class="image-container"src="{% static '\assests\landing_p\mail.svg' %}" alt="mail_img">
+                          <a style="color: white;" href="mailto:care.alab@gmail.com"><p class="login1" style="font-size: 18px; font-family: ABeeZee">E-Mail Us: care.alab@gmail.com</p></a>
+
+                        </div>
+                    </div>
+                    <p style="text-align:center;font-size: 16px;">© A-LAB, JUIT 2023. All rights reserved</p>
+                </div>
             </div>
             
-            <div class="get-in-touch">
-              <img class="vector-icon15" alt="" src="location.svg" />
 
-              <div class="visit-us-juit-container">
-                <p class="universities">
-                  <span class="visit-us">Visit Us</span>
-                  <span class="span1">: </span>
-                  <span>JUIT Waknaghat,Solan, H.P</span>
-                </p>
-                <p class="universities">Postal Add: 173234</p>
-              </div>
-              <img class="vector-icon16" alt="" src="call.svg" />
-
-              <div class="call-at-container">
-                <p class="universities">Call at : +91 8178319259</p>
-                <p class="universities">Mon - Sat 12pm - 6pm</p>
-              </div>
-              <img class="vector-icon17" alt="" src="mail.svg" />
-
-              <div class="e-mail-us-alabaigmailcom-container" id="eMailUsAlabaigmailcom">
-                <p class="universities">E-Mail Us: alab@gmail.com</p>
-              </div>
-              <div class="copyright-a-labai">
-                Copyright © A-LAB 2023. All rights reserved
-              </div>
-              <div class="get-in-touch1">Get in Touch</div>
+            <!-- PAGE 5 -->
+            <div class="PAGE5">
+                <div class="child">
+                   
+                
+                </div>
             </div>
-        </div>
-      </div>
+
     </div>
-  </body>
+</body>
 </html>

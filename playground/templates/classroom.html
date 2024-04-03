@@ -1,23 +1,45 @@
-{% load static %}
 {% block content %}
-<link rel="stylesheet" href="{% static '/css/classroom.css' %}">
-<div class="room-container">
+
+<style>
+    .room-container{
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+    }
+    .room-navbar{
+        
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 3px;
+        justify-content: space-between;
+    }
+</style>
+<div style="margin-left: 50px;margin-right: 50px; " class="room-container">
     <div>
         <hr>
-        <div>
+        <div style="display: grid;
+        grid-template-columns: 2fr 1fr;">
         <h1>{{classroom.name}}</h1>
         <h4>by {{classroom.host.username}} </h4>
         
         <div class="nest-navbar">
-        <button><a href="">All Requests</a></button>
-        <button><a href="">Members</a></button>
-        <button><a href="{% url 'create-test' classroom.id %}">Create Test</a></button>
+        <button  style=" display: flex;justify-content:space-evenly;
+                        width: 100px;">
+            <a style="text-decoration: none;" href="">All Requests</a>
+        </button>
+        <button  style=" display: flex;justify-content:space-evenly;
+                        width: 100px;">
+            <a style="text-decoration: none;" href="">Members</a>
+        </button>
+        <button  style=" display: flex;justify-content:space-evenly;
+                width: 100px;">
+        <a style="text-decoration: none;" href="{% url 'create-test' classroom.id %}">Create Test</a>
+        </button>
         </div>
         </div>
 
-        <h5>{{classroom.description}}</h5>
+        <h5 style="border: 2px solid black; width: auto; padding: 10px; margin: 2px;">{{classroom.description}}</h5>
 
-        <div class="comment-wrapper">
+        <div style="border: 2px solid black; width: auto; padding: 10px; margin: 2px;" class="comment-wrapper">
             <h3> Tests </h3>
             <!-- <hr>
             {% for message in classroom_messages %}
@@ -35,17 +57,16 @@
             {% endfor %} -->
 
             <div class = "midcontent">
-                <div class="test-navbar head">
-                    <ul>
-                        <li><button class="hbt active">Test</button></li>
-                        <li><button class="hbt">Activity</button></li>
-                        <li><button class="hbt">Quick Links</button></li>
-                    </ul>
+                <div class = "head">
+                   
+                        <button class="hbt">Ongoing Test</button>
+                        <button class="hbt">Activity</button>
+                        <button class="hbt">Quick Links</button>
                 </div>
                       <!-- Loading All the Tests Created  -->
-                <div class = "low">
-                {% include 'test_component.html' %}
-                </div>
+                      <div class = "low">
+                        {% include 'test_component.html' %}
+                      </div>
             </div>
         </div>
 
@@ -62,16 +83,16 @@
 
     <div>
         <select id="viewSelector">
-            <option value="members">Students</option>
+            <option value="members">Members</option>
             <option value="activities">User Activities</option>
-            <!-- <option value="tests">Completed Test</option> -->
+            <option value="tests">User Activities</option>
         </select>
     
     <div id="membersView">
-        <h3>Participants</h3>
+        <h3>Members</h3>
         <hr>
         {% for user in participants %}
-        <div class="comment-wrapper">
+        <div style="border: 2px solid black; width: auto; padding: 1px; margin: 2px;" class="comment-wrapper">
             {% if classroom.host.username|striptags == user.username|striptags %}
             <p> Guardian : [♕{{user.username}}♕] </p>
 
@@ -87,7 +108,7 @@
         <h3>All Tests</h3>
         <hr>
         {% for user in participants %}
-        <div class="comment-wrapper">
+        <div style="border: 2px solid black; width: auto; padding: 1px; margin: 2px;" class="comment-wrapper">
             
         </div>
         {% endfor %}
@@ -103,13 +124,12 @@
         const viewSelector = document.getElementById('viewSelector');
         const membersView = document.getElementById('membersView');
         const activitiesView = document.getElementById('activitiesView');
-        // const testsView = document.getElementById('testsView');
+        const testsView = document.getElementById('testsView');
         viewSelector.addEventListener('change', function() {
-            // if (viewSelector.value === 'tests') {
-            //     membersView.style.display = 'block';
-            //     activitiesView.style.display = 'none';
-            // } 
-            if (viewSelector.value === 'activities') {
+            if (viewSelector.value === 'tests') {
+                membersView.style.display = 'block';
+                activitiesView.style.display = 'none';
+            } else if (viewSelector.value === 'activities') {
                 membersView.style.display = 'none';
                 activitiesView.style.display = 'block';
             } else if (viewSelector.value === 'members') {
