@@ -1,5 +1,3 @@
-
-
 {% load static %}
 {% block content %}
 
@@ -11,7 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Krona One:wght@400&display=swap"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ABeeZee:wght@400&display=swap"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <title>Admin Dashboard | A-Lab</title>
+    <title>Classroom | A-Lab</title>
     <link rel="icon" type="image/x-icon" href="logo.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -88,7 +86,6 @@
             align-items: flex-start;
             flex-direction: row; /* Arrange elements side by side */
             gap: 50px;
-            justify-content: space-between;
             width: 100%; /* Ensure full width */
         }
 
@@ -247,14 +244,13 @@
             justify-content: space-between;
         }
         .midcontent{
-            max-width: 682px;
-            width: 100%;
             height: 100%;
             max-height: 724px;
             border-radius: 10px 10px 0 0;
             display: flex;
             flex-direction: column;
             gap: 20px;
+            padding: 10px;
         }
         .head{
             display: flex;
@@ -280,6 +276,7 @@
             transition: text-decoration 0.3s ease;
             background-color: #fff;
         }
+
         .low{
             display: flex;
             flex-direction: column;
@@ -287,10 +284,7 @@
             gap: 20px;
             height: 700px; /* Set the maximum height for the scrollable container */
             overflow-y: scroll;
-            z-index: 1;
-            position: relative;
-            background-image: url("{% static '\assests\mentordashboard\rafiki.svg' %}");
-            background-size: contain;
+            padding: 10px;
         }
 
         .card{
@@ -582,59 +576,174 @@
             margin-bottom: 10px;
             font-family: 'Arial';
         }
-        .filter-container {
-            padding: 20px 20px;
-            background-color: white;
+        .template {
+            background-image: url("{% static '\assests\mentordashboard\tem1.svg' %}");
+            width: 900px;
+            background-size: cover; /* This property makes the image cover the entire container */
+            background-position: center; 
+            height: 200px;
+            text-align: left;
+            padding: 30px;
+            background-repeat: no-repeat;
+            border-radius: 10px;
+            font-size: 35px;
             display: flex;
             flex-direction: column;
-            min-height: 100px;
+            justify-content: flex-end; 
+            color: #ffffff;
+            
+        }
+        .anc {
+            width: 900px;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        .inp {
+            padding: 20px;
+            font-size: 18px;
+            color: #000000;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: #000000;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            height: 150px;
+        }
+        .inp > div {
+        display: flex;
+        justify-content: flex-end;
+        gap: 20px;
+        }
+        .mssg{
+            background-color: white;
+            padding: 20px;
             border-radius: 10px;
-            }
-        .fhead{
-            margin: 20px;
+            font-size: 14px;
+            width: 900px;
+            display: flex;
+            flex-direction: column;
+        }
+        .tab{
+            margin-top: 5px;
+            background-color: white;
+            border-collapse: collapse;
+            width: 900px;
+            max-width: 100%;
+            font-size: 16px;
+            white-space: nowrap;
+            font-family: "Google Sans","Roboto",Arial,sans-serif;
+            font-weight: 500;    
+            color: #3c4043;
+            
+        }
+        .tr{
+            border-top: 0;
+            height: 60px;  
+            
+        }
+        .itm {
+        border: 0.0625rem solid rgb(111, 70, 206);
+        padding: 0.5rem;
+        text-align: left;
+        padding-left: 10%;
+
+         }
+         .thead{
             display: flex;
             flex-direction: row;
-            gap: 10px;
-            font-size: 16px;
-            font-family: Arial, Helvetica, sans-serif;
+            justify-content: space-between;
+            background-color: white;
+            border-radius: 10px;
+            border: 0.0625rem solid rgb(111, 70, 206);
             
+         }
+        .rowcount{
+            border-top: 0;
+            height: 60px;
+            background-color: white;
+            color: rgb(111, 70, 206);
+            border-radius: 10px;
+            padding: 10px;
+            text-align: right;
+            margin-left: 20px;
+            margin-right: 20px;
+         }
+
+         .custom-table {
+            margin-top: 5px;
+            background-color: white;
+            border-collapse: collapse;
+            width: 900px;
+            max-width: 100%;
+            font-size: 16px;
+            white-space: nowrap;
+            font-family: "Google Sans","Roboto",Arial,sans-serif;
+            font-weight: 500;    
+            color: #3c4043;
+            border: 0.0625rem solid rgb(111, 70, 206);
+        }
+        .itm2{
+            border: 0.0625rem solid rgb(111, 70, 206);
+            padding: 0.5rem;
+            text-align: center;
+        }
+        table {   
+            counter-reset: rowNumber;
+        }
+        table tr {
+            counter-increment: rowNumber;
+        }
+        table tr td:first-child::before {   
+            content: counter(rowNumber) ".";   
+            min-width: 1em;   
+            margin-right: 0.5em;
         }
         .hmpage{
           border: 0;
           background: none;
         }
-        .description {
-        overflow-x: hidden;
-        overflow-y: visible;
-        white-space: normal;
-        text-overflow: ellipsis;
-        width: 295px;
-        height: 80px;
+        .low1{
+            display: flex;
+            flex-direction: column;
+            background-color: transparent;
+            gap: 20px;
+            height: 700px; /* Set the maximum height for the scrollable container */
+            overflow-y: scroll;
+            padding: 10px;
+            max-width: 920px;
+        }
         
-    }
+
     </style>
 </head>
 <body onload="showContent(1)">
     <script type="text/javascript">
-//         window.addEventListener('selectstart', function(e){ e.preventDefault(); });
-//         $(document).ready(function () {
-//             //Disable cut copy paste
-//             $('body').bind('select cut copy paste', function (e) {
-//                 e.preventDefault();
-//             });
+        window.addEventListener('selectstart', function(e){ e.preventDefault(); });
+        $(document).ready(function () {
+            //Disable cut copy paste
+            $('body').bind('select cut copy paste', function (e) {
+                e.preventDefault();
+            });
             
-//             //Disable mouse right click
-//             $("body").on("contextmenu",function(e){
-//                 return false;
-//             });
-//         });
-//         /** TO DISABLE SCREEN CAPTURE **/
-// document.addEventListener('keyup', (e) => {
-//     if (e.key == 'PrintScreen') {
-//         navigator.clipboard.writeText('');
-//         alert('Screenshots disabled!');
-//     }
-// });
+            //Disable mouse right click
+            $("body").on("contextmenu",function(e){
+                return false;
+            });
+        });
+        /** TO DISABLE SCREEN CAPTURE **/
+document.addEventListener('keyup', (e) => {
+    if (e.key == 'PrintScreen') {
+        navigator.clipboard.writeText('');
+        alert('Screenshots disabled!');
+    }
+});
 
     /** TO DISABLE PRINTS WHIT CTRL+P **/
     document.addEventListener('keydown', (e) => {
@@ -711,6 +820,7 @@
     });
 }
 
+        
         function showContent(contentNumber) {
             for (let i = 1; i <= 5; i++) {
                 var contentDiv = document.getElementById("content" + i);
@@ -721,23 +831,23 @@
                 }
             }
         }
+        
 </script>
 
     <div class="parent">
+
         <div style="left: 0px; position: relative;" class="header" >
             <!-- LOGO on LEFT -->
             <div class="image-container">
-                
                 <a><img style=" max-width: 87px; max-height: 90px; cursor: pointer;" title="A-Lab" src="{% static '\assests\mentordashboard\logo.svg' %}" alt="Image"></a>
                 <marquee><h4>Welcome Back! {{request.user.username}}</h4></marquee>
             </div>
-
             <nav class="navbar">
                 <div class="search-container">
                     <input type="text" placeholder="Search here..." name="search">
-                    <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
-                </div>
-                <ul>   
+                  
+                  </div>
+                  <ul>   
                     <li>
                         <form method="post" action="{% url 'notification_page' %}">
                             {% csrf_token %}
@@ -756,7 +866,8 @@
                     </li>
                 </ul>
             </nav>
-        </div>    
+        </div>
+
        <!-- PAGE 1 -->
         
             <div class="child1">
@@ -794,7 +905,7 @@
                           
                             <div class = btn >
                                 <img  src="{% static '\assests\mentordashboard\his.svg' %}" alt="Logo 1">
-                                <a class="link" href="{% url 'history_page' %}"><button class="loginbutton">Test History</button></a>
+                                <a class="link" href="exam_history.html"><button class="loginbutton">Test History</button></a>
                             </div>
 
                             <div class = btn >
@@ -824,413 +935,108 @@
                     </div>
                     
                     <div class = "midcontent">
-                        <div class = "head">
+                            <div class = "head">
 
-                                <button class="hbt" onclick="showContent(1)">Classrooms</button>
-                                <button class="hbt" onclick="showContent(2)">Ongoing Test</button>
-                                <button class="hbt" onclick="showContent(3)">Activity</button>
-                                <button class="hbt" onclick="showContent(4)">Quick Links</button>
-                                <button class="hbt" onclick="showContent(5)">Calendar</button>
+                                <button class="hbt" onclick="showContent(1)">Stream</button>
+                                <button class="hbt" onclick="showContent(2)">Class work</button>
+                                <button class="hbt" onclick="showContent(3)">People</button>
+                                <button class="hbt" onclick="showContent(4)">All Test</button>
+
+                            </div>
+
+                        <div id = "content1" class="low">
+                            <div class="template">
+                                {{classroom.name}} <h4 style="color: black; font-family: Arial, Helvetica, sans-serif;"><b>Mentor: {{classroom.host.username}}</b></h4>
+                            </div>
+                            <!-- {{classroom.description}} -->
+                            <div class = "anc">
+                                <div class="inp">
+                                    <textarea id="textarea" placeholder="Announce something to your class"  name="textarea" rows="4" cols="200"></textarea>
+                                    <div style=" display:flex; align-items: end; margin-top: 10px;">
+                                        <button class="hbt" >Cancel</button>
+                                        <button class="hbt" >Post</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class ="mssg">
+                                This is a demo annoucement.
+                            </div>
+                            <div class ="mssg">
+                                <a href="https://www.geeksforgeeks.org/">This is a demo annoucement with a link </a>
+                            </div>
+
+                           
+
                         </div>
+                        <div id = "content2" class="hidden">
+                        
+                        </div>
+                        
 
-
-                        <div class = "low">
-                            <!-- <div class="bg"><img style=" width: 714.28px; min-height: 232.6px; max-width: 100%; ; max-height: 532.6px;" src="rafiki.svg" alt="img"></div> -->
-                            
-                            <div id="content1" class="low">
+                        <div id="content3" class=" hidden">
+                           <div class = "thead"> 
+                                <div class="rowcount">Batch : </div>
+                                <div id="rowcount" class="rowcount"></div> 
+                          </div>
+                            <div class="low" style="padding: 0;">
+                                <table class ="tab">
+                                   <tbody>
+                                
+                                    <tr class="tr">
+                                        <td class = "itm">
                                    
-                                {% include 'feed_component.html' %}
-                                <!-- <div class="card2">
-
-                                    <img src="{% static '\assests\mentordashboard\bro.svg' %}" alt="cimg">
-                                    <div class="cinfo">
-                                        <h style="font-size: 24px;"><b>Operating Systems</b></h><br><br>
-
-                                        Learn the operating systems concepts and mechanism in details and their implementation.
-
-                                    </div>
-                                    <div class="abtn">
-                                        <a href="classroom.html"><button class="cibtn" >></button></a>
-                                    </div>
+                                                SANAT JAIN 211054 
+                                         
+                                        </td>
+                                        <td class="itm2">211054</td>
+                                        <td class = "itm">mail@gamil.com</td>
+                                    </tr>
+                                    <tr class="tr">
+                                        <td class = "itm">
+                                            
+                                                ANUSHREE SINGH 211168 
+                                            
+                                        </td>
+                                        <td class="itm2">211168</td>
+                                        <td class = "itm">mailadcecwec@gamil.com</td>
+                                    </tr>
+                                    <tr class="tr">
+                                        <td class = "itm">
+                                           
+                                                SHIVANSH MEHROTRA 211202
+                                           
+                                        </td>
+                                        <td class="itm2">211202</td>
+                                        <td class = "itm">newmywmailamail@gamil.com</td>
+                                    </tr>
+                                    <tr class="tr">
+                                        <td class = "itm">
+                                                                                        
+                                                Dhruv Yadav 211403
+                                         
+                                        </td>
+                                        <td class="itm2">211403</td>
+                                        <td class = "itm">newmywmailamail@gamil.com</td>
+                                    </tr>
+                                   </tbody>
                                     
-    
-                                </div>
-
-                                <div class="card2">
-                                     <img src="{% static '\assests\mentordashboard\ai.svg' %}" alt="cimg">
-                                    <div class="cinfo">
-                                        <h style="font-size: 24px;"><b>Artificial Intelligence</b></h><br><br>
-
-                                        Intelligence demonstrated by machines, unlike the natural intelligence displayed by human.
-
-                                    </div>
-                                    <div class="abtn">
-                                        <button class="cibtn">></button>
-                                    </div>
-                                </div>
-
-                                <div class="card2">
-                                    <img src="{% static '\assests\mentordashboard\crdimg.png' %}" alt="cimg">
-                                    <div class="cinfo">
-                                        <h style="font-size: 24px;"><b>Software Engineering</b></h><br><br>
-
-                                        Learn detailed of engineering to the design, development and maintainece of softeare.
-
-                                    </div>
-                                    <div class="abtn">
-                                        <button class="cibtn">></button>
-                                    </div>
-                                </div>
-                                <div class="card2">
-                                    <img src="{% static '\assests\mentordashboard\crdimg.png' %}" alt="cimg">
-                                    <div class="cinfo">
-                                        <h style="font-size: 24px;"><b>Computer Networks</b></h><br><br>
-
-                                        Learn the operating systems concepts and mechanism in details and their implementation.
-
-                                    </div>
-                                    <div class="abtn">
-                                        <button class="cibtn">></button>
-                                    </div>
-                                </div>
-                                <div class="card2">
-                                    <img src="{% static '\assests\mentordashboard\crdimg.png' %}" alt="cimg">
-                                    <div class="cinfo">
-                                        <h style="font-size: 24px;"><b>Data Structures</b></h><br><br>
-
-                                        Learn the operating systems concepts and mechanism in details and their implementation.
-
-                                    </div>
-                                    <div class="abtn">
-                                        <button class="cibtn">></button>
-                                    </div>
-                                </div>
-                                <div class="card2">
-                                    <img src="{% static '\assests\mentordashboard\db.svg' %}" alt="cimg">
-                                    <div class="cinfo">
-                                        <h style="font-size: 24px;"><b>D.B.M.S</b></h><br><br>
-
-                                        Learn the operating systems concepts and mechanism in details and their implementation.
-
-                                    </div>
-                                    <div class="abtn">
-                                        <button class="cibtn">></button>
-                                    </div>
-                                </div> -->
-
-
+                                </table>
                             </div>
-
-                            <div id = "content2" class="hidden">
-                              <div class="low">
-                                
-                                <div class="card">
-
-                                    <div class="ch">
-    
-                                        <div class="date" title="Exam Date">26 July</div>
-                                        <div class = "data" title="Subject/Topic">C++ OOPs Concepts</div>
-                                        <div class="data">#10 Questions &nbsp; &nbsp; MCQ</div>
-                                    </div>
-    
-                                    <div class="cl">
-    
-                                        <div class="time" title="Duration">
-                                            <img src="{% static '\assests\mentordashboard\timer.svg' %}" alt="Logo 1"> 15 Minutes
-                                        </div>
-                                        <button class="atmpt">Attempt Now</button>
-                                    </div>
-    
-                                </div>
-                                <div class="card">
-                                    <div class="ch">
-    
-                                        <div class="date" title="Exam Date">26 July</div>
-                                        <div class = "data" title="Subject/Topic">Java introduction</div>
-                                        <div class="data">#10 Questions &nbsp; &nbsp; MCQ</div>
-                                    </div>
-    
-                                    <div class="cl">
-                                        
-                                        <div class="time" title="Duration">
-                                            <img src="{% static '\assests\mentordashboard\timer.svg' %}" alt="Logo 1"> 15 Minutes
-                                        </div>
-                                        <button class="atmpt">Attempt Now</button>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="ch">
-    
-                                        <div class="date" title="Exam Date">26 July</div>
-                                        <div class = "data" title="Subject/Topic">COA Concepts</div>
-                                        <div class="data">#10 Questions &nbsp; &nbsp; MCQ</div>
-                                    </div>
-    
-                                    <div class="cl">
-                                        
-                                        <div class="time" title="Duration">
-                                            <img src="{% static '\assests\mentordashboard\timer.svg' %}" alt="Logo 1"> 15 Minutes
-                                        </div>
-                                        <button class="atmpt">Attempt Now</button>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="ch">
-    
-                                        <div class="date" title="Exam Date">26 July</div>
-                                        <div class = "data" title="Subject/Topic">PYTHON PROG</div>
-                                        <div class="data">#10 Questions &nbsp; &nbsp; MCQ</div>
-                                    </div>
-    
-                                    <div class="cl">
-                                        
-                                        <div class="time" title="Duration">
-                                            <img src="{% static '\assests\mentordashboard\timer.svg' %}" alt="Logo 1"> 15 Minutes
-                                        </div>
-                                        <button class="atmpt">Attempt Now</button>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="ch">
-    
-                                        <div class="date" title="Exam Date">26 July</div>
-                                        <div class = "data" title="Subject/Topic">DATA SCIENCE</div>
-                                        <div class="data">#10 Questions &nbsp; &nbsp; MCQ</div>
-                                    </div>
-    
-                                    <div class="cl">
-                                        
-                                        <div class="time" title="Duration">
-                                            <img src="{% static '\assests\mentordashboard\timer.svg' %}" alt="Logo 1"> 15 Minutes
-                                        </div>
-                                        <button class="atmpt">Attempt Now</button>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="ch">
-    
-                                        <div class="date" title="Exam Date">26 July</div>
-                                        <div class = "data" title="Subject/Topic">DATA SCIENCE</div>
-                                        <div class="data">#10 Questions &nbsp; &nbsp; MCQ</div>
-                                    </div>
-    
-                                    <div class="cl">
-                                        
-                                        <div class="time" title="Duration">
-                                            <img src="{% static '\assests\mentordashboard\timer.svg' %}" alt="Logo 1"> 15 Minutes
-                                        </div>
-                                        <button class="atmpt">Attempt Now</button>
-                                    </div>
-                                </div>
-                                
-                                </div>
-
-                            </div>
-
-                            <div id = "content3" class="hidden"></div>
-
-                            <div id = "content4" class="hidden">
-                                <div class="low">
-                                  
-                                  <div class="card">
-                                    <div class="cinfo">
-                                        <h style="font-size: 24px;"><b>Operating Systems</b></h><br><br>
-                                        <ul>
-                                            <li><a href="https://www.geeksforgeeks.org/operating-systems/">Operating System Tutorial - GeeksForGeeks</a></li>
-                                            <li><a href="https://www.tutorialspoint.com/operating_system/os_overview.htm">Operating System Overview - Tutorials Point</a></li>
-                                            <li><a href="https://www.javatpoint.com/operating-system">Operating System - JavaPoint</a></li>
-                                        </ul>
-                                    </div>
-                                      
-      
-                                  </div>
-                                  <div class="card">
-                                    <div class="cinfo">
-                                        <h style="font-size: 24px;"><b>Computer Networks</b></h><br><br>
-                                        <ul>
-                                            <li><a href="https://www.geeksforgeeks.org/basics-computer-networking/">Basics of Computer Networking - GeeksForGeeks</a></li>
-                                            <li><a href="https://www.javatpoint.com/computer-network-tutorial">Computer Networks Tutorial - Tutorials Point</a></li>
-                                            <li><a href="https://www.cisco.com/c/en_in/solutions/enterprise-networks/what-is-computer-networking.html">What is Computer Networking - Cisco</a></li>
-                                        </ul>
-                                    </div>
-                                  </div>
-
-                                  <div class="card">
-                                      <div class="cinfo">
-                                        <h style="font-size: 24px;"><b>Database Management</b></h><br><br>
-                                        <ul>
-                                            <li><a href="https://www.geeksforgeeks.org/dbms/">Database Management System - GeeksForGeeks</a></li>
-                                            <li><a href="https://www.tutorialspoint.com/dbms/index.htm">DBMS Overview - Tutorials Point</a></li>
-                                            <li><a href="https://www.javatpoint.com/dbms-tutorial">DBMS Tutorial - JavaPoint</a></li>
-                                        </ul>
-                                    </div>
-                                  </div>
-                                  
-                                  <div class="card">
-                                    <div class="cinfo">
-                                        <h style="font-size: 24px;"><b>Artifical Intelligence</b></h><br><br>
-                                        <ul>
-                                            <li><a href="https://www.geeksforgeeks.org/artificial-intelligence-geeksforgeeks/">Artificial Intelligence - GeeksForGeeks</a></li>
-                                            <li><a href="https://www.tutorialspoint.com/artificial_intelligence/index.htm">AI Overview - Tutorials Point</a></li>
-                                            <li><a href="https://www.javatpoint.com/artificial-intelligence-tutorial">AI Tutorial - JavaPoint</a></li>
-                                        </ul>
-                                    </div>
-                                  </div>
-
-                                  <div class="card">
-                                      <div class="cinfo">
-                                        <h style="font-size: 24px;"><b>Computer Organization</b></h><br><br>
-                                        <ul>
-                                            <li><a href="https://www.geeksforgeeks.org/operating-systems/">Operating System Tutorial - GeeksForGeeks</a></li>
-                                            <li><a href="https://www.tutorialspoint.com/operating_system/os_overview.htm">Operating System Overview - Tutorials Point</a></li>
-                                            <li><a href="https://www.javatpoint.com/operating-system">Operating System - JavaPoint</a></li>
-                                        </ul>
-                                    </div>
-                                  </div>
-
-                                  <div class="card">
-                                      <div class="cinfo">
-                                        <h style="font-size: 24px;"><b>Software Engineering</b></h><br><br>
-                                        <ul>
-                                            <li><a href="https://www.geeksforgeeks.org/software-engineering/">Software Engineering - GeeksForGeeks</a></li>
-                                            <li><a href="https://www.tutorialspoint.com/software_engineering/index.htm">Software Engineering Overview - Tutorials Point</a></li>
-                                            <li><a href="https://www.javatpoint.com/software-engineering-tutorial">Software Engineering Tutorial - JavaPoint</a></li>
-                                        </ul>
-                                    </div>
-                                  </div>
-                                  
-                                  </div>
-  
-                            </div>
-
-                            <div id = "content5" class ="hidden">
-                                <iframe src="{% url 'calander_page' %}" width="100%" height="700px" frameborder="0"></iframe>
-
-                                <div class="filter-container">
-                                    <div class="fhead">
-                                        <input type="date" id="filterDate" style="padding: 5px 5px; font-size: 18px;">
-
-                                        <select id="filterBatch" style="padding: 5px 5px; font-size: 18px;">
-                                            <option value="" selected disabled>Batch</option>
-                                            <option value="CS510">CS510</option>
-                                            <option value="IT52">IT52</option>
-                                            <option value="ECM51">ECM51</option>
-                                        </select>
-                                     
-                                        <button class="hbt" style="font-size: 18px;" onclick="filterTests()">Filter Tests</button>
-                                     
-                                    </div>
+                        </div>
                             
-                                  </div>
-                                
-                            </div>
+                        <div id = "content4" class="hidden">
+                            <div class="low1">
+                              
+                                {% include 'test_component.html' %}
+                              
+                              </div>
 
-                        </div>
+                          </div>
 
                     </div>
 
-
-                    <div class="rightcont">
-
-                        <div class="rhead"><b>Upcoming Assessments</b></div>
-
-                        <div class="rlow">
-
-                            <div class="rcard">
-
-                                <div class="rch">
-                                    <div class="date" style="width: 110px; max-width:110px; padding-top: 10px;" title="Exam Date">26 JUL</div>
-                                    <div title="Subject"><b>Computer Networks</b></div>
-                                </div>   
-
-                                <div class="topicmat">
-                                    <div class="topic">
-                                        <label for="topic">Topics:</label>
-                                        
-                                    </div>
-                                    <div class="mat">
-                                        <label for="mat">Material:</label>
-                                        
-                                    </div>
-                                </div>
-
-                                <div class="rtime" title="Exam Time">
-                                    <img src="{% static '\assests\mentordashboard\timer.svg' %}" alt="Logo 1">11 : 30 AM  
-                                </div>
-                            </div>
-
-                            <div class="rcard">
-
-                                <div class="rch">
-                                    <div class="date" style="width: 110px; max-width:110px; padding-top: 10px;" title="Exam Date">26 JUL</div>
-                                    <div title="Subject"><b>Artifical Intelligence</b></div>
-                                </div>   
-
-                                <div class="topicmat">
-                                    <div class="topic">
-                                        <label for="topic">Topics:</label>
-                                        
-                                    </div>
-                                    <div class="mat">
-                                        <label for="mat">Material:</label>
-                                        
-                                    </div>
-                                </div>
-
-                                <div class="rtime" title="Exam Time">
-                                    <img src="{% static '\assests\mentordashboard\timer.svg' %}"  alt="Logo 1">11 : 30 AM  
-                                </div>
-                            </div>
-
-                            <div class="rcard">
-
-                                <div class="rch">
-                                    <div class="date" style="width: 110px; max-width:110px; padding-top: 10px;" title="Exam Date">26 JUL</div>
-                                    <div title="Subject"><b>Operating Systems</b></div>
-                                </div>   
-
-                                <div class="topicmat">
-                                    <div class="topic">
-                                        <label for="topic">Topics:</label>
-                                        
-                                    </div>
-                                    <div class="mat">
-                                        <label for="mat">Material:</label>
-                                        
-                                    </div>
-                                </div>
-
-                                <div class="rtime" title="Exam Time">
-                                    <img src="{% static '\assests\mentordashboard\timer.svg' %}" alt="Logo 1">11 : 30 AM
-                                </div>
-                            </div>
-
-                            <div class="rcard">
-
-                                <div class="rch">
-                                    <div class="date" style="width: 110px; max-width:110px; padding-top: 10px;" title="Exam Date">26 JUL</div>
-                                    <div title="Subject"><b>Database Management</b></div>
-                                </div>   
-
-                                <div class="topicmat">
-                                    <div class="topic">
-                                        <label for="topic">Topics:</label>
-                                        
-                                    </div>
-                                    <div class="mat">
-                                        <label for="mat">Material:</label>
-                                        
-                                    </div>
-                                </div>
-
-                                <div class="rtime" title="Exam Time">
-                                    <img src="{% static '\assests\mentordashboard\timer.svg' %}" alt="Logo 1">11 : 30 AM
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                 </div>
+                </div>
             </div>
 
        </div>
@@ -1243,7 +1049,14 @@
        </div>
 
     </div>
-    
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    var table = document.querySelector(".tab");
+    var rowCount = table.rows.length;
+    document.getElementById("rowcount").textContent = rowCount + "    Students" ;
+});
+
+</script>
 </body>
 </html>
 

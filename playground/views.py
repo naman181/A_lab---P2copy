@@ -131,7 +131,7 @@ def classroom(request, pk):
                'participants': participants,
                'test_data':test_data,
                }
-    return render(request,'classroom.html',context)
+    return render(request,'classroomcopy.html',context)
 
 @login_required(login_url='login')
 def test(request,pk):
@@ -185,7 +185,7 @@ def classroom_detail(request, classroom_id):
                'classroom_messages': classroom_messages,
                'participants': participants,
                'test_data':test_data}
-    return render(request, 'classroom.html', context)
+    return render(request, 'classroomcopy.html', context)
 
 from .forms import AnswerForm
 
@@ -239,7 +239,7 @@ def take_test(request, pk, test_id, question_index=1):
             })
 
     # If the request method is not POST or there are no more questions, render the classroom view
-    return render(request, 'classroom.html', {'classroom': classroom, 'tests': classroom.test_set.all().order_by('created')})
+    return render(request, 'classroomcopy.html', {'classroom': classroom, 'tests': classroom.test_set.all().order_by('created')})
 
 
 

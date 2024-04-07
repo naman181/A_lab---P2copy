@@ -160,3 +160,7 @@ AUTH_USER_MODEL = 'playground.CustomUser'
 # LOGIN_URL = "/accounts/login/"
 LOGIN_REDIRECT_URL = "/dashboard/#"
 LOGOUT_REDIRECT_URL =  "/logout/"
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+XS_SHARING_ALLOWED_METHODS = ['POST','GET','OPTIONS', 'PUT', 'DELETE']

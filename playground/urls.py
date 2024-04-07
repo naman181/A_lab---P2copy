@@ -22,7 +22,7 @@ urlpatterns = [
     path('notification_page/',views.notification_page,name='notification_page'),
     path('accounts/logout/', LogoutView.as_view(template_name='logout.html'), name='logout_page'),
     path('create-classroom',views.createClassroom, name='create-classroom'),
-    path('classrooom/<str:pk>/',views.classroom,name='classroom'),
+    path('classrooomcopy/<str:pk>/',views.classroom,name='classroomcopy'),
     path('classroom/<str:classroom_id>/', views.classroom_detail, name='classroom_detail'),
     path('classroom/<str:classroom_id>/create-test/', views.create_test, name='create-test'),
     path('classroom/<int:pk>/take-test/<int:test_id>/', views.take_test, name='take_test'),
