@@ -97,6 +97,10 @@ def history_page(request):
 def calander_page(request):
     return render(request,'calander.html')
 
+#genquestion
+def genq_page(request):
+    return render(request,'gen.html')
+
 # Dashboard   
 @login_required(login_url='login')
 def dashboard(request):

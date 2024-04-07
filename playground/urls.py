@@ -19,6 +19,7 @@ urlpatterns = [
     path('profile_page/',views.profile_page,name='profile_page'),
     path('settings_page/',views.settings_page,name='settings_page'),
     path('history_page/',views.history_page,name='history_page'),
+    path('genq_page/',views.genq_page,name='genq_page'),
     path('notification_page/',views.notification_page,name='notification_page'),
     path('accounts/logout/', LogoutView.as_view(template_name='logout.html'), name='logout_page'),
     path('create-classroom',views.createClassroom, name='create-classroom'),
