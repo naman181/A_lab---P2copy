@@ -3,8 +3,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from .forms import CustomUserCreationForm, CustomUserLoginForm, ClassroomForm, TestForm, QuestionForm
+from .forms import CustomUserCreationForm, CustomUserLoginForm, ClassroomForm, TestForm, QuestionForm, GenqForm
 from .models import CustomUser, Classroom, Topic, Message, Test, Question
+from langchain.prompts import PromptTemplate
+from langchain.llms import CTransformers
 
 # Very first page of the Website before login or sign up
 def landing_page(request):
@@ -97,9 +99,70 @@ def history_page(request):
 def calander_page(request):
     return render(request,'calander.html')
 
+#calander
+def qresult_page(request):
+    return render(request,'result.html')
+
 #genquestion
 def genq_page(request):
-    return render(request,'gen.html')
+    if request.method == "POST":
+        form = GenqForm(request.POST)
+        if form.is_valid():
+            input_text = form.cleaned_data.get('input_text')
+            no_que = int(form.cleaned_data.get('no_que'))
+            subject = form.cleaned_data.get('subject')
+            que_type = form.cleaned_data.get('que_type')
+
+            responses = get_lama_response(input_text, subject, no_que, que_type)
+
+            return render(request, 'result.html', {'responses': responses})
+    else:
+        form = GenqForm()
+    return render(request, 'gen.html', {'form': form})
+
+def generate(request):
+    input_text = request.form['input_text']
+    no_que = int(request.form['no_que'])
+    subject = request.form['subject']
+    que_type = request.form['que_type']
+
+    # Call the function to generate responses
+    responses = get_lama_response(input_text, subject, no_que, que_type)
+
+    # Save the generated questions to an Excel file
+    # save_to_excel(responses)
+
+    return render('result.html', responses=responses)
+
+
+def get_lama_response(input_text, subject, no_que, que_type, max_token_length=512):
+    llm = CTransformers(model='model\llama-2-7b-chat.ggmlv3.q8_0.bin',
+                        model_type='llama',
+                        config={'max_new_tokens': 256, 'temperature': 0.1})
+
+    template = """
+        Generate {no_que} {que_type} questions and four options including correct answer on 
+        subject/topic {subject} for the given topics: {input_text} in format
+        question: Question?
+        option a: ...
+        option b: ...c
+        option c: ...
+        option d: ...
+        correct Answer: ... 
+        """
+
+    prompt = PromptTemplate(input_variables=["no_que", "que_type", "subject", "input_text"],
+                            template=template)
+
+    # Split input text into chunks
+    chunks = [input_text[i:i+max_token_length] for i in range(0, len(input_text), max_token_length)]
+
+    responses = []
+    for chunk in chunks:
+        response = llm(prompt.format(no_que=no_que, que_type=que_type, subject=subject, input_text=chunk))
+        responses.append(response)
+
+    return responses
 
 # Dashboard   
 @login_required(login_url='login')

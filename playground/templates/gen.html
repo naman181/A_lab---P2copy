@@ -611,28 +611,27 @@ document.addEventListener('keyup', (e) => {
                         </div>
                         
                     </div>
-                    
-                    <div class = "midcontent">
-                        
-                            <h1 style="font-size: 26px; text-align: center;">Generate Questions</h1><br>
-                            <label style="font-size: 16px;" for="input_text">Input Text:</label>
-                            <textarea class="createexm" style="height: 100px;"  type="text" id="input_text" name="input_text" placeholder="Enter text to generate questions and Answers..."></textarea><br>
-                            <label style="font-size: 16px;" for="subject">Enter the Topic/Subject:</label>
-                            <input class="createexm" style="height: 100px;" type="text" id="subject" name="subject"><br>
-                            <label style="font-size: 16px;" for="que_type">Select Question Type:</label>
-                            <select id="que_type" name="que_type">
-                                <option value="Objective">Objective</option>
-                                <option value="Subjective">Subjective</option>
-                                <option value="Numerical">Numerical</option>
-                            </select><br>
-                            <label style="font-size: 16px;" for=" ">Number Of Questions:</label>
-                            <input class="createexm" type="text" id="no_que" name="no_que">
-                            <br>
-                        <form action="" method="post">
-                            <button class="vbtn" type ="submit" value="Generate">Generate</button>
-                        </form>
-                    
-                    </div>
+                        <div class = "midcontent">
+                            <form  method="post" >
+                                {% csrf_token %}
+                                <h1 style="font-size: 26px; text-align: center;">Generate Questions</h1><br>
+                                <label style="font-size: 16px;" for="input_text">Input Text:</label>
+                                <textarea class="createexm" style="height: 100px;"  type="text" id="input_text" name="input_text" placeholder="Enter text to generate questions and Answers..."></textarea><br>
+                                <label style="font-size: 16px;" for="subject">Enter the Topic/Subject:</label>
+                                <input class="createexm" style="height: 100px;" type="text" id="subject" name="subject"><br>
+                                <label style="font-size: 16px;" for="que_type">Select Question Type:</label>
+                                <select id="que_type" name="que_type">
+                                    <option value="Objective">Objective</option>
+                                    <option value="Subjective">Subjective</option>
+                                    <option value="Numerical">Numerical</option>
+                                </select><br>
+                                <label style="font-size: 16px;" for=" ">Number Of Questions:</label>
+                                <input class="createexm" type="text" id="no_que" name="no_que">
+                                <br>
+                            
+                                <button class="vbtn" type ="submit">Generate</button>
+                            <form>
+                        </div>
                  </div>
             </div>
 
