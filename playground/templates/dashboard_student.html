@@ -7,417 +7,23 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Krona One:wght@400&display=swap"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ABeeZee:wght@400&display=swap"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <title>Dashboard | A-Lab</title>
-    <link rel="icon" type="image/x-icon" href="logo.ico">
-    <style>
-        :root {
-            --bg: #EDF2F0;
-            --neu-1: #e2e2e2;
-            --neu-2: #c2cbd7;
-            --white: #f9f9f9;
-            --gray: #b8c3ff;
-            --black: #181818;
-            --purple: #4B70E2;
-            --transition: 1.25s;
-        }
+    <title>Student Dashboard | A-Lab</title>
+    <link rel="icon" type="image/x-icon" href="{% static '/logo.ico' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        body {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Krona one','Montserrat', sans-serif;
-            font-size: 11px;
-            background-color: #A3CDFF;
-            color: rgb(0, 0, 0);
-        } 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
 
-        .parent {
-            display: flex;
-            flex-direction: column;
-           /* align-items: center;*/
-            gap: 10px;
-            justify-content: center;
-            background-color: #B8FFF7;
-            border-color: black;
-            font-family: 'Krona one';     
-            font-size: 22px;
-            padding: 40px 40px;
-            margin: 5px 5px;  
-            border-radius: 8px;
-            overflow: hidden;
-            width: 100%;
-            box-shadow: 10px 10px 10px var(--neu-2), -10px -10px 10px var(--white);
-        }
-
-        .child1 {
-            display: flex;
-            flex-direction: column; /* Arrange elements side by side */
-            align-items: center;
-            gap: 20px;
-            justify-content: space-between;
-            width: 100%; /* Ensure full width */
-            overflow-y: hidden;
-        }
-        .contain{
-            display: flex;
-            flex-direction: row; /* Arrange elements side by side */
-            align-items: flex-start;
-            gap: 50px;
-            justify-content: space-between;
-            width: 100%; /* Ensure full width */
-        }
-
-        .text {
-            flex: 1; /* Allow text to take up remaining space */
-        }
-
-        .text h1 {
-            font-size: 34px;
-            margin: 0;
-            padding: 5px;
-        }
-        .text h4 {
-            margin: 0;
-            padding: 5px;
-            
-        }
-
-        .image {
-            max-width: 100%;
-            height: auto;
-        }
-        .box{
-            flex-direction: row; /* Stack elements in mobile view */
-            display: flex;
-            gap:70px;
-            text-align: center;
-            background: linear-gradient( 180deg, rgba(255, 255, 255, 0.75) 99.99%, rgba(255, 255, 255, 0) );
-            padding: 40px 80px;
-            width: 680px;
-            z-index: 2;
-            
-        }
-        .loginbutton{
-            width: 100%;
-            background-color: #8187FF;
-            text-align: left;
-            border-radius: 0 4px 4px 0;
-            border:0;
-            cursor: pointer;
-            padding: 5px;
-            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-            font-size: 11px;
-        }
-        .loginbutton:hover{
-            text-decoration: underline;
-            transition: text-decoration 0.3s ease;
-            background-color: #fff;
-        }
-     
-        @media (max-width: 768px) {
-            .child1 {
-                flex-direction: column; /* Stack elements in mobile view */
-                align-items: center;
-                text-align: center;
-            }
-            .navigation {
-            justify-content: center;
-            }
-
-            .image-container {
-            align-items: center;
-            }
-            .box{
-                justify-content: center;
-                gap: 30px;
-            }
-            .info{
-                align-items: center;
-            }
-            .contain{
-                flex-direction: row; /* Stack elements in mobile view */
-                align-items: center;
-                gap: 20px;
-            }
-            .bg{
-                align-items: center;
-            }
-            .bg img{
-                width: 288px;
-                min-height: 132.6px;
-                max-width: 100%;
-                max-height: 532.6px;
-            }
-        }        
-
-        .header{
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            justify-content: space-between;
-        }
-        .image-container {
-            display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        }
-        .image-container1 {
-            display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        }
-
-        .hr1 {
-            box-sizing: border-box;
-            border-top: 1px solid #000;
-            height: 1px;
-        }
-        .name{
-            border: 0;
-            font-family: "ABeeZee";
-            font-size: 16px;
-            background-color: transparent;
-            text-align: left;
-            width: 100%;
-        }
-
-        .drawer{
-            max-width: 224px;
-            width: 100%;
-            height: 100%;
-            border-radius: 10px 10px 0 0;
-            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-            display: flex;
-            flex: 1;
-            flex-direction: column;
-        }
-        .top{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-            padding-top:20px;
-            border-radius: 25px 25px 0 0;
-            background-color: #A3CDFF;
-        }
-        .bottom{
-            display: flex;
-            flex-direction: column; 
-            justify-content: flex-end; 
-            height: 300px;
-            gap: 3px;
-            padding-bottom: 5px;
-            background-color: #A3CDFF;
-        }
-        .btn{
-            width: 100%;
-            padding: 12px;
-            gap: 3px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-        .midcontent{
-            max-width: 682px;
-            width: 100%;
-            height: 100%;
-            max-height: 724px;
-            border-radius: 10px 10px 0 0;
-            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .head{
-            display: flex;
-            flex-direction: row;
-            padding: 5px;
-            gap: 10px;
-            background-color: #91D7FF;
-            border-radius: 4px 4px 4px 4px;
-        }
-        .hbt{
-            background-color: #C6F8FF;
-            text-align: center;
-            border-radius: 4px 4px 4px 4px;
-            border:0;
-            cursor: pointer;
-            padding: 5px 10px;
-            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-            font-size: 11px;
-        }
-        .hbt:hover{
-            text-decoration: underline;
-            transition: text-decoration 0.3s ease;
-            background-color: #fff;
-        }
-        .low{
-            display: flex;
-            flex-direction: column;
-            background-color: transparent;
-            gap: 5px;
-            height: 500px; /* Set the maximum height for the scrollable container */
-            overflow-y: scroll;
-            z-index: 1;
-            position: relative;
-            background-image: url("rafiki.svg");
-            background-size: contain;
-        }
-        .card{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            background-color: #89A0FF;
-            width: 100%;
-            min-height: 210px;
-            max-height: 218px;
-            border-radius: 4px 4px 4px 4px;
-            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-            padding: 10px;
-            opacity: 0.95;
-            
-        }
-        .ch{
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-            background-color: transparent;
-        }
-        .date{
-            background-color: #68A7D5;
-            text-align: center;
-            border-radius: 0 25px 25px 0;
-            border:0;
-            padding: 5px 10px;
-            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-            font-size: 11px;
-        }
-        .data{
-            background-color: #95BFFF;
-            text-align: center;
-            border-radius: 8px 8px 8px 8px;
-            border:0;
-            padding: 5px 10px;
-            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-            font-size: 11px;
-        }
-        .cl{
-            display: flex;
-            max-height: 34px;
-            flex-direction: row;
-            justify-content: space-between;
-        }
-        .time{
-            padding: 5px 20px;
-            border-radius: 25px 25px 25px 25px;
-            justify-content: space-between;
-            background-color: #83FFDA;
-            font-size: 11px;
-        }
-        .atmpt{
-            background-color: #82CBFF;
-            text-align: center;
-            border-radius: 8px 8px 8px 8px;
-            border:0;
-            cursor: pointer;
-            padding: 5px 10px;
-            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-            font-size: 11px;
-        }
-        .atmpt:hover{
-            text-decoration: underline;
-            transition: text-decoration 0.3s ease;
-            background-color: #fff;
-        }
-        .rightcont{
-            display: flex;
-            flex-direction: column;
-            max-width: 262px;
-            width: 100%;
-            height: 100%;
-            max-height: 724px;
-            border-radius: 10px 10px 0 0;
-            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-            gap: 20px;
-        }
-        .rhead{
-            text-align: center;
-            width: 100%;
-            background-color: #8EC2FF;
-            font-size: 11px;
-            padding: 10px 10px;
-            border-radius: 17px 0 0 17px;
-            border: 0;
-        }
-        .rlow{
-            display: flex;
-            flex-direction: column;
-            background-color: transparent;
-            gap: 5px;
-            height: 500px; /* Set the maximum height for the scrollable container */
-            overflow-y: scroll;
-        }
-        .rcard{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            background: linear-gradient(to right, white 60px, #687999 60px);
-            width: 100%;
-           
-            max-height: 400px;
-            gap: 5px;
-            border-radius: 4px 4px 4px 4px;
-            padding: 10px;
-        }
-        .rch{
-            font-size: 11px;
-            background-color: transparent;
-            max-height: 40px;
-            display: flex;
-            gap:5px;
-        }
-        .rtime{
-            background-color: transparent;
-            padding: 5px;
-            font-size: 11px;
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-        .topicmat{
-            margin-left: 50px;
-            padding: 10px;
-            gap: 20px;
-            display: flex;
-            flex-direction: column;
-            width: 75%;
-        }
-        .topic,.mat{
-            font-size: 11px;
-            min-height: 50px;
-            color: #fff;
-        }
-        .bg{
-            position: absolute;
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            opacity: 0.2;
-            z-index: 2;
-        }
-        .na{
-            display: flex;
-            flex-direction: row;
-            gap: 20px;
-        }
-        .link{
-            color: #000;
-            text-decoration: none;
-        }
-          
-    </style>
+    <link rel="stylesheet" href="{% static '/css/mentordash.css' %}" />
+    <script  src="{% static '/js/mentordash.js'%}"></script>
 </head>
 <body>
     <div class="parent">
@@ -425,174 +31,398 @@
         <div style="left: 0px; position: relative;" class="header" >
             <!-- LOGO on LEFT -->
             <div class="image-container">
-                <a href="ok.html"><img style=" max-width: 70%; ; max-height: 140px; cursor: pointer;" src="logo.svg" title="A-Lab" alt="Image"></a>
-                <h4>Welcome Back! {{request.user.username}}</h4>
+                
+                <a><img style=" max-width: 87px; max-height: 90px; cursor: pointer;" title="A-Lab" src="{% static '\assests\mentordashboard\logo.svg' %}" alt="Image"></a>
+                <marquee><h4>Welcome Back! {{request.user.username}}</h4></marquee>
             </div>
-            <div class="na">
-                <a href=""><img src="bell.svg" title="Notification" alt="bell"></a>
-                <a href=""><img src="profile.svg" title="Profile" alt="profile"></a>
-            </div>
-        </div>
+
+            <nav class="navbar">
+                <div class="search-container">
+                    <input type="text" placeholder="Search here..." name="search">
+                    <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
+                </div>
+                <ul>   
+                    <li>
+                        <form method="post" action="{% url 'notification_page' %}">
+                            {% csrf_token %}
+                            <button class="hmpage"><img src="{% static '\assests\mentordashboard\bell.svg' %}" title="Notification" alt="bell"></button>
+                        </form>
+                    </li>
+                    <li>
+                        <button class="hmpage"><img src="{% static '\assests\mentordashboard\profile.svg' %}" title="Profile" alt="profile"></button>
+                        <ul>
+                            <li>
+                                <a href="{% url 'profile_page' %}">My profile</a>
+                            </li>
+                            <li><a href="{% url 'settings_page' %}">Settings</a></li>
+                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>   
 
        <!-- PAGE 1 -->
         
             <div class="child1">
                 
                 <div class="contain">
+                
                     <div class = "drawer">
                         <div class = "top">
 
                             <div class = btn >
-                                <a href="admindash.html"><img src="da.svg" title="Dashboard" alt="Logo 1"></a>
-                                <button class="loginbutton">Dashboard</button>
+                             
+                                    <img src="{% static '\assests\mentordashboard\da.svg' %}" title="Dashboard" alt="Logo 1">
+                                    <a class="link" href="{% url 'dashboard_student' %}"><button class="loginbutton">Dashboard</button></a>
+                              
                             </div>
+
                             <div class = btn >
-                                <img src="analytics.svg" alt="Logo 1">
-                                <button class="loginbutton"><a class="link" href="analytics.html">Analytics</a></button>
+                                <img src="{% static '\assests\mentordashboard\find.svg' %}" title="Find test" alt="Logo 1">
+                              <a class="link" href="findtest.html"><button class="loginbutton">Find Test</button></a>
                             </div>
+
                             <div class = btn >
-                                <img src="find.svg" alt="Logo 1">
-                                <button class="loginbutton"><a class="link" href="findtest.html">Find Test</a></button>
+                                <img  src="{% static '\assests\mentordashboard\his.svg' %}" alt="Logo 1">
+                                <a class="link" href="{% url 'history_page' %}"><button class="loginbutton">Test History</button></a>
                             </div>
+
                             <div class = btn >
-                                <img src="home.svg" alt="Logo 1">
-                                <button class="loginbutton"><a class="link" href="admindash.html">Home</a></button>
+                                <img  src="{% static '\assests\mentordashboard\res1.svg' %}" alt="Logo 1">
+                                <a class="link" href="res.html"><button class="loginbutton">Publish Results</button></a>
                             </div>
-                        
+
+                            <div class = btn >
+                                <img src="{% static '\assests\mentordashboard\analytics.svg' %}" alt="Logo 1">
+                                <a class="link" href="anaytics.html"><button class="loginbutton">Analytics</button></a>
+                            </div>        
                         </div>
 
                         <div class = "bottom">
 
                             <div class = btn >
-                                <img src="logout.svg" alt="Logo 1">
-                                <button class="loginbutton">
-                                    <a href="{% url 'logout' %}" class="dropdown-item">Logout</a>
-                                </button>
+                                <img src="{% static '\assests\mentordashboard\logout.svg' %}" alt="Logo 1">
+                                <a class="link"  href="{% url 'logout' %}"><button class="loginbutton">Logout</button></a>
                             </div>
                             <div class = btn >
-                                <img src="setting.svg" alt="Logo 1">
-                                <button class="loginbutton">Settings</button>
+                                <img src="{% static '\assests\mentordashboard\setting.svg' %}" alt="Logo 1">
+                                <a class="link" href="{% url 'settings_page' %}"><button class="loginbutton">Settings</button></a>
                             </div>
-                        </div> 
+
+                        </div>
+                        
                     </div>
                     
                     <div class = "midcontent">
                         <div class = "head">
                            
-                                <button class="hbt">Ongoing Test</button>
-                                <button class="hbt">Activity</button>
-                                <button class="hbt">Quick Links</button>
+                            <button class="hbt" onclick="showContent(1)">Classrooms</button>
+                            <button class="hbt" onclick="showContent(1)">Ongoing Test</button>
+                            <button class="hbt" onclick="showContent(2)">Activity</button>
+                            <button class="hbt" onclick="showContent(3)">Quick Links</button>
+                            <button class="hbt" onclick="showContent(5)">Calendar</button>
                         </div>
                        
 
                         <div class = "low">
                             <!-- <div class="bg"><img style=" width: 714.28px; min-height: 232.6px; max-width: 100%; ; max-height: 532.6px;" src="rafiki.svg" alt="img"></div> -->
                             
-                            <div class="card">
+                            <div id="content1" class="low">
+                                   
+                                {% include 'feed_component.html' %}
+                                <!-- <div class="card2">
 
-                                <div class="ch">
+                                    <img src="{% static '\assests\mentordashboard\bro.svg' %}" alt="cimg">
+                                    <div class="cinfo">
+                                        <h style="font-size: 24px;"><b>Operating Systems</b></h><br><br>
 
-                                    <div class="date" title="Exam Date">26 July</div>
-                                    <div class = "data">C++ OOPs Concepts</div>
-                                    <div class="data">#10 Questions &nbsp; &nbsp; MCQ</div>
-                                </div>
+                                        Learn the operating systems concepts and mechanism in details and their implementation.
 
-                                <div class="cl">
-
-                                    <div class="time" title="Duration">
-                                        <img src="timer.svg" alt="Logo 1"> 15 Minutes
                                     </div>
-                                    <button class="atmpt">Attempt Now</button>
-                                </div>
-
-                            </div>
-                            <div class="card">
-                                <div class="ch">
-
-                                    <div class="date" title="Exam Date">26 July</div>
-                                    <div class = "data">Java introduction</div>
-                                    <div class="data">#10 Questions &nbsp; &nbsp; MCQ</div>
-                                </div>
-
-                                <div class="cl">
+                                    <div class="abtn">
+                                        <a href="classroom.html"><button class="cibtn" >></button></a>
+                                    </div>
                                     
-                                    <div class="time" title="Duration">
-                                        <img src="timer.svg" alt="Logo 1"> 15 Minutes
+    
+                                </div>
+
+                                <div class="card2">
+                                     <img src="{% static '\assests\mentordashboard\ai.svg' %}" alt="cimg">
+                                    <div class="cinfo">
+                                        <h style="font-size: 24px;"><b>Artificial Intelligence</b></h><br><br>
+
+                                        Intelligence demonstrated by machines, unlike the natural intelligence displayed by human.
+
                                     </div>
-                                    <button class="atmpt">Attempt Now</button>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="ch">
-
-                                    <div class="date" title="Exam Date">26 July</div>
-                                    <div class = "data">COA Concepts</div>
-                                    <div class="data">#10 Questions &nbsp; &nbsp; MCQ</div>
-                                </div>
-
-                                <div class="cl">
-                                    
-                                    <div class="time" title="Duration">
-                                        <img src="timer.svg" alt="Logo 1"> 15 Minutes
+                                    <div class="abtn">
+                                        <button class="cibtn">></button>
                                     </div>
-                                    <button class="atmpt">Attempt Now</button>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="ch">
-
-                                    <div class="date" title="Exam Date">26 July</div>
-                                    <div class = "data">PYTHON PROG</div>
-                                    <div class="data">#10 Questions &nbsp; &nbsp; MCQ</div>
                                 </div>
 
-                                <div class="cl">
-                                    
-                                    <div class="time" title="Duration">
-                                        <img src="timer.svg" alt="Logo 1"> 15 Minutes
+                                <div class="card2">
+                                    <img src="{% static '\assests\mentordashboard\crdimg.png' %}" alt="cimg">
+                                    <div class="cinfo">
+                                        <h style="font-size: 24px;"><b>Software Engineering</b></h><br><br>
+
+                                        Learn detailed of engineering to the design, development and maintainece of softeare.
+
                                     </div>
-                                    <button class="atmpt">Attempt Now</button>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="ch">
-
-                                    <div class="date" title="Exam Date">26 July</div>
-                                    <div class = "data">DATA SCIENCE</div>
-                                    <div class="data">#10 Questions &nbsp; &nbsp; MCQ</div>
-                                </div>
-
-                                <div class="cl">
-                                    
-                                    <div class="time" title="Duration">
-                                        <img src="timer.svg" alt="Logo 1"> 15 Minutes
+                                    <div class="abtn">
+                                        <button class="cibtn">></button>
                                     </div>
-                                    <button class="atmpt">Attempt Now</button>
                                 </div>
-                            </div>
-                            <div class="card">
-                                <div class="ch">
+                                <div class="card2">
+                                    <img src="{% static '\assests\mentordashboard\crdimg.png' %}" alt="cimg">
+                                    <div class="cinfo">
+                                        <h style="font-size: 24px;"><b>Computer Networks</b></h><br><br>
 
-                                    <div class="date" title="Exam Date">26 July</div>
-                                    <div class = "data">DATA SCIENCE</div>
-                                    <div class="data">#10 Questions &nbsp; &nbsp; MCQ</div>
-                                </div>
+                                        Learn the operating systems concepts and mechanism in details and their implementation.
 
-                                <div class="cl">
-                                    
-                                    <div class="time" title="Duration">
-                                        <img src="timer.svg" alt="Logo 1"> 15 Minutes
                                     </div>
-                                    <button class="atmpt">Attempt Now</button>
+                                    <div class="abtn">
+                                        <button class="cibtn">></button>
+                                    </div>
                                 </div>
+                                <div class="card2">
+                                    <img src="{% static '\assests\mentordashboard\crdimg.png' %}" alt="cimg">
+                                    <div class="cinfo">
+                                        <h style="font-size: 24px;"><b>Data Structures</b></h><br><br>
+
+                                        Learn the operating systems concepts and mechanism in details and their implementation.
+
+                                    </div>
+                                    <div class="abtn">
+                                        <button class="cibtn">></button>
+                                    </div>
+                                </div>
+                                <div class="card2">
+                                    <img src="{% static '\assests\mentordashboard\db.svg' %}" alt="cimg">
+                                    <div class="cinfo">
+                                        <h style="font-size: 24px;"><b>D.B.M.S</b></h><br><br>
+
+                                        Learn the operating systems concepts and mechanism in details and their implementation.
+
+                                    </div>
+                                    <div class="abtn">
+                                        <button class="cibtn">></button>
+                                    </div>
+                                </div> -->
+
+
                             </div>
+
+                            <div id = "content2" class="hidden">
+                              <div class="low">
+                                
+                                <div class="card">
+
+                                    <div class="ch">
+    
+                                        <div class="date" title="Exam Date">26 July</div>
+                                        <div class = "data" title="Subject/Topic">C++ OOPs Concepts</div>
+                                        <div class="data">#10 Questions &nbsp; &nbsp; MCQ</div>
+                                    </div>
+    
+                                    <div class="cl">
+    
+                                        <div class="time" title="Duration">
+                                            <img src="{% static '\assests\mentordashboard\timer.svg' %}" alt="Logo 1"> 15 Minutes
+                                        </div>
+                                        <button class="atmpt">Attempt Now</button>
+                                    </div>
+    
+                                </div>
+                                <div class="card">
+                                    <div class="ch">
+    
+                                        <div class="date" title="Exam Date">26 July</div>
+                                        <div class = "data" title="Subject/Topic">Java introduction</div>
+                                        <div class="data">#10 Questions &nbsp; &nbsp; MCQ</div>
+                                    </div>
+    
+                                    <div class="cl">
+                                        
+                                        <div class="time" title="Duration">
+                                            <img src="{% static '\assests\mentordashboard\timer.svg' %}" alt="Logo 1"> 15 Minutes
+                                        </div>
+                                        <button class="atmpt">Attempt Now</button>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="ch">
+    
+                                        <div class="date" title="Exam Date">26 July</div>
+                                        <div class = "data" title="Subject/Topic">COA Concepts</div>
+                                        <div class="data">#10 Questions &nbsp; &nbsp; MCQ</div>
+                                    </div>
+    
+                                    <div class="cl">
+                                        
+                                        <div class="time" title="Duration">
+                                            <img src="{% static '\assests\mentordashboard\timer.svg' %}" alt="Logo 1"> 15 Minutes
+                                        </div>
+                                        <button class="atmpt">Attempt Now</button>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="ch">
+    
+                                        <div class="date" title="Exam Date">26 July</div>
+                                        <div class = "data" title="Subject/Topic">PYTHON PROG</div>
+                                        <div class="data">#10 Questions &nbsp; &nbsp; MCQ</div>
+                                    </div>
+    
+                                    <div class="cl">
+                                        
+                                        <div class="time" title="Duration">
+                                            <img src="{% static '\assests\mentordashboard\timer.svg' %}" alt="Logo 1"> 15 Minutes
+                                        </div>
+                                        <button class="atmpt">Attempt Now</button>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="ch">
+    
+                                        <div class="date" title="Exam Date">26 July</div>
+                                        <div class = "data" title="Subject/Topic">DATA SCIENCE</div>
+                                        <div class="data">#10 Questions &nbsp; &nbsp; MCQ</div>
+                                    </div>
+    
+                                    <div class="cl">
+                                        
+                                        <div class="time" title="Duration">
+                                            <img src="{% static '\assests\mentordashboard\timer.svg' %}" alt="Logo 1"> 15 Minutes
+                                        </div>
+                                        <button class="atmpt">Attempt Now</button>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="ch">
+    
+                                        <div class="date" title="Exam Date">26 July</div>
+                                        <div class = "data" title="Subject/Topic">DATA SCIENCE</div>
+                                        <div class="data">#10 Questions &nbsp; &nbsp; MCQ</div>
+                                    </div>
+    
+                                    <div class="cl">
+                                        
+                                        <div class="time" title="Duration">
+                                            <img src="{% static '\assests\mentordashboard\timer.svg' %}" alt="Logo 1"> 15 Minutes
+                                        </div>
+                                        <button class="atmpt">Attempt Now</button>
+                                    </div>
+                                </div>
+                                
+                                </div>
+
+                            </div>
+
+                            <div id = "content3" class="hidden"></div>
+
+                            <div id = "content4" class="hidden">
+                                <div class="low">
+                                  
+                                  <div class="card">
+                                    <div class="cinfo">
+                                        <h style="font-size: 24px;"><b>Operating Systems</b></h><br><br>
+                                        <ul>
+                                            <li><a href="https://www.geeksforgeeks.org/operating-systems/">Operating System Tutorial - GeeksForGeeks</a></li>
+                                            <li><a href="https://www.tutorialspoint.com/operating_system/os_overview.htm">Operating System Overview - Tutorials Point</a></li>
+                                            <li><a href="https://www.javatpoint.com/operating-system">Operating System - JavaPoint</a></li>
+                                        </ul>
+                                    </div>
+                                      
+      
+                                  </div>
+                                  <div class="card">
+                                    <div class="cinfo">
+                                        <h style="font-size: 24px;"><b>Computer Networks</b></h><br><br>
+                                        <ul>
+                                            <li><a href="https://www.geeksforgeeks.org/basics-computer-networking/">Basics of Computer Networking - GeeksForGeeks</a></li>
+                                            <li><a href="https://www.javatpoint.com/computer-network-tutorial">Computer Networks Tutorial - Tutorials Point</a></li>
+                                            <li><a href="https://www.cisco.com/c/en_in/solutions/enterprise-networks/what-is-computer-networking.html">What is Computer Networking - Cisco</a></li>
+                                        </ul>
+                                    </div>
+                                  </div>
+
+                                  <div class="card">
+                                      <div class="cinfo">
+                                        <h style="font-size: 24px;"><b>Database Management</b></h><br><br>
+                                        <ul>
+                                            <li><a href="https://www.geeksforgeeks.org/dbms/">Database Management System - GeeksForGeeks</a></li>
+                                            <li><a href="https://www.tutorialspoint.com/dbms/index.htm">DBMS Overview - Tutorials Point</a></li>
+                                            <li><a href="https://www.javatpoint.com/dbms-tutorial">DBMS Tutorial - JavaPoint</a></li>
+                                        </ul>
+                                    </div>
+                                  </div>
+                                  
+                                  <div class="card">
+                                    <div class="cinfo">
+                                        <h style="font-size: 24px;"><b>Artifical Intelligence</b></h><br><br>
+                                        <ul>
+                                            <li><a href="https://www.geeksforgeeks.org/artificial-intelligence-geeksforgeeks/">Artificial Intelligence - GeeksForGeeks</a></li>
+                                            <li><a href="https://www.tutorialspoint.com/artificial_intelligence/index.htm">AI Overview - Tutorials Point</a></li>
+                                            <li><a href="https://www.javatpoint.com/artificial-intelligence-tutorial">AI Tutorial - JavaPoint</a></li>
+                                        </ul>
+                                    </div>
+                                  </div>
+
+                                  <div class="card">
+                                      <div class="cinfo">
+                                        <h style="font-size: 24px;"><b>Computer Organization</b></h><br><br>
+                                        <ul>
+                                            <li><a href="https://www.geeksforgeeks.org/operating-systems/">Operating System Tutorial - GeeksForGeeks</a></li>
+                                            <li><a href="https://www.tutorialspoint.com/operating_system/os_overview.htm">Operating System Overview - Tutorials Point</a></li>
+                                            <li><a href="https://www.javatpoint.com/operating-system">Operating System - JavaPoint</a></li>
+                                        </ul>
+                                    </div>
+                                  </div>
+
+                                  <div class="card">
+                                      <div class="cinfo">
+                                        <h style="font-size: 24px;"><b>Software Engineering</b></h><br><br>
+                                        <ul>
+                                            <li><a href="https://www.geeksforgeeks.org/software-engineering/">Software Engineering - GeeksForGeeks</a></li>
+                                            <li><a href="https://www.tutorialspoint.com/software_engineering/index.htm">Software Engineering Overview - Tutorials Point</a></li>
+                                            <li><a href="https://www.javatpoint.com/software-engineering-tutorial">Software Engineering Tutorial - JavaPoint</a></li>
+                                        </ul>
+                                    </div>
+                                  </div>
+                                  
+                                  </div>
+  
+                            </div>
+
+                            <div id = "content5" class ="hidden">
+                                <iframe src="{% url 'calander_page' %}" width="100%" height="700px" frameborder="0"></iframe>
+
+                                <div class="filter-container">
+                                    <div class="fhead">
+                                        <input type="date" id="filterDate" style="padding: 5px 5px; font-size: 18px;">
+
+                                        <select id="filterBatch" style="padding: 5px 5px; font-size: 18px;">
+                                            <option value="" selected disabled>Batch</option>
+                                            <option value="CS510">CS510</option>
+                                            <option value="IT52">IT52</option>
+                                            <option value="ECM51">ECM51</option>
+                                        </select>
+                                     
+                                        <button class="hbt" style="font-size: 18px;" onclick="filterTests()">Filter Tests</button>
+                                     
+                                    </div>
+                            
+                                  </div>
+                                
+                            </div>
+
                         </div>
                     </div>
 
 
                     <div class="rightcont">
 
-                        <div class="rhead">Upcoming Assessments</div>
+                        <div class="rhead"><b>Upcoming Assessments</b></div>
 
                         <div class="rlow">
 
@@ -600,7 +430,7 @@
 
                                 <div class="rch">
                                     <div class="date" style="width: 110px; max-width:110px; padding-top: 10px;" title="Exam Date">26 JUL</div>
-                                    <div title="Subject">Computer Organization architecture</div>
+                                    <div title="Subject"><b>Computer Networks</b></div>
                                 </div>   
 
                                 <div class="topicmat">
@@ -615,7 +445,7 @@
                                 </div>
 
                                 <div class="rtime" title="Exam Time">
-                                    <img src="timer.svg" alt="Logo 1">11 : 30 AM
+                                    <img src="{% static '\assests\mentordashboard\timer.svg' %}" alt="Logo 1">11 : 30 AM  
                                 </div>
                             </div>
 
@@ -623,7 +453,7 @@
 
                                 <div class="rch">
                                     <div class="date" style="width: 110px; max-width:110px; padding-top: 10px;" title="Exam Date">26 JUL</div>
-                                    <div title="Subject">Computer Organization architecture</div>
+                                    <div title="Subject"><b>Artifical Intelligence</b></div>
                                 </div>   
 
                                 <div class="topicmat">
@@ -638,7 +468,7 @@
                                 </div>
 
                                 <div class="rtime" title="Exam Time">
-                                    <img src="timer.svg" alt="Logo 1">11 : 30 AM
+                                    <img src="{% static '\assests\mentordashboard\timer.svg' %}"  alt="Logo 1">11 : 30 AM  
                                 </div>
                             </div>
 
@@ -646,7 +476,7 @@
 
                                 <div class="rch">
                                     <div class="date" style="width: 110px; max-width:110px; padding-top: 10px;" title="Exam Date">26 JUL</div>
-                                    <div title="Subject">Computer Organization architecture</div>
+                                    <div title="Subject"><b>Operating Systems</b></div>
                                 </div>   
 
                                 <div class="topicmat">
@@ -661,7 +491,7 @@
                                 </div>
 
                                 <div class="rtime" title="Exam Time">
-                                    <img src="timer.svg" alt="Logo 1">11 : 30 AM
+                                    <img src="{% static '\assests\mentordashboard\timer.svg' %}" alt="Logo 1">11 : 30 AM
                                 </div>
                             </div>
 
@@ -669,7 +499,7 @@
 
                                 <div class="rch">
                                     <div class="date" style="width: 110px; max-width:110px; padding-top: 10px;" title="Exam Date">26 JUL</div>
-                                    <div title="Subject">Computer Organization architecture</div>
+                                    <div title="Subject"><b>Database Management</b></div>
                                 </div>   
 
                                 <div class="topicmat">
@@ -684,9 +514,10 @@
                                 </div>
 
                                 <div class="rtime" title="Exam Time">
-                                    <img src="timer.svg" alt="Logo 1">11 : 30 AM  
+                                    <img src="{% static '\assests\mentordashboard\timer.svg' %}" alt="Logo 1">11 : 30 AM
                                 </div>
                             </div>
+
                         </div>
                     </div>
                  </div>
@@ -703,3 +534,8 @@
     </div>
 </body>
 </html>
+
+
+
+
+

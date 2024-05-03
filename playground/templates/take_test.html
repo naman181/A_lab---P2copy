@@ -11,6 +11,29 @@
 </head>
 
 <body>
+  <script>
+    // Timer for each question
+    var startTime = new Date().getTime();
+    var timer = setInterval(function () {
+        var currentTime = new Date().getTime();
+        var timeElapsed = Math.floor((currentTime - startTime) / 1000);
+        var timeRemaining = '{{ time_limit }}' - timeElapsed;
+        document.getElementById('time_remaining').innerText = timeRemaining;
+        document.getElementById('time_taken').value = timeElapsed; // Update the time_taken value
+  
+        if (timeRemaining <= 0) {
+            clearInterval(timer);
+            // Increment the question index and update the form action
+            var nextQuestionIndex = parseInt('{{ question_index }}') + 1;
+            nextQuestionIndex = nextQuestionIndex ++;
+            var formAction = "{% url 'take_test' pk=classroom.id test_id=test.id question_index=question_index %}";
+            document.forms[0].action = formAction;
+            // Submit the form to move to the next Question
+            document.forms[0].submit();
+        }
+    }, 1000);
+  </script>
+
   <h2 class ="test_title">{{ test.title }}</h2>
   <div class="container">
 
@@ -23,20 +46,8 @@
         <hr style="margin-left: 10px; margin-bottom: 20px;">
         <p class="ques">{{ question.question_text }}</p>
         <img class="imageques" src="">
-        <script>
-          var timeRemaining = {{ time_limit }};  // This will be in seconds
-          var timer = setInterval(function () {
-            timeRemaining -= 1;
-            document.getElementById('time_remaining').innerText = timeRemaining;
 
-            if (timeRemaining <= 0) {
-              clearInterval(timer);
-              document.forms[0].submit();  // Auto-submit the form when time runs out
-            }
-          }, 1000);
-        </script>
-
-        <form action="{% url 'take_test' pk=classroom.id test_id=test.id %}" method="post">
+        <form action="" method="post">
           {% csrf_token %}
         
           <div class="opt">
@@ -46,13 +57,44 @@
             <input type="radio" name="option_selected" value="D"> &nbsp; (D) &nbsp;  {{ question.option_d }}<br><br>
           </div>
           <div class ="opts">
-           {{ answer_form.as_p }} 
-          <input type="hidden" name="current_question_index" value="{{ question_index }}">
-          <input type="hidden" name="time_taken" id="time_taken" value="{{ time_limit }}">
-          <input class ="btn" type="submit" value="Next"></div>
+          
+            <input type="hidden" name="current_question_index" value="{{ question_index }}">
+            <input type="hidden" id="time_taken" name="time_taken" >
+            <input type="submit" value="Submit Answer"></div>
         </form>
       </div>
   </div> 
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript">
+            window.addEventListener('selectstart', function(e){ e.preventDefault(); });
+            $(document).ready(function () {
+                //Disable cut copy paste
+                $('body').bind('select cut copy paste', function (e) {
+                    e.preventDefault();
+                });
+                
+                //Disable mouse right click
+                $("body").on("contextmenu",function(e){
+                    return false;
+                });
+            });
+            /** TO DISABLE SCREEN CAPTURE **/
+    document.addEventListener('keyup', (e) => {
+        if (e.key == 'PrintScreen') {
+            navigator.clipboard.writeText('');
+            alert('Screenshots disabled!');
+        }
+    });
+    
+    document.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey || e.metaKey) && e.key == 'p') {
+            alert('Printing disabled!');
+            e.cancelBubble = true;
+            e.preventDefault();
+            e.stopImmediatePropagation();
+        }
+    });
+        </script>
 </body>
 
 {% endblock %}

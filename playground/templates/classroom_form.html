@@ -1,10 +1,83 @@
+{% load static %}
 {% block content %}
-<div>
-    <form action="" method="post">
-        {% csrf_token %}
-        
-        <label for="classroom">Enter Classroom Topic</label>
-        <input required type="text" value="{{nest.topic.name}}" name="topic" list="topic-list" />
+<title>Create Classroom| A-Lab</title>
+<link rel="icon" type="image/x-icon" href="{% static '/logo.ico' %}">
+<style>
+  .oc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #A3CDFF;
+  }
+
+  .nc {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 20px;
+    padding: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 80%;
+    max-height: 80%;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+  }
+
+  .form__group {
+    margin-bottom: 20px;
+  }
+
+  .form__label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  .form__input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+  .form__input::placeholder {
+    color: #999; /* Placeholder text color */
+  }
+
+  .form__action {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    align-items: center;
+    gap: 10px; /* Add space between buttons */
+  }
+
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .btn--dark {
+    background-color: #333;
+    color: #fff;
+  }
+
+  .btn--main {
+    background-color: #007bff;
+    color: #fff;
+  }
+</style>
+<div class="oc">
+  <form action="" method="post">
+    {% csrf_token %}
+    <div class="nc">
+      <div class="form__group">
+        <label for="classroom" class="form__label">Enter Classroom Topic</label>
+        <input required type="text" value="{{nest.topic.name}}" name="topic" list="topic-list" class="form__input" placeholder="Enter topic...">
         <datalist id="topic-list">
           <select id="room_topic">
             {% for topic in topics %}
@@ -12,19 +85,20 @@
             {% endfor %}
           </select>
         </datalist>
-        <div class="form__group">
-            <label for="room_name">Classroom Name</label>
-            {{form.name}}
-        </div>
-        <div class="form__group">
-            <label for="room_description">Classroom Description</label>
-            {{form.description}}
-          </div> 
-        <!-- <input type="submit" value="Submit"> -->
-        <div class="form__action">
-            <a class="btn btn--dark" href="{% url 'dashboard_mentor' %}">Cancel</a>
-            <button class="btn btn--main" type="submit">Create Classroom</button>
-        </div>
-    </form>
+      </div>
+      <div class="form__group">
+        <label for="room_name" class="form__label">Classroom Name</label><br>
+        <input required type="text" value="{{ form.name.value|default_if_none:'' }}" name="name" maxlength="25" list="name-list" class="form__input" placeholder="Enter name...">
+      </div>
+      <div class="form__group">
+        <label for="room_description" class="form__label">Classroom Description</label>
+        {{form.description}}
+      </div>
+      <div class="form__action">
+        <button class="btn btn--main" type="submit">Create</button>
+        <a class="btn btn--dark" href="{% url 'dashboard_mentor' %}">Cancel</a>
+      </div>
+    </div>
+  </form>
 </div>
 {% endblock content %}

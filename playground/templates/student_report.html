@@ -1,0 +1,36 @@
+<!-- student_report.html -->
+{% extends 'classroom.html' %}
+{% load static %}
+{% block title %} Student Report {% endblock %}
+
+{% block content %}
+  <h1>Student Report</h1>
+  <h2>{{ request.user.username }}'s Test Scores in {{ classroom.name }}</h2>
+
+  <!-- Pie Chart
+  <h3>Pie Chart</h3>
+  <img src="{% static 'test_scores_pie_chart.png' %}" alt="Pie Chart">
+
+  Bar Chart
+  <h3>Bar Chart</h3>
+  <img src="{% static 'test_scores_bar_chart.png' %}" alt="Bar Chart"> -->
+
+  <!-- Display Test Scores -->
+  <h3>Test Scores:</h3>
+  <ul>
+    {% for score in test_scores %}
+      <li>{{ score.test.title }}: {{ score.score }}</li>
+    {% endfor %}
+  </ul>
+  
+  <!-- Display average score -->
+  <br>
+  <p>Average Score: {{ average_score }}</p>
+
+  <!-- Display average time taken per question -->
+  <p>Average Time Taken per Question: {{ average_time_per_question }} seconds</p>
+
+  <!-- Display pie chart -->
+  <h2>Test Scores Distribution</h2>
+  <img src="{{ pie_chart }}" alt="Test Scores Pie Chart">
+{% endblock %}

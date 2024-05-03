@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from django.contrib.auth import logout, login
+from django.contrib.auth import logout, login 
 from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 from playground.views import login_page
 
@@ -19,12 +19,18 @@ urlpatterns = [
     path('profile_page/',views.profile_page,name='profile_page'),
     path('settings_page/',views.settings_page,name='settings_page'),
     path('history_page/',views.history_page,name='history_page'),
+    path('genq_page/',views.genq_page,name='genq_page'),
     path('notification_page/',views.notification_page,name='notification_page'),
     path('accounts/logout/', LogoutView.as_view(template_name='logout.html'), name='logout_page'),
     path('create-classroom',views.createClassroom, name='create-classroom'),
     path('classrooom/<str:pk>/',views.classroom,name='classroom'),
     path('classroom/<str:classroom_id>/', views.classroom_detail, name='classroom_detail'),
     path('classroom/<str:classroom_id>/create-test/', views.create_test, name='create-test'),
+    path('classroom/<int:pk>/show-test/<int:test_id>/', views.show_test, name='show_test'),
     path('classroom/<int:pk>/take-test/<int:test_id>/', views.take_test, name='take_test'),
     path('classroom/<int:pk>/take-test/<int:test_id>/<int:question_index>/', views.take_test, name='take_test'),
+    path('classroom/<int:classroom_id>/student-report/<int:student_id>/', views.student_report, name='student_report'),
+
+    path('test/<int:test_id>/report/', views.test_report, name='test_report'),
+    path('test/<int:test_id>/report/download/', views.download_test_report_pdf, name='download_test_report_pdf'),
 ]

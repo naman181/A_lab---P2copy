@@ -1,5 +1,5 @@
 {% load static %}
-
+{% block content %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,11 +9,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Krona One:wght@400&display=swap"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ABeeZee:wght@400&display=swap"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <title>Settings | A-Lab</title>
+    <title>Classroom | A-Lab</title>
     <link rel="icon" type="image/x-icon" href="{% static '/logo.ico' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.15.7/sweetalert2.min.js" integrity="sha512-IHQXMp2ha/aGMPumvzKLQEs9OrPhIOaEXxQGV5vnysMtEmNNcmUqk82ywqw7IbbvrzP5R3Hormh60UVDBB98yg==" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.15.7/sweetalert2.all.js" integrity="sha512-uRc/2ZGOQYtxuR4Uoq8K13eLYuGFWyW3P/U8/qI2wP3BuHQxFhuoiEreDpC80/L6HbPM5IhAVKgK8l7lWwyJkw==" crossorigin="anonymous"></script>
@@ -31,7 +30,6 @@
     <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <style>
         :root {
             --bg: #EDF2F0;
@@ -88,7 +86,6 @@
             align-items: flex-start;
             flex-direction: row; /* Arrange elements side by side */
             gap: 50px;
-            justify-content: space-between;
             width: 100%; /* Ensure full width */
         }
 
@@ -163,6 +160,7 @@
                 flex-direction: row; /* Stack elements in mobile view */
                 align-items: flex-start;
                 gap: 20px;
+                overflow-x: scroll;
             }
             .bg{
                 align-items: center;
@@ -174,11 +172,21 @@
                 max-height: 532.6px;
             }
         }        
-
+        .header{
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
         .image-container {
             display: flex;
         flex-direction: row;
         align-items: flex-start;
+        }
+        .na{
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
         }
         .image-container1 {
             display: flex;
@@ -236,14 +244,13 @@
             justify-content: space-between;
         }
         .midcontent{
-            width: 100%;
-            max-width: 882px;
+            height: 100%;
+            max-height: 724px;
             border-radius: 10px 10px 0 0;
             display: flex;
             flex-direction: column;
             gap: 20px;
             padding: 10px;
-            
         }
         .head{
             display: flex;
@@ -269,100 +276,170 @@
             transition: text-decoration 0.3s ease;
             background-color: #fff;
         }
+
         .low{
-            max-width: 882px;
-            width: 100%;
-            border-radius: 10px 10px 0 0;
-            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
             display: flex;
-            flex: 2;
-            background-image: url("{% static '\assests\mentordashboard\fadedraf.svg' %}");
-            background-size: 1050px 900px;
             flex-direction: column;
-            background-repeat: no-repeat;
-            background-position-x: center;
-            background-position-y: 10px;
-            padding: 60px;
-            gap: 18px;
-            background-color: #A3CDFF;
+            background-color: transparent;
+            gap: 20px;
+            height: 700px; /* Set the maximum height for the scrollable container */
+            overflow-y: scroll;
+            padding: 10px;
         }
-        .createexm{
-            border-radius: 10px 10px 10px 10px;
-            padding: 6px;
-            font-size: 18px;
-            font-family: "ABeeZee";
-            opacity: 0.8;
-        }
-        .vbtn{
-            border-radius: 15px 15px 15px 15px;
-            padding: 6px;
-            background-color: #8187FF;
-            color: #000;
+
+        .card{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: #89A0FF;
+            width: 100%;
+            min-height: 210px;
+            max-height: 218px;
+            border-radius: 30px;
             box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-            border: 0;
+            padding: 10px;
+            opacity: 0.95;
+            
         }
-        .vbtn:hover{
+        .card2{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            background-color: #89A0FF;
+            width: 100%;
+            min-height: 210px;
+            max-height: 218px;
+            border-radius: 30px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            padding: 30px;
+            opacity: 0.95;
+        }
+        .ch{
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            background-color: transparent;
+        }
+        .date{
+            background-color: #68A7D5;
+            text-align: center;
+            border-radius: 0 25px 25px 0;
+            border:0;
+            padding: 5px 10px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            font-size: 11px;
+        }
+        .data{
+            background-color: #95BFFF;
+            text-align: center;
+            border-radius: 8px 8px 8px 8px;
+            border:0;
+            padding: 5px 10px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            font-size: 11px;
+        }
+        .cl{
+            display: flex;
+            max-height: 34px;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .time{
+            padding: 5px 20px;
+            border-radius: 25px 25px 25px 25px;
+            justify-content: space-between;
+            background-color: #83FFDA;
+            font-size: 11px;
+        }
+        .atmpt{
+            background-color: #82CBFF;
+            text-align: center;
+            border-radius: 8px 8px 8px 8px;
+            border:0;
+            cursor: pointer;
+            padding: 5px 10px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            font-size: 11px;
+        }
+        .atmpt:hover{
             text-decoration: underline;
             transition: text-decoration 0.3s ease;
             background-color: #fff;
         }
-
-        
-        .checkbox-container {
-            display: block;
-            position: relative;
-            padding-left: 35px;
-            cursor: pointer;
-            font-size: 20px;
-            user-select: none;
-            line-height: 25px;
+        .rightcont{
+            display: flex;
+            flex-direction: column;
+            max-width: 262px;
+            width: 100%;
+            height: 100%;
+            max-height: 724px;
+            border-radius: 10px 10px 0 0;
+            gap: 20px;
         }
-
-        .checkbox-container input {
+        .rhead{
+            text-align: center;
+            width: 100%;
+            background-color: #8EC2FF;
+            font-size: 11px;
+            padding: 10px 10px;
+            border-radius: 17px 0 0 17px;
+            border: 0;
+        }
+        .rlow{
+            display: flex;
+            flex-direction: column;
+            background-color: transparent;
+            gap: 5px;
+            height: 700px; /* Set the maximum height for the scrollable container */
+            overflow-y: scroll;
+        }
+        .rcard{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: linear-gradient(to right, white 60px, #687999 60px);
+            width: 100%;
+           
+            max-height: 400px;
+            gap: 5px;
+            border-radius: 4px 4px 4px 4px;
+            padding: 10px;
+        }
+        .rch{
+            font-size: 11px;
+            background-color: transparent;
+            max-height: 40px;
+            display: flex;
+            gap:5px;
+        }
+        .rtime{
+            background-color: transparent;
+            padding: 5px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        .topicmat{
+            margin-left: 50px;
+            padding: 10px;
+            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            width: 75%;
+        }
+        .topic,.mat{
+            font-size: 11px;
+            min-height: 50px;
+            color: #fff;
+        }
+        .bg{
             position: absolute;
-            opacity: 0;
-            cursor: pointer;
-            height: 0;
-            width: 0;
-        }
-
-        .checkmark {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 25px;
-            width: 25px;
-            background-color: #eee;
-            border-radius: 50%; /* Makes it circular */
-            border: 2px solid #555;
-        }
-
-        .checkbox-container:hover input ~ .checkmark {
-            background-color: #ccc;
-        }
-
-        .checkbox-container input:checked ~ .checkmark {
-            background-color: #2196F3;
-        }
-
-        .checkmark:after {
-            content: "";
-            position: absolute;
-            display: none;
-        }
-
-        .checkbox-container input:checked ~ .checkmark:after {
-            display: block;
-        }
-
-        .checkbox-container .checkmark:after {
-            left: 9px;
-            top: 5px;
-            width: 5px;
-            height: 10px;
-            border: solid white;
-            border-width: 0 3px 3px 0;
-            transform: rotate(45deg);
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            opacity: 0.2;
+            z-index: 2;
         }
         .link{
             color: #000;
@@ -457,52 +534,196 @@
           .search-container button:hover {
             background: #ccc;
           }
-          .header{
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            justify-content: space-between;
-        }
-        .img_prof{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-            font-size: 11px;
-        }
-        .sec{
-            display: flex;
-            flex-direction:row;
-            gap: 40px;
-            padding: 20px;
-        }
-        .leftinfo, .rightinfo{
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            
-        }
-        .hidden {
+          .hidden {
             display: none;
         }
-        .lcont{
+        .cinfo{
+            margin: 10px;
+            margin-right:30px;
+            margin-left:60px;
+            font-size: 18px;
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+        .abtn{
+            display: flex;
+            align-items: flex-end;
+        
+        }
+        .cibtn {
+            height: 40px;
+            width: 40px;  
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 50%;
+            background-color: #000000;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+        } 
+        ul li a {
+            color: black;
+            text-decoration: none; /* optional: removes underline */
+        }
+        ul li a:hover {
+            color: white;
+        }
+
+        .custom-title {
+            text-align: left;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-family: 'Arial';
+        }
+        .template {
+            background-image: url("{% static '\assests\mentordashboard\tem1.svg' %}");
+            width: 900px;
+            background-size: cover; /* This property makes the image cover the entire container */
+            background-position: center; 
+            height: 200px;
+            text-align: left;
+            padding: 30px;
+            background-repeat: no-repeat;
+            border-radius: 10px;
+            font-size: 35px;
             display: flex;
             flex-direction: column;
-            padding: 40px;
-            gap: 10px;
-            border-radius: 4px 4px 4px 4px;
-            background-color: #A3CDFF;
+            justify-content: flex-end; 
+            color: #ffffff;
+            
+        }
+        .anc {
+            width: 900px;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        .inp {
+            padding: 20px;
+            font-size: 18px;
+            color: #000000;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: #000000;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            height: 150px;
+        }
+        .inp > div {
+        display: flex;
+        justify-content: flex-end;
+        gap: 20px;
+        }
+        .mssg{
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            width: 900px;
+            display: flex;
+            flex-direction: column;
+        }
+        .tab{
+            margin-top: 5px;
+            background-color: white;
+            border-collapse: collapse;
+            width: 900px;
+            max-width: 100%;
+            font-size: 16px;
+            white-space: nowrap;
+            font-family: "Google Sans","Roboto",Arial,sans-serif;
+            font-weight: 500;    
+            color: #3c4043;
+            
+        }
+        .tr{
+            border-top: 0;
+            height: 60px;  
+            
+        }
+        .itm {
+        border: 0.0625rem solid rgb(111, 70, 206);
+        padding: 0.5rem;
+        text-align: left;
+        padding-left: 10%;
+
+         }
+         .thead{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            background-color: white;
+            border-radius: 10px;
+            border: 0.0625rem solid rgb(111, 70, 206);
+            
+         }
+        .rowcount{
+            border-top: 0;
+            height: 60px;
+            background-color: white;
+            color: rgb(111, 70, 206);
+            border-radius: 10px;
+            padding: 10px;
+            text-align: right;
+            margin-left: 20px;
+            margin-right: 20px;
+         }
+
+         .custom-table {
+            margin-top: 5px;
+            background-color: white;
+            border-collapse: collapse;
+            width: 900px;
+            max-width: 100%;
+            font-size: 16px;
+            white-space: nowrap;
+            font-family: "Google Sans","Roboto",Arial,sans-serif;
+            font-weight: 500;    
+            color: #3c4043;
+            border: 0.0625rem solid rgb(111, 70, 206);
+        }
+        .itm2{
+            border: 0.0625rem solid rgb(111, 70, 206);
+            padding: 0.5rem;
+            text-align: center;
+        }
+        table {   
+            counter-reset: rowNumber;
+        }
+        table tr {
+            counter-increment: rowNumber;
+        }
+        table tr td:first-child::before {   
+            content: counter(rowNumber) ".";   
+            min-width: 1em;   
+            margin-right: 0.5em;
         }
         .hmpage{
           border: 0;
           background: none;
         }
+        .low1{
+            display: flex;
+            flex-direction: column;
+            background-color: transparent;
+            gap: 20px;
+            height: 700px; /* Set the maximum height for the scrollable container */
+            overflow-y: scroll;
+            padding: 10px;
+            max-width: 920px;
+        }
+        
 
     </style>
 </head>
-<body>
+<body onload="showContent(1)">
     <script type="text/javascript">
         window.addEventListener('selectstart', function(e){ e.preventDefault(); });
         $(document).ready(function () {
@@ -559,8 +780,49 @@ document.addEventListener('keyup', (e) => {
             });
         }
 
+        function showNewClassroomForm() {
+    
+    Swal.fire({
+        html:
+            '<div class="custom-title">Create Class</div>' +
+            '<div style="text-align: left; font-family: Arial, Helvetica, sans-serif;">' +
+                '<label for="class-name" >Class Name</label>' +
+                '<input type="text" id="class-name" class="swal2-input" required>' +
+                '<label for="section" >Section / Batch</label>' +
+                '<input type="text" id="section" class="swal2-input" >' +
+                '<label for="subject" >Subject</label>' +
+                '<input type="text" id="subject" class="swal2-input" >' +
+            '</div>',
+        focusConfirm: false,
+        showCancelButton: true, 
+        confirmButtonText: '<span style="font-family: Arial, Helvetica, sans-serif;">Create</span>', 
+        cancelButtonText: '<span style="font-family: Arial, Helvetica, sans-serif;">Cancel</span>', 
+        preConfirm: () => {
+            // Retrieve the entered values
+            const className = Swal.getPopup().querySelector('#class-name').value;
+            const section = Swal.getPopup().querySelector('#section').value;
+            const subject = Swal.getPopup().querySelector('#subject').value;
+          
+            if (!className) {
+                Swal.showValidationMessage('<span style="font-family: Arial, Helvetica, sans-serif;">Class Name is required</span>');
+            }
+
+            return { className, section, subject };
+        }
+    }).then((result) => {
+        // Check if the result contains values
+        if (result.isConfirmed) {
+            // Use the entered values as needed
+            console.log('Class Name:', result.value.className);
+            console.log('Section:', result.value.section);
+            console.log('Subject:', result.value.subject);
+        }
+    });
+}
+
+        
         function showContent(contentNumber) {
-            for (let i = 1; i <= 3; i++) {
+            for (let i = 1; i <= 5; i++) {
                 var contentDiv = document.getElementById("content" + i);
                 if (i === contentNumber) {
                     contentDiv.classList.remove("hidden");
@@ -569,10 +831,9 @@ document.addEventListener('keyup', (e) => {
                 }
             }
         }
-        function googleTranslateElementInit() {
-          new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');}
         
 </script>
+
     <div class="parent">
 
         <div style="left: 0px; position: relative;" class="header" >
@@ -674,102 +935,108 @@ document.addEventListener('keyup', (e) => {
                     </div>
                     
                     <div class = "midcontent">
-                        <div class = "head">
+                            <div class = "head">
 
-                            <button class="hbt" onclick="showContent(1)">Personal Info</button>
-                            <button class="hbt" onclick="showContent(2)">Login & Security</button>
-                            <button class="hbt" onclick="showContent(3)">Change Language</button>
-                        </div>
+                                <button class="hbt" onclick="showContent(1)">Stream</button>
+                                <button class="hbt" onclick="showContent(2)">Class work</button>
+                                <button class="hbt" onclick="showContent(3)">People</button>
+                                <button class="hbt" onclick="showContent(4)">All Test</button>
+
+                            </div>
 
                         <div id = "content1" class="low">
-                                <h1 style=" font-size: 26px; text-align: center;">UPDATE PROFILE</h1>
-                                <div class="img_prof">
-                                    <img title="User Image" src="{% static '\assests\mentordashboard\prof.svg' %}" id = "pro_img" alt="Image">
-                                    <input style="margin-left: 100px;" type="file" accept="image/*" id="image-input">
-                                </div>
-                                
-                
-                                <div class="sec">
-                                    <div class="leftinfo">
-                                            <label style="font-size: 16px; text-align: left;" for="name">Name</label>
-                                            <input class="createexm" type="text" id="name"><br>
-
-                                            <label style="font-size: 16px; text-align: left;" for="gender">Gender</label>
-                                            <select class="createexm" id="gender" name="gender">
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
-                                                <option value="other">Other</option>
-                                                <option value="not-disclosed">Do Not Wish to Disclose</option>
-                                            </select><br>
-
-                                            <label style="font-size: 16px; text-align: left;" for="grade">Grade</label>
-                                            <select class="createexm" id="grade" name="grade">
-                                                <option value="g6-8">Grades 6-8</option>
-                                                <option value="g9-12">Grades 9-12</option>
-                                                <option value="g">Graduate</option>
-                                                <option value="pg">Post Graduate</option>
-                                                <option value="doc">Doctorate</option>
-                                                <option value="prof">Professional</option>
-                                                <option value="other">Other</option>
-                                            </select><br>
-                                        
-                                            <label style="font-size: 16px; text-align: left;" for="mobile">Phone </label>
-                                            <input type="tel" class=" createexm phone-number" id="mobile" style="width: 100%;" placeholder="Mobile Number" required>
-                                    </div>
-                                    <div class="rightinfo">
-                                        <label style="font-size: 16px; text-align: left;" for="username">UserName</label>
-                                        <input class="createexm" type="text" id="username"><br>
-
-                                        <label style="font-size: 16px; text-align: left;" for="instituion">Institution</label>
-                                        <input class="createexm" type="text" id="instituion"><br>
-
-                                        <label style="font-size: 16px; text-align: left;" for="affilation">Affilation</label>
-                                            <select class="createexm" id="affilation" name="affilation">
-                                                <option value="g6-8">CBSE</option>
-                                                <option value="g9-12">ICSE</option>
-                                                <option value="g">State Board</option>
-                                                <option value="pg">Other</option>
-                                            </select><br>
-
-                                        <label style="font-size: 16px; text-align: left;" for="email">E-mail</label>
-                                        <input class="createexm" type="email" id="email"><br>
-
+                            <div class="template">
+                                {{classroom.name}} <h4 style="color: black; font-family: Arial, Helvetica, sans-serif;"><b>Mentor: {{classroom.host.username}}</b></h4>
+                            </div>
+                            <!-- {{classroom.description}} -->
+                            <div class = "anc">
+                                <div class="inp">
+                                    <textarea id="textarea" placeholder="Announce something to your class"  name="textarea" rows="4" cols="200"></textarea>
+                                    <div style=" display:flex; align-items: end; margin-top: 10px;">
+                                        <button class="hbt" >Cancel</button>
+                                        <button class="hbt" >Post</button>
                                     </div>
                                 </div>
-                                <br>
-
-                                <button class="vbtn">UPDATE</button>
                             </div>
 
-                        <div id="content2" class = "hidden">
-                                    <div class = "lcont">
-                                        <label style="font-size: 16px; text-align: left;" for="name">Current Password: </label>
-                                        <input class="createexm" type="text" id="cpass"><br>
-
-                                        <label style="font-size: 16px; text-align: left;" for="name">New Password: </label>
-                                        <input class="createexm" type="text" id="npass"><br>
-
-                                        <button class="vbtn">UPDATE PASSWORD</button>
-                                    </div>
+                            <div class ="mssg">
+                                This is a demo annoucement.
                             </div>
-                            
-                        <div id = "content3" class="hidden">
-                        
-                            <p>Click on the dropdown button to translate.</p>
-                            <p>Translate this page:</p>
-                          
-                          <div id="google_translate_element"></div>
-                          <!-- <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
-                           <script type="text/javascript" > 
-                             function googleTranslateElementInit() {
-                            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element'); }
-                          </script>
-                          
-                          <p>You can translate the content of this page by selecting a language in the select box.</p>
-                    
+                            <div class ="mssg">
+                                <a href="https://www.geeksforgeeks.org/">This is a demo annoucement with a link </a>
+                            </div>
+
+                           
+
                         </div>
+                        <div id = "content2" class="hidden">
+                        
+                        </div>
+                        
+
+                        <div id="content3" class=" hidden">
+                           <div class = "thead"> 
+                                <div class="rowcount">Batch : </div>
+                                <div id="rowcount" class="rowcount"></div> 
+                          </div>
+                            <div class="low" style="padding: 0;">
+                                <table class ="tab">
+                                   <tbody>
+                                
+                                    <tr class="tr">
+                                        <td class = "itm">
+                                   
+                                                SANAT JAIN 211054 
+                                         
+                                        </td>
+                                        <td class="itm2">211054</td>
+                                        <td class = "itm">mail@gamil.com</td>
+                                    </tr>
+                                    <tr class="tr">
+                                        <td class = "itm">
+                                            
+                                                ANUSHREE SINGH 211168 
+                                            
+                                        </td>
+                                        <td class="itm2">211168</td>
+                                        <td class = "itm">mailadcecwec@gamil.com</td>
+                                    </tr>
+                                    <tr class="tr">
+                                        <td class = "itm">
+                                           
+                                                SHIVANSH MEHROTRA 211202
+                                           
+                                        </td>
+                                        <td class="itm2">211202</td>
+                                        <td class = "itm">newmywmailamail@gamil.com</td>
+                                    </tr>
+                                    <tr class="tr">
+                                        <td class = "itm">
+                                                                                        
+                                                Dhruv Yadav 211403
+                                         
+                                        </td>
+                                        <td class="itm2">211403</td>
+                                        <td class = "itm">newmywmailamail@gamil.com</td>
+                                    </tr>
+                                   </tbody>
+                                    
+                                </table>
+                            </div>
+                        </div>
+                            
+                        <div id = "content4" class="hidden">
+                            <div class="low1">
+                              
+                                {% include 'test_component.html' %}
+                              
+                              </div>
+
+                          </div>
+
                     </div>
-                 </div>
+
+                </div>
             </div>
 
        </div>
@@ -782,6 +1049,15 @@ document.addEventListener('keyup', (e) => {
        </div>
 
     </div>
-</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    var table = document.querySelector(".tab");
+    var rowCount = table.rows.length;
+    document.getElementById("rowcount").textContent = rowCount + "    Students" ;
+});
 
+</script>
+</body>
 </html>
+
+{% endblock content %}

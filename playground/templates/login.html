@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,10 +7,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Krona One:wght@400&display=swap"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ABeeZee:wght@400&display=swap"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <title>Login | A-Lab</title>
-    <link rel="icon" type="image/x-icon" href="logo.ico">
+    <link rel="icon" type="image/x-icon" href="{% static '/logo.ico'%}">
     <style>
         :root {
             --bg: #EDF2F0;
@@ -18,7 +18,7 @@
             --white: #f9f9f9;
             --gray: #b8c3ff;
             --black: #181818;
-            --purple: #4B70E2;
+            --purple: #141928;
             --transition: 1.25s;
         }
 
@@ -295,7 +295,7 @@
             <div class="child1">
                 <div  class="image-container">
                         <!-- LOGO on LEFT -->
-                        <a href="ok.html"><img style=" max-width: 70%; ; max-height: 140px; cursor: pointer;" title="A-Lab" src="{% static '/logo.svg' %}" alt="Image"></a>
+                        <a href="{% url 'landing_page' %}"><img style=" max-width: 70%; ; max-height: 140px; cursor: pointer;" title="A-Lab" src="{% static '/logo.svg' %}" alt="Image"></a>
                 </div>
 
                 <h4>Welcome Back! Login Here</h4>
@@ -322,7 +322,7 @@
                        
                         </form>
 
-                        <a class="log" href="Signup.html" id="alreadyHaveAn">
+                        <a class="log" href="{% url 'registration'%}" id="alreadyHaveAn">
                             <span class="login">
                               <span>Not registered? </span>
                               <span style="color: #0b07f0">Create account</span>

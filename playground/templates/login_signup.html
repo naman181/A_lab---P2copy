@@ -1,4 +1,4 @@
-{% load static %}
+<!-- {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -95,8 +95,8 @@
     </style>
 </head>
 <body>
-    <!-- main -->
-<div class="parent">
+    main -->
+<!-- <div class="parent">
     <form method="post" action="{% url 'login_page' %}">
         {% csrf_token %}
         <img src="{% static '/logo.png' %}">
@@ -112,5 +112,210 @@
     </div>
     </form>
 </div>
+</body>
+</html> --> 
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Krona One:wght@400&display=swap"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Get started | A-Lab</title>
+    <link rel="icon" type="image/x-icon" href="{% static '/logo.ico' %}">
+    <style>
+        :root {
+            --bg: #EDF2F0;
+            --neu-1: #e2e2e2;
+            --neu-2: #c2cbd7;
+            --white: #f9f9f9;
+            --gray: #b8c3ff;
+            --black: #181818;
+            --purple: #4B70E2;
+            --transition: 1.25s;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Krona one','Montserrat', sans-serif;
+            font-size: 11px;
+            background-color: #A3CDFF;
+            color: rgb(0, 0, 0);
+        } 
+
+        .parent {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #A3CDFF;
+            border-color: black;
+            font-family: 'Krona one';     
+            font-size: 22px;
+            padding: 40px 90px;
+            margin: 5px 5px;  
+            border-radius: 8px;
+            overflow: hidden;
+            width: 100%;
+            box-shadow: 10px 10px 10px var(--neu-2), -10px -10px 10px var(--white);
+        }
+
+        .child1 {
+            display: flex;
+            flex-direction: column; /* Arrange elements side by side */
+            align-items: center;
+            gap: 20px;
+            justify-content: space-between;
+            width: 100%; /* Ensure full width */
+        }
+
+        .text {
+            flex: 1; /* Allow text to take up remaining space */
+        }
+
+        .text h1 {
+            font-size: 34px;
+            margin: 0;
+            padding: 5px;
+        }
+        .text h4 {
+            margin: 0;
+            padding: 5px;
+        }
+
+        .image {
+            max-width: 100%;
+            height: auto;
+        }
+        .box{
+            flex-direction: row; /* Stack elements in mobile view */
+            display: flex;
+            gap:70px;
+            text-align: center;
+            background: linear-gradient( 180deg, rgba(255, 255, 255, 0.75) 99.99%, rgba(255, 255, 255, 0) );
+            padding: 40px 80px;
+            width: 680px;
+            z-index: 2;
+            
+        }
+        .box{
+            max-width: 100%;
+            height: auto;
+        }
+        .loginbutton{
+            width: 215px;
+            background-color: #B6E0FF;
+            text-align: center;
+            border-radius: 20px;
+            border:0;
+            cursor: pointer;
+            padding: 21px;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            font-size: 18px;
+        }
+    
+        .loginbutton:hover{
+            text-decoration: underline;
+            transition: text-decoration 0.3s ease;
+        }
+
+        @media (max-width: 320px)
+        {
+            .box{
+                text-align: center;
+                max-width: 40%;
+                display: flex;
+                flex-direction: column; 
+                align-items: center;
+                padding: 20px 20px;
+                
+            }
+            .loginbutton
+            {
+                max-width: 50%;
+                font-size: 12px;
+            }
+            .heading{
+                display: block;
+                flex-direction: column; 
+                text-align: center;
+            }
+            
+        }
+        @media (max-width: 768px) {
+            .child1 {
+                flex-direction: column; /* Stack elements in mobile view */
+                align-items: center;
+                
+            }
+            .navigation {
+            justify-content: center;
+            }
+
+            .image-container {
+            align-items: center;
+            }
+            .box{
+                justify-content: center;
+                gap: 30px;
+            }
+        }        
+
+        .image-container {
+            display: flex;
+            flex-direction: column; 
+            align-items: center;
+        }
+
+        .navigation {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Adjust spacing as needed */
+        }
+
+        .logo {
+        width: 100px;
+        height: 100px;
+        max-width: 100%;
+        max-height: 100%;
+        }
+   
+    </style>
+</head>
+<body>
+    <div class="parent">
+       <!-- PAGE 1 -->
+        <div class="PAGE1">
+            <div class="child1">
+                <div  class="image-container">
+                        <!-- LOGO on LEFT -->
+                        
+                        <a href="{% url 'landing_page' %}"><img style=" max-width: 70%; ; max-height: 140px; cursor: pointer;" src="{% static '/logo.svg' %}" alt="Image"></a>
+                </div>
+                <h4>Welcome! Let's get you started</h4>
+                <div  class="image-container">
+                    <img src="{% static '/speedtestamico.svg' %}" alt="target_img">
+                    <form method="post" action="{% url 'login_page' %}">
+                      {% csrf_token %}
+                    <div class="box">
+                        <a href="{% url 'login_page' %}"><button type="submit" class="loginbutton">Log in</button></a>
+                        <a href="{% url 'registration' %}"><button type="submit" class="loginbutton">Sign up</button></a>
+                    </div>
+                    </form>
+                </div>
+                
+                <p style="font-size: 14px;">Copyright © A-LAB 2023. All rights reserved</p>
+            </div>  
+        </div>
+       </div>
+
+    </div>
 </body>
 </html>

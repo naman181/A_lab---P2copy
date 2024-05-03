@@ -42,6 +42,16 @@ class TestForm(forms.ModelForm):
         model = Test
         fields = ['title', 'description', 'start_time', 'end_time']
 
+class GenqForm(forms.Form):
+    input_text = forms.CharField(widget=forms.Textarea)
+    subject = forms.CharField()
+    que_type = forms.ChoiceField(choices=[
+        ('Objective', 'Objective'),
+        ('Subjective', 'Subjective'),
+        ('Numerical', 'Numerical')
+    ])
+    no_que = forms.IntegerField()
+
 class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question

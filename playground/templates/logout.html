@@ -29,7 +29,7 @@
             margin: 5px 5px;
             padding: 30px 30px;
             text-align: center;
-            background-color: rgb(229, 229, 229);      
+            background-color: #A3CDFF;   
         }
        .cen{
         display: flex;
@@ -46,12 +46,12 @@
             justify-content: center;
             padding: 40px 90px;
             margin: 5px 5px;
-            width: 700px;          
-            border: 1px;
-            border-radius: 8px;
+            width: 600px;          
+            border: 1px solid;
+            border-radius: 20px;
             overflow: hidden;
-            background-color: var(--neu-1);
-            box-shadow: 10px 10px 10px var(--neu-2), 
+            /* background-color: var(--neu-1); */
+            box-shadow: 10px 10px 10px  var(--white), 
             -10px -10px 10px var(--white);
             @media (max-width: 1200px) {
             transform: scale(0.9);
@@ -104,7 +104,7 @@
                 
     <img src="{% static '/logo.png' %}">
     <h1 class="cen">Logged Out</h1>
-    <p class="cen">Thank you for visiting A_LAB !</p>
+    <p class="cen">Thank you for visiting ALAB !</p>
     <p class="cen">You have been logged out.</p>
     <div class="form-container">      
     <form method="post" action="{% url 'landing_page' %}">
