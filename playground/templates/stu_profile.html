@@ -1,0 +1,542 @@
+{% include 'stu_bar.html' %}
+{% load static %}
+
+<style>
+    :root {
+        --bg: #EDF2F0;
+        --neu-1: #e2e2e2;
+        --neu-2: #c2cbd7;
+        --white: #f9f9f9;
+        --gray: #b8c3ff;
+        --black: #181818;
+        --purple: #4B70E2;
+        --transition: 1.25s;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Krona one','Montserrat', sans-serif;
+        font-size: 11px;
+        background-color: #A3CDFF;
+        color: rgb(0, 0, 0);
+    } 
+
+    .parent {
+        display: flex;
+        flex-direction: column;
+       /* align-items: center;*/
+        gap: 10px;
+        justify-content: center;
+        background-color: #B8FFF7;
+        border-color: black;
+        font-family: 'Krona one';     
+        font-size: 22px;
+        padding: 40px 40px;
+        margin: 5px 5px;  
+        border-radius: 8px;
+        overflow: hidden;
+        width: 100%;
+        box-shadow: 10px 10px 10px var(--neu-2), -10px -10px 10px var(--white);
+    }
+
+    .child1 {
+        display: flex;
+        flex-direction: column; /* Arrange elements side by side */
+        align-items: center;
+        gap: 20px;
+        justify-content: space-between;
+        width: 100%; /* Ensure full width */
+        overflow-y: hidden;
+    }
+    .contain{
+        display: flex;
+        align-items: flex-start;
+        flex-direction: row; /* Arrange elements side by side */
+        gap: 50px;
+        justify-content: space-between;
+        width: 100%; /* Ensure full width */
+    }
+
+    .text {
+        flex: 1; /* Allow text to take up remaining space */
+    }
+
+    .text h1 {
+        font-size: 34px;
+        margin: 0;
+        padding: 5px;
+    }
+    .text h4 {
+        margin: 0;
+        padding: 5px;
+        
+    }
+
+    .image {
+        max-width: 100%;
+        height: auto;
+    }
+    .box{
+        flex-direction: row; /* Stack elements in mobile view */
+        display: flex;
+        gap:70px;
+        text-align: center;
+        background: linear-gradient( 180deg, rgba(255, 255, 255, 0.75) 99.99%, rgba(255, 255, 255, 0) );
+        padding: 40px 80px;
+        width: 680px;
+        z-index: 2;
+        
+    }
+    .loginbutton{
+        width: 100%;
+        background-color: #8187FF;
+        text-align: left;
+        border-radius: 0 4px 4px 0;
+        border:0;
+        cursor: pointer;
+        padding: 5px;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        font-size: 11px;
+    }
+    .loginbutton:hover{
+        text-decoration: underline;
+        transition: text-decoration 0.3s ease;
+        background-color: #fff;
+    }
+ 
+    @media (max-width: 768px) {
+        .child1 {
+            flex-direction: column; /* Stack elements in mobile view */
+            align-items: center;
+            text-align: center;
+        }
+        .navigation {
+        justify-content: center;
+        }
+
+        .image-container {
+        align-items: center;
+        }
+        .box{
+            justify-content: center;
+            gap: 30px;
+        }
+        .info{
+            align-items: center;
+        }
+        .contain{
+            flex-direction: row; /* Stack elements in mobile view */
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .bg{
+            align-items: center;
+        }
+        .bg img{
+            width: 288px;
+            min-height: 132.6px;
+            max-width: 100%;
+            max-height: 532.6px;
+        }
+    }        
+
+    .image-container {
+        display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    }
+    .image-container1 {
+        display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    }
+
+    .hr1 {
+        box-sizing: border-box;
+        border-top: 1px solid #000;
+        height: 1px;
+    }
+    .name{
+        border: 0;
+        font-family: "ABeeZee";
+        font-size: 16px;
+        background-color: transparent;
+        text-align: left;
+        width: 100%;
+    }
+
+    .drawer{
+        max-width: 224px;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px 10px 0 0;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+    }
+    .top{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        padding-top:20px;
+        border-radius: 25px 25px 0 0;
+        background-color: #A3CDFF;
+    }
+    .bottom{
+        display: flex;
+        flex-direction: column; 
+        justify-content: flex-end; 
+        height: 300px;
+        gap: 3px;
+        padding-bottom: 5px;
+        background-color: #A3CDFF;
+    }
+    .btn{
+        width: 100%;
+        padding: 12px;
+        gap: 3px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .midcontent{
+        width: 100%;
+        max-width: 882px;
+        border-radius: 10px 10px 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 10px;
+        
+    }
+    .head{
+        display: flex;
+        flex-direction: row;
+        padding: 5px;
+        gap: 10px;
+        background-color: #91D7FF;
+        border-radius: 4px 4px 4px 4px;
+        width: max-content;
+    }
+    .hbt{
+        background-color: #C6F8FF;
+        text-align: center;
+        border-radius: 4px 4px 4px 4px;
+        border:0;
+        cursor: pointer;
+        padding: 5px 10px;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        font-size: 11px;
+    }
+    .hbt:hover{
+        text-decoration: underline;
+        transition: text-decoration 0.3s ease;
+        background-color: #fff;
+    }
+    .low{
+        max-width: 882px;
+        width: 100%;
+        border-radius: 10px 10px 0 0;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex: 2;
+        background-image: url("{% static '\assests\mentordashboard\fadedraf.svg' %}");
+        background-size: 1050px 900px;
+        flex-direction: column;
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: 10px;
+        padding: 60px;
+        gap: 18px;
+        background-color: #A3CDFF;
+    }
+    .createexm{
+        border-radius: 10px 10px 10px 10px;
+        padding: 6px;
+        font-size: 18px;
+        font-family: "ABeeZee";
+        opacity: 0.8;
+    }
+    .vbtn{
+        border-radius: 15px 15px 15px 15px;
+        padding: 6px;
+        background-color: #8187FF;
+        color: #000;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        border: 0;
+    }
+    .vbtn:hover{
+        text-decoration: underline;
+        transition: text-decoration 0.3s ease;
+        background-color: #fff;
+    }
+
+    
+    .checkbox-container {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        cursor: pointer;
+        font-size: 20px;
+        user-select: none;
+        line-height: 25px;
+    }
+
+    .checkbox-container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+        border-radius: 50%; /* Makes it circular */
+        border: 2px solid #555;
+    }
+
+    .checkbox-container:hover input ~ .checkmark {
+        background-color: #ccc;
+    }
+
+    .checkbox-container input:checked ~ .checkmark {
+        background-color: #2196F3;
+    }
+
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    .checkbox-container input:checked ~ .checkmark:after {
+        display: block;
+    }
+
+    .checkbox-container .checkmark:after {
+        left: 9px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        transform: rotate(45deg);
+    }
+    .link{
+        color: #000;
+        text-decoration: none;
+    }
+    .navbar{
+        display: flex;
+        flex-direction: row;
+    }
+    .navbar ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        background: transparent;
+    }
+
+    .navbar li {
+        display: inline-block;
+    }
+
+    .navbar li a {
+        color: #000;
+        display: block;
+        padding: 10px 20px;
+        text-decoration: none;
+    }
+    /* Style the dropdown menu */
+    .navbar ul ul {
+        position: absolute;
+        display: none;
+        background-color: var(--white);
+    }
+    .navbar ul ul li {
+        display: block;
+        font-size: 11px;
+    }
+
+    .navbar li:hover ul {
+        display: flex;
+        flex-direction: column;
+        width: max-content;
+
+    }
+    /* Change the background color of dropdown links on hover */
+    .navbar ul ul li a:hover {
+        background-color: #8187FF;
+        text-decoration: underline;
+    }
+    
+    .btn a {
+        display: inline-block; /* Prevent anchor from collapsing to its content size */
+        margin: 0; /* Remove any margin */
+        padding: 0; /* Remove any padding */
+        width: 100%;
+        background-color: #8187FF;
+        text-align: left;
+        border-radius: 0 4px 4px 0;
+        border:0;
+        cursor: pointer;
+        padding: 5px;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        font-size: 11px;
+    }
+      
+    .search-container {
+        float: right;
+      }
+      
+      .search-container input[type=text] {
+        padding: 6px;
+        margin-top: 8px;
+        font-size: 17px;
+        border: none;
+        color: #000;
+        background-color: #A3CDFF;
+        font-family: sans-serif;
+        border-radius: 12px 0 0 12px;
+      }
+      
+      .search-container button {
+        float: right;
+        padding: 6px 10px;
+        margin-top: 8px;
+        margin-right: 16px;
+        background-color: #A3CDFF;
+        font-size: 17px;
+        border: none;
+        cursor: pointer;
+        border-radius: 0px 12px 12px 0;
+      }
+      
+      .search-container button:hover {
+        background: #ccc;
+      }
+      .header{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+    .img_prof{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        font-size: 11px;
+    }
+    .sec{
+        display: flex;
+        flex-direction:row;
+        gap: 40px;
+        padding: 20px;
+    }
+    .leftinfo, .rightinfo{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        
+    }
+    .hidden {
+        display: none;
+    }
+    .lcont{
+        display: flex;
+        flex-direction: column;
+        padding: 40px;
+        gap: 10px;
+        border-radius: 4px 4px 4px 4px;
+        background-color: #A3CDFF;
+    }
+    .hmpage{
+      border: 0;
+      background: none;
+    }
+
+</style>
+    <div id = "content1" class="low">
+            <h1 style=" font-size: 26px; text-align: center;">MY PROFILE</h1>
+            <div class="img_prof">
+                <img title="User Image" src="{% static '\assests\mentordashboard\prof.svg' %}" id = "pro_img" alt="Image">
+                <input style="margin-left: 100px;" type="file" accept="image/*" id="image-input">
+            </div>
+            
+
+            <div class="sec">
+                <div class="leftinfo">
+                        <label style="font-size: 16px; text-align: left;" for="name">Name</label>
+                        <input class="createexm" type="text" id="name"><br>
+
+                        <label style="font-size: 16px; text-align: left;" for="gender">Gender</label>
+                        <select class="createexm" id="gender" name="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                            <option value="not-disclosed">Do Not Wish to Disclose</option>
+                        </select><br>
+
+                        <label style="font-size: 16px; text-align: left;" for="grade">Grade</label>
+                        <select class="createexm" id="grade" name="grade">
+                            <option value="g6-8">Grades 6-8</option>
+                            <option value="g9-12">Grades 9-12</option>
+                            <option value="g">Graduate</option>
+                            <option value="pg">Post Graduate</option>
+                            <option value="doc">Doctorate</option>
+                            <option value="prof">Professional</option>
+                            <option value="other">Other</option>
+                        </select><br>
+                    
+                        <label style="font-size: 16px; text-align: left;" for="mobile">Phone </label>
+                        <input type="tel" class=" createexm phone-number" id="mobile" style="width: 100%;" placeholder="Mobile Number" required>
+                </div>
+                <div class="rightinfo">
+                    <label style="font-size: 16px; text-align: left;" for="username">UserName</label>
+                    <input class="createexm" type="text" id="username"><br>
+
+                    <label style="font-size: 16px; text-align: left;" for="instituion">Institution</label>
+                    <input class="createexm" type="text" id="instituion"><br>
+
+                    <label style="font-size: 16px; text-align: left;" for="affilation">Affilation</label>
+                        <select class="createexm" id="affilation" name="affilation">
+                            <option value="g6-8">CBSE</option>
+                            <option value="g9-12">ICSE</option>
+                            <option value="g">State Board</option>
+                            <option value="pg">Other</option>
+                        </select><br>
+
+                    <label style="font-size: 16px; text-align: left;" for="email">E-mail</label>
+                    <input class="createexm" type="email" id="email"><br>
+
+                </div>
+            </div>
+            <br>
+
+            
+        </div>
+  
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+</body>
+
+</html>

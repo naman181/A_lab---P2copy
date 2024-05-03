@@ -117,13 +117,22 @@ def learnmore_page(request):
 def notification_page(request):
     return render(request,'notification.html')
 
+def stunotification_page(request):
+    return render(request,'stu_notification.html')
+
 #profile
 def profile_page(request):
     return render(request,'profile.html')
 
+def stu_profile_page(request):
+    return render(request,'stu_profile.html')
+
 #settings
 def settings_page(request):
     return render(request,'settings.html')
+
+def stu_settings_page(request):
+    return render(request,'stu_settings.html')
 
 #history
 def history_page(request):

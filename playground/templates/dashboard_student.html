@@ -43,7 +43,7 @@
                 </div>
                 <ul>   
                     <li>
-                        <form method="post" action="{% url 'notification_page' %}">
+                        <form method="post" action="{% url 'stunotification_page' %}">
                             {% csrf_token %}
                             <button class="hmpage"><img src="{% static '\assests\mentordashboard\bell.svg' %}" title="Notification" alt="bell"></button>
                         </form>
@@ -52,9 +52,9 @@
                         <button class="hmpage"><img src="{% static '\assests\mentordashboard\profile.svg' %}" title="Profile" alt="profile"></button>
                         <ul>
                             <li>
-                                <a href="{% url 'profile_page' %}">My profile</a>
+                                <a href="{% url 'stuprofile_page' %}">My profile</a>
                             </li>
-                            <li><a href="{% url 'settings_page' %}">Settings</a></li>
+                            <li><a href="{% url 'stusettings_page' %}">Settings</a></li>
                             <li><a href="{% url 'logout' %}">Logout</a></li>
                         </ul>
                     </li>
@@ -107,7 +107,7 @@
                             </div>
                             <div class = btn >
                                 <img src="{% static '\assests\mentordashboard\setting.svg' %}" alt="Logo 1">
-                                <a class="link" href="{% url 'settings_page' %}"><button class="loginbutton">Settings</button></a>
+                                <a class="link" href="{% url 'stusettings_page' %}"><button class="loginbutton">Settings</button></a>
                             </div>
 
                         </div>
