@@ -41,6 +41,8 @@ from django.template.loader import get_template
 from django.template import Context
 from xhtml2pdf import pisa
 from .models import TestAttemptQuestion
+from django.http import FileResponse
+import os
 
 # Very first page of the Website before login or sign up
 def landing_page(request):
@@ -171,28 +173,26 @@ def generate(request):
     que_type = request.form['que_type']
 
     # Call the function to generate responses
-    responses = get_lama_response(input_text, subject, no_que, que_type)
+    response_file_path = get_lama_response(input_text, subject, no_que, que_type)
 
-    # Save the generated questions to an Excel file
-    # save_to_excel(responses)
-
-    return render('result.html', responses=responses)
+    # Return the text file as a response
+    return FileResponse(open(response_file_path, 'rb'))
 
 
 def get_lama_response(input_text, subject, no_que, que_type, max_token_length=512):
-    llm = CTransformers(model='/Users/mohit/Documents/GitHub/ALAB/playground/model/llama-2-7b-chat.ggmlv3.q8_0.bin',
+    llm = CTransformers(model='model\llama-2-7b-chat.ggmlv3.q8_0.bin',
                         model_type='llama',
                         config={'max_new_tokens': 256, 'temperature': 0.1})
 
     template = """
         Generate {no_que} {que_type} questions and four options including correct answer on 
-        subject/topic {subject} for the given topics: {input_text} in format
+        subject/topic {subject} for the given passage: {input_text} in format
         question: Question?
         option a: ...
-        option b: ...c
-        option c: ...
+        option b: ...
+        6option c: ...
         option d: ...
-        correct Answer: ... 
+        correct Answer: ...
         """
 
     prompt = PromptTemplate(input_variables=["no_que", "que_type", "subject", "input_text"],
@@ -206,7 +206,31 @@ def get_lama_response(input_text, subject, no_que, que_type, max_token_length=51
         response = llm(prompt.format(no_que=no_que, que_type=que_type, subject=subject, input_text=chunk))
         responses.append(response)
 
-    return responses
+    output_file = 'generated_responses.txt'
+    with open(output_file, 'w') as file:
+        for response in responses:
+            file.write(response + '\n\n')
+
+    # Return the file path
+    return output_file
+
+def download_generated_responses(request):
+    # Define the path to the generated_responses.txt file
+    file_path = 'generated_responses.txt'
+
+    # Check if the file exists
+    if os.path.exists(file_path):
+        # Open the file in binary mode
+        with open(file_path, 'rb') as file:
+            # Create an HttpResponse with the file as content
+            response = HttpResponse(file.read(), content_type='text/plain')
+            # Set the file's Content-Disposition header to force download
+            response['Content-Disposition'] = 'attachment; filename=generated_responses.txt'
+            return response
+    else:
+        # If the file does not exist, return a 404 response
+        return HttpResponse('File not found', status=404)
+    
 
 # Dashboard   
 @login_required(login_url='login')
