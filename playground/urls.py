@@ -36,4 +36,5 @@ urlpatterns = [
 
     path('test/<int:test_id>/report/', views.test_report, name='test_report'),
     path('test/<int:test_id>/report/download/', views.download_test_report_pdf, name='download_test_report_pdf'),
+    path('download/', views.download_generated_responses, name='download_generated_responses'),
 ]
